@@ -1,9 +1,11 @@
+import React, { useEffect, useState } from "react";
 import HeaderStudent from "./HeaderStudent";
+
 const HomePageStudent = () => {
   return (
     <>
       <HeaderStudent />
-      <div>HomePageStudent</div>
+      <div>homepagestudent</div>
     </>
   );
 };

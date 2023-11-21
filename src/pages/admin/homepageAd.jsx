@@ -3,7 +3,7 @@ const HomePageAdmin = () => {
   return (
     <>
       <HeaderAdmin />
-      <div>HomePageStudent</div>
+      <div>HomePageAdmin</div>
     </>
   );
 };

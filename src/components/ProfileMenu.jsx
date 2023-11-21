@@ -11,18 +11,16 @@ import {
   ArrowLeftOnRectangleIcon,
 } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { logout, setUser } from "../slices/authslice";
+import { saveUserToLocalStorage } from "../service/userService";
+import { logout } from "../service/userService";
 import { getUser } from "../service/userService";
 import { useState, useEffect, cloneElement } from "react";
 const ProfileMenu = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    dispatch(logout());
-    window.open(`http://localhost:8080/auth/logout`, "_self");
-    // navigate("/");
+    logout();
   };
   const [userInfor, setUserInfor] = useState({});
   useEffect(() => {
@@ -33,7 +31,8 @@ const ProfileMenu = () => {
         if (info && info.data && info.data.user && info.data.user._json) {
           console.log("user test", info.data.user._json);
           setUserInfor(info.data.user._json);
-          dispatch(setUser(info.data.user._json));
+          saveUserToLocalStorage(info.data.user);
+          //dispatch(setUser(info.data.user));
         }
 
         // console.log("user infor", userInfor);

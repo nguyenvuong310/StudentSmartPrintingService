@@ -14,6 +14,7 @@ import ManagePrintingPage from "./pages/admin/ManagePrintingPage";
 import CustomerServicePage from "./pages/admin/CustomerServicePage";
 import HomePageStudent from "./pages/student/homepageST.jsx";
 import HomePageAdmin from "./pages/admin/homepageAd.jsx";
+import ManageStudentPage from "./pages/admin/ManageStudentPage.jsx"
 import { Counter } from "./pages/Counter.jsx";
 import "./index.css";
 import { Provider } from "react-redux";
@@ -54,6 +55,7 @@ const router = createBrowserRouter(
       </Route>
       <Route path={path.LOGIN} element={<LoginPage />} />
       <Route path="/counter" element={<Counter />} />
+      <Route path="admin/student-manage" element={<ManageStudentPage />}/>
     </>,
   ),
 );

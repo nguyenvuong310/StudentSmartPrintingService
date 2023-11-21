@@ -7,6 +7,7 @@ module.exports = withMT({
       backgroundImage: {
         "white-fill": "url('/src/assets/white-fill.png')",
         "blue-fill": "url('/src/assets/blue-fill.png')",
+        "bkcs2-fill": "url('/src/assets/bkcs2-fill.jpg')",
       },
     },
   },

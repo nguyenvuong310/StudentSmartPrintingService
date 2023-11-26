@@ -14,6 +14,7 @@ import ManagePrintingPage from "./pages/admin/ManagePrintingPage";
 import CustomerServicePage from "./pages/admin/CustomerServicePage";
 import HomePageStudent from "./pages/student/homepageST.jsx";
 import HomePageAdmin from "./pages/admin/homepageAd.jsx";
+import ManageStudentPage from "./pages/admin/ManageStudentPage.jsx"
 import { Counter } from "./pages/Counter.jsx";
 import "./index.css";
 import { Provider } from "react-redux";
@@ -26,12 +27,12 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { ThemeProvider } from "@material-tailwind/react";
-
+import AuthenAdmin from "./hoc/authenAdmin.jsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<App />}>
-        <Route index={true} path="/" element={<HomePage />} />
+        <Route index={true} path="/home" element={<HomePage />} />
         <Route path="/instruction" element={<InstructionPage />} />
         <Route path="/printing" element={<PrintingPage />} />
         <Route path="" element={<CustomerRoute />}>
@@ -50,10 +51,18 @@ const router = createBrowserRouter(
           />
         </Route>
         <Route path={path.HOMEPAGESTUDENT} element={<HomePageStudent />} />
-        <Route path={path.HOMEPAGEADMIN} element={<HomePageAdmin />} />
+        <Route
+          path={path.HOMEPAGEADMIN}
+          element={
+            // <AuthenAdmin>
+            <HomePageAdmin />
+            // </AuthenAdmin>
+          }
+        />
       </Route>
       <Route path={path.LOGIN} element={<LoginPage />} />
       <Route path="/counter" element={<Counter />} />
+      <Route path="admin/student-manage" element={<ManageStudentPage />} />
     </>,
   ),
 );

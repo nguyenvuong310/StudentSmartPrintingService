@@ -1,8 +1,5 @@
-import HomeCarousel from "../components/HomeCarousel";
 import Header from "../components/Header";
-import HomeCard from "../components/HomeCard";
-import SimpleCard from "../components/SimpleCard";
-import { Typography } from "@material-tailwind/react";
+
 import {
   FaceSmileIcon,
   CheckBadgeIcon,
@@ -14,11 +11,12 @@ const HomePage = () => {
   return (
     <>
       <Header />
-      <div className="my-5 flex h-[60rem] flex-col items-center bg-white-fill">
-        <HomeCarousel />
+      <div className="mt-1 flex h-[40rem] flex-col items-center bg-bkcs2-fill">
+        <span className=" hidden sm:ml-6 sm:block font-bold mt-[17rem] text-4xl text-blue-700 bg-white">
+          <i>Welcome to Student Smart Printing Service!</i>
+        </span>
       </div>
     </>
   );
 };
-
 export default HomePage;

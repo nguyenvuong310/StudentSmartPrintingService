@@ -9,7 +9,7 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setCustomer: (state) => {
+    setStudent: (state) => {
       return {
         ...state,
         role: "student",
@@ -38,6 +38,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { setCustomer, setAdmin, logout, setUser } = authSlice.actions;
+export const { setStudent, setAdmin, logout, setUser } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -11,30 +11,32 @@ import {
 import Footer from "../components/Footer";
 import logo from "../assets/logo.png";
 import CookieDialog from "../components/Dialog";
-import { setCustomer, setAdmin } from "../slices/authslice";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { handleAuth } from "../service/userService";
+import checkValidToken from "../hoc/checkValidToken";
 const LoginPage = () => {
   const [language, setLanguage] = useState("vie");
-
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLanguageChange = (event) => {
     setLanguage(event);
   };
 
-  const loginStudent = () => {
-    dispatch(setCustomer());
-    // navigate("/");
-    handleAuth("student");
-  };
-
-  const loginAdmin = () => {
-    dispatch(setAdmin());
-    handleAuth("admin");
-    navigate("/");
+  const handleLogin = async (role) => {
+    const valid = await checkValidToken();
+    if (role === "student") {
+      if (valid) {
+        navigate("/homepage-student");
+      } else {
+        handleAuth("student");
+      }
+    } else {
+      if (valid) {
+        navigate("/homepage-admin");
+      } else {
+        handleAuth("admin");
+      }
+    }
   };
 
   return (
@@ -51,7 +53,7 @@ const LoginPage = () => {
             fullWidth
             className="font-normal"
             size="md"
-            onClick={loginStudent}
+            onClick={() => handleLogin("student")}
           >
             {language === "vie"
               ? "Cán bộ / Sinh viên trường ĐH Bách Khoa Tp.HCM"
@@ -61,7 +63,7 @@ const LoginPage = () => {
             variant="outlined"
             fullWidth
             className="font-normal"
-            onClick={loginAdmin}
+            onClick={() => handleLogin("admin")}
           >
             {language === "vie"
               ? "Nhân viên dịch vụ in ấn sinh viên - SPSO"
@@ -83,7 +85,6 @@ const LoginPage = () => {
           </div>
         </CardFooter>
       </Card>
-      <Footer />
     </div>
   );
 };

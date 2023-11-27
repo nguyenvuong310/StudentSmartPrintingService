@@ -33,26 +33,6 @@ const Header = ({ role }) => {
   const [open, setOpen] = React.useState(false);
 
   const toggleOpen = () => setOpen((cur) => !cur);
-  // const generateNavItem = (icon, to, text) => (
-  //   <Typography
-  //     as="li"
-  //     variant="small"
-  //     className="flex items-center gap-x-2 p-1 font-bold"
-  //   >
-  //     {icon && cloneElement(icon, { className: "w-6" })}
-  //     <Link to={to} className="flex items-center">
-  //       {text}
-  //     </Link>
-  //   </Typography>
-  // );
-
-  // const navList = (
-  //   <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-14">
-  //     {generateNavItem(<HomeIcon />, "/", "TRANG CHỦ")}
-
-  //     {generateNavItem(<UserIcon />, "/login", "ĐĂNG NHẬP")}
-  //   </ul>
-  // );
 
   return (
     <nav class="bg-white shadow-xl">

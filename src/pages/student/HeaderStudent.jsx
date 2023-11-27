@@ -6,13 +6,13 @@ import {
   IconButton,
   Collapse,
 } from "@material-tailwind/react";
+import React from "react";
 import {
   HomeIcon,
   UserIcon,
   Bars3Icon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-
 import logo from "../../assets/logo.png";
 import ProfileMenu from "../../components/ProfileMenu";
 const HeaderStudent = () => {
@@ -24,6 +24,7 @@ const HeaderStudent = () => {
     );
   }, []);
 
+<<<<<<< Updated upstream
   const generateNavItem = (icon, to, text) => (
     <Typography
       as="li"
@@ -73,6 +74,56 @@ const HeaderStudent = () => {
             <Typography variant="small" className="font-bold">
               HỆ THỐNG IN ẤN SINH VIÊN
             </Typography>
+=======
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = "https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js";
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
+
+  const [open, setOpen] = React.useState(false);
+  const toggleModalPrint = () => setOpen((cur) => !cur);
+
+  return (
+    <nav class="bg-white dark:bg-gray-900 sticky fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+
+        {/* ICON & NAME*/}
+        <a href="" class="flex items-center space-x-3 rtl:space-x-reverse">
+          <img src="public/logo.png" class="h-8" alt="Flowbite Logo" />
+          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">SSPS</span>
+        </a>
+        <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+          <span class="sr-only">Open main menu</span>
+          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+          </svg>
+        </button>
+
+        {/* UPLOAD	+	 */}
+
+
+        {/* KHO HỆ THỐNG & CÁ NHÂN */}
+        <div id="KhoHeThong" class="mt-4 border-b border-gray-200 dark:border-gray-700">
+          <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" role="tablist">
+            <li class="me-2" role="presentation">
+              <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="profile-tab" type="button" role="tab" aria-controls="profile" aria-selected="false">KHO HỆ THỐNG</button>
+            </li>
+            <li class="me-2" role="presentation">
+              <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">KHO CÁ NHÂN</button>
+            </li>
+          </ul>
+        </div>
+
+        {/* SEARCH */}
+        <div class="relative hidden md:block">
+          <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+            </svg>
+            <span class="sr-only">Search icon</span>
+>>>>>>> Stashed changes
           </div>
         </Link>
         <div className="me-5 hidden lg:block">{navList}</div>
@@ -80,6 +131,28 @@ const HeaderStudent = () => {
         <div className="flex items-center gap-5">
           <ProfileMenu />
         </div>
+<<<<<<< Updated upstream
+=======
+
+        {/* LANGUAGE */}
+        <div class="relative hidden sm:flex space-x-6">
+          <div class="flex flex-col text-black-300 rounded-md text-sm font-semibold px-3">
+            <div class="pl-4 pt-3 flex flex-row"> <HomeIcon className="w-5 pr-1" /> Ngôn ngữ</div>
+            <select class="flex flex-col text-black-300 rounded-md px-5 py-1 text-xs font-light">
+              <option>Tiếng Việt</option>
+              <option>Tiếng Anh</option>
+            </select>
+          </div>
+          <div id="Menu" class="flex md:order-2 mt-4 md:space-x-0 ltr:space-x-reverse">
+            <button type="button" class="text-white my-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Tải lên</button>
+          </div>
+        </div>
+        <ProfileMenu />
+
+
+        {/* USER */}
+
+>>>>>>> Stashed changes
       </div>
     </Navbar>
   );

@@ -25,6 +25,7 @@ const LoginPage = () => {
     setLanguage(event);
   };
 
+<<<<<<< Updated upstream
   const loginStudent = () => {
     dispatch(setCustomer());
     // navigate("/");
@@ -35,6 +36,23 @@ const LoginPage = () => {
     dispatch(setAdmin());
     handleAuth("admin");
     navigate("/");
+=======
+  const handleLogin = async (role) => {
+    const valid = await checkValidToken();
+    if (role === "student") {
+      if (valid) {
+        navigate("/homepage-student");
+      } else {
+        handleAuth("student");
+      }
+    } else {
+      if (valid) {
+        navigate("/homepage-admin");
+      } else {
+        handleAuth("officer");
+      }
+    }
+>>>>>>> Stashed changes
   };
 
   return (

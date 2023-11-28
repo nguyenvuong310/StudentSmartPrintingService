@@ -12,7 +12,7 @@ import {
   Bars3Icon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-
+import UploadModal from "../../components/UploadModal"
 import logo from "../../assets/logo.png";
 import ProfileMenu from "../../components/ProfileMenu";
 const HeaderStudent = () => {
@@ -60,7 +60,7 @@ const HeaderStudent = () => {
   return (
 
 
-    <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+    <nav class="bg-white dark:bg-gray-900 sticky fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 
         {/* ICON & NAME*/}
@@ -115,6 +115,7 @@ const HeaderStudent = () => {
             <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Tải lên</button>
           </div>
         </div>
+        <UploadModal />
         <ProfileMenu />
 
 

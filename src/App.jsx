@@ -21,7 +21,7 @@ const App = () => {
           setTimeout(() => {
             clearUserFromLocalStorage();
             validateTokenAndRedirect();
-          }, 60000);
+          }, 500000);
           // Validate token and redirect only after fetching and saving user information
           await validateTokenAndRedirect();
         } else {

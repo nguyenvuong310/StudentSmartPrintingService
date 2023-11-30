@@ -1,7 +1,6 @@
 import HeaderAdmin from "./HeaderAdmin";
-import AddPrinterModal from "../../components/AddPrinterModal";
-const ManagePrinterPage = () => {
 
+const ManagePrintingHistory = () => {
   return (
     <>
       <HeaderAdmin />
@@ -17,12 +16,12 @@ const ManagePrinterPage = () => {
                   <a href="./student-manage">Quản lý sinh viên</a>
                 </div>
               </div>
-              <div role="button" tabindex="0" class="border-solid border-2 flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 bg-gray-50 bg-opacity-80 hover:text-blue-900 focus:text-blue-900 text-blue-900 outline-none">
+              <div role="button" tabindex="0" class="border-solid border-2 flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-gray-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none">
                 <div class="grid place-items-center mr-4">
                   <a href="./printer-manage">Quản lý máy in</a>
                 </div>
               </div>
-              <div role="button" tabindex="0" class="border-solid border-2 flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-gray-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none">
+              <div role="button" tabindex="0" class="border-solid border-2 flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 bg-gray-50 bg-opacity-80 hover:text-blue-900 focus:text-blue-900 text-blue-900 outline-none">
                 <div class="grid place-items-center mr-4">
                   <a href="./printing-history-manage">Quản lý lịch sử in</a>
                 </div>
@@ -35,7 +34,7 @@ const ManagePrinterPage = () => {
             <div class="py-2 pt-10 inline-block min-w-full sm:px-6 lg:px-8">
               <div class="overflow-hidden shadow rounded-lg">
                 <div class="w-full flex bg-white border-2 border-b-black">
-                  <div class="w-full font-bold px-5 py-5 text-black-600 text-2xl">Quản lý máy in</div>
+                  <div class="w-full font-bold px-5 py-5 text-black-600 text-2xl">Quản lý lịch sử in</div>
                   <div className="pt-1 px-4 flex items-center text-medium font-medium leading-none cursor-pointer">
                     <div class="flex">
                       <a href="/homepage-admin">
@@ -46,9 +45,13 @@ const ManagePrinterPage = () => {
                     </div>
                   </div>
                 </div>
-                <div class="bg-white border border-b-black flex w-full">
+                <div class="bg-[#8289ad] border border-b-black flex w-full">
                   <div class="relative flex-wrap justify-between ml-auto mr-3">
-                    <AddPrinterModal/>
+                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                      <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+                    </div>
+                    <input type="text" class="h-8 my-1 bg-white border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" required>
+                    </input>
                   </div>
                 </div>
                 <div className="flex">
@@ -56,45 +59,36 @@ const ManagePrinterPage = () => {
                     <thead class="bg-white shadow-2xl">
                       <tr>
                         <th scope="col" class="text-lg font-bold text-gray-900 px-10 py-4 text-left">
-                          Tên máy in
+                          Họ và tên
                         </th>
                         <th scope="col" class="text-lg font-bold text-gray-900 px-10 py-4 text-left">
-                          Địa chỉ
+                          Tài liệu
                         </th>
                         <th scope="col" class="text-lg font-bold text-gray-900 px-10 py-4 text-left">
-                          Loại
+                          Máy in
                         </th>
                         <th scope="col" class="text-lg font-bold text-gray-900 px-10 py-4 text-left">
-                          Bật/tắt
+                          Thời gian nhận
                         </th>
                         <th scope="col" class="text-lg font-bold text-gray-900 px-10 py-4 text-center">
-                          Tùy chỉnh
+                          Trạng thái
                         </th>
                       </tr>
                     </thead>
                     <tbody className="mt-1">
                       <tr className="even:bg-white odd:bg-blue-50">
                         <td class="px-10 py-4 whitespace-nowrap text-lg font-light text-gray-900">
-                          Máy in 2999
+                          Kim Nhật Thành
                         </td>
                         <td class="text-lg text-gray-900 font-light px-10 py-4 whitespace-nowrap">
+
+                        </td>
+                        <td class="text-lg text-gray-900 font-light px-10 py-4 whitespace-nowrap text-center">
                           ĐHBK cơ sở 1, tòa A5, tầng 1
                         </td>
                         <td class="text-lg text-gray-900 font-light px-10 py-4 whitespace-nowrap text-center">
-                          In thường
                         </td>
                         <td class="text-lg text-gray-900 font-light px-10 py-4 whitespace-nowrap text-center">
-                          <label class="mt-3 relative inline-flex items-center cursor-pointer">
-                            <input type="checkbox" value="" class="sr-only peer"></input>
-                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
-                            </div>
-                          </label>
-                        </td>
-                        <td class="text-lg text-gray-900 font-light px-10 py-4 whitespace-nowrap text-center">
-                          <div className="flex flex-row">
-                            <button href="#" class="flex-row border-4 border-[#c4c4c4] bg-blue-300 px-3 py-1 text-white hover:shadow text-sm font-thin">CHỈNH SỬA</button>
-                            <button href="#" class="mx-3 border-4 border-[#c4c4c4] bg-red-500 px-3 py-1 text-white hover:shadow text-sm font-thin">XÓA</button>
-                          </div>
                         </td>
                       </tr>
                     </tbody>
@@ -106,7 +100,7 @@ const ManagePrinterPage = () => {
         </div>
       </div>
     </>
-  );
+  )
 };
 
-export default ManagePrinterPage;
+export default ManagePrintingHistory;

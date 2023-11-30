@@ -10,8 +10,6 @@ import PrintingPage from "./pages/student/PrintingPage.jsx";
 import HistoryPage from "./pages/HistoryPage";
 import FeedbackPage from "./pages/FeedbackPage";
 import ManagePrinterPage from "./pages/admin/ManagePrinterPage";
-import ManagePrintingPage from "./pages/admin/ManagePrintingPage";
-import CustomerServicePage from "./pages/admin/CustomerServicePage";
 import HomePageStudent from "./pages/student/homepageST.jsx";
 import HomePageAdmin from "./pages/admin/homepageAd.jsx";
 import ManageStudentPage from "./pages/admin/ManageStudentPage.jsx"
@@ -28,6 +26,7 @@ import {
 } from "react-router-dom";
 import { ThemeProvider } from "@material-tailwind/react";
 import AuthenAdmin from "./hoc/authenAdmin.jsx";
+import ManagePrintingHistory from "./pages/admin/ManagePrintingHistory.jsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -40,15 +39,7 @@ const router = createBrowserRouter(
           <Route path="/feedback" element={<FeedbackPage />} />
         </Route>
         <Route path="" element={<AdminRoute />}>
-          <Route path="/admin/printer-manage" element={<ManagePrinterPage />} />
-          <Route
-            path="/admin/printing-manage"
-            element={<ManagePrintingPage />}
-          />
-          <Route
-            path="admin/customer-service"
-            element={<CustomerServicePage />}
-          />
+          
         </Route>
         <Route path={path.HOMEPAGESTUDENT} element={<HomePageStudent />} />
         <Route
@@ -62,7 +53,12 @@ const router = createBrowserRouter(
       </Route>
       <Route path={path.LOGIN} element={<LoginPage />} />
       <Route path="/counter" element={<Counter />} />
-      <Route path="admin/student-manage" element={<ManageStudentPage />} />
+      <Route path="/admin/student-manage" element={<ManageStudentPage />} />
+      <Route path="/admin/printer-manage" element={<ManagePrinterPage />} />
+      <Route
+        path="/admin/printing-history-manage"
+        element={<ManagePrintingHistory />}
+      />
     </>,
   ),
 );

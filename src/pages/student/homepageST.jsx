@@ -1,33 +1,45 @@
 import HeaderStudent from "./HeaderStudent";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer"
-import FolderCard from "../../components/StudentFolderCard"
-import StudentFolderCard from "../../components/StudentFolderCard";
-import FolderImg from "../../assets/folderimg.png"
-import { getUser } from "../../service/userService";
-import PagiBar from "../../components/PaginationBar"
-
+import { useState, useEffect } from "react";
+import StudentProfile from "./StudentProfile";
+import PublicStorage from "./PublicStorage";
+import PrivateStorage from "./PrivateStorage";
 const HomePageStudent = () => {
-  const text = 'Công nghệ phần mềm';
+
+  const [check, setCheck] = useState(1);
+  useEffect(() => {
+    const test = async () => {
+      try {
+        console.log(check)
+      } catch (error) {
+        console.error("Error fetching user information:", error);
+      }
+    };
+
+    test()
+  }, [check]);
+
+  const handleOnChangeCheck = (data) => {
+    setCheck(() => data)
+  }
+
   return (
     <>
-      <HeaderStudent />
-      <div className="flex h-[40rem] p-5 flex-col items-center bg-white-fill">
-        <div class="grid grid-cols-3 gap-[4rem] mt-2">
-          <StudentFolderCard text={text} />
-          <StudentFolderCard text={text} />
-          <StudentFolderCard text={text} />
-          <StudentFolderCard text={text} />
-          <StudentFolderCard text={text} />
-          <StudentFolderCard text={text} />
-          <StudentFolderCard text={text} />
-          <StudentFolderCard text={text} />
-          <StudentFolderCard text={text} />
-        </div>
-        <PagiBar />
-      </div >
+      <HeaderStudent input={handleOnChangeCheck} value={check} />
+      {/* <BuyPageModal /> */}
+      {/* <div className="flex h-[40rem] p-5 flex-col items-center bg-white-fill">
+      </div > */}
+      {check == 1 &&
+        <PublicStorage />
 
-      <Footer />
+      }
+      {check == 2 &&
+        <PrivateStorage />
+      }
+      {check == 3 && <StudentProfile />
+
+      }
+
+
     </>
   );
 };

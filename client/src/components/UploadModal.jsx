@@ -10,13 +10,10 @@ import {
 } from "@heroicons/react/24/outline";
 import SelectR from 'react-select'
 import CreatableSelect from 'react-select/creatable';
-import { uploadFile } from "../service/userService";
+import { uploadFile, getListCourse } from "../service/userService";
 import icon_word from "../assets/icon-word.png";
 import icon_pdf from "../assets/PDF_icon.svg.png";
-const optionsLocation = [
-    { value: 'private', label: 'Kho cá nhân' },
-    { value: 'public', label: 'Kho cộng đồng' },
-]
+
 export default function UploadModal() {
     const [showModal, setShowModal] = useState(false);
     const [file, setFile] = useState({})
@@ -24,10 +21,26 @@ export default function UploadModal() {
     const [course, setCourse] = useState("")
     const [name, setName] = useState("")
     const [uploaded, setUploaded] = useState(false)
+    const [listCourse, setListCourse] = useState([])
     useEffect(() => {
+        const getdata = async () => {
+            const course = await getListCourse();
+            await setListCourse(course.data.course)
+        }
 
+        // console.log(listCourse)
+        getdata()
     }, [file, location, course, name, showModal, uploaded]);
+    const optionsLocation = [
+        { value: 'private', label: 'Kho cá nhân' },
+        { value: 'public', label: 'Kho cộng đồng' },
+    ]
+    const optionsCourse = listCourse.map((course, index) => {
+        const value = course.name;
+        const label = course.name;
 
+        return { value, label };
+    })
     const handleFileChange = async (event) => {
         await setFile(() => event.target.files[0])
         await setUploaded(() => true)
@@ -36,18 +49,12 @@ export default function UploadModal() {
         await setlocation(() => event.value)
     }
     const handleOnchangeCourse = async (event) => {
-        await setCourse(() => event.target.value)
+        await setCourse(() => event.value)
     }
     const handleOnchangeName = async (event) => {
         await setName(() => event.target.value)
     }
     let handleUpload = async () => {
-        // let formData = new FormData();
-        // formData.append("file", file); // No 'await' needed here
-        // formData.append("name", name)
-        // formData.append("course", course)
-        // formData.append("location", location)
-        // console.log(formData)
         let data = {
             file: file,
             name: name,
@@ -84,7 +91,7 @@ export default function UploadModal() {
             {showModal ? (
                 <>
                     <div class="justify-center flex fixed inset-0 z-50 outline-none focus:outline-none ">
-                        <div class="extraOutline relative w-[45rem] p-4 bg-[#ABD7EF] w-max bg-whtie m-auto rounded-lg">
+                        <div class="extraOutline relative w-[45rem] p-4 bg-[#ABD7EF] bg-whtie m-auto rounded-lg">
                             <div className="w-6 h-6 absolute top-0 right-0 rounded-full border-2 border-blue-700 m-2">
                                 <button className="pl-[5.5px]" type="button"
                                     onClick={() => setShowModal(false)}>
@@ -103,8 +110,7 @@ export default function UploadModal() {
                                     <div className="font-bold mb-2">
                                         Chọn môn học của tệp
                                     </div>
-
-                                    <input onChange={(event) => handleOnchangeCourse(event)} type="text" class="block w-full p-2 ps-2 text-sm text-gray-900 border border-gray-400 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tên môn học..." />
+                                    <CreatableSelect onChange={(event) => handleOnchangeCourse(event)} options={optionsCourse} />
                                 </div>
                                 <div>
                                     <div className="font-bold mb-2">

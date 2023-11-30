@@ -42,7 +42,22 @@ const handleDeleteDoc = async (req, res) => {
     let message = await userService.deleteDoc(req.body.id);
     return res.status(200).json(message);
 }
-
+const handleGetListCourse = async (req, res) => {
+    let course = await userService.getCourse()
+    if (course) {
+        return res.status(200).json({
+            errCode: 0,
+            errMessage: "Get course success",
+            course
+        })
+    } else {
+        return res.status(200).json({
+            errCode: 1,
+            errMessage: "Get course fail",
+            course: []
+        })
+    }
+}
 module.exports = {
-    handleGetUserInfo, handleGetDoc, handleDeleteDoc,
+    handleGetUserInfo, handleGetDoc, handleDeleteDoc, handleGetListCourse
 };

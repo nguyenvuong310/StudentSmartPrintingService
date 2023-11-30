@@ -300,6 +300,18 @@ let getbuyhistory = (userid) => {
         }
     })
 }
+let getCourse = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let data = await db.Courses.findAll()
+            if (data) resolve(data)
+            else resolve()
+        } catch (e) {
+            console.log(e);
+            reject(e)
+        }
+    })
+}
 module.exports = {
     getFolderId,
     updateFolderId,
@@ -314,5 +326,6 @@ module.exports = {
     searchDoc,
     deleteDoc,
     getprinthistory,
-    getbuyhistory
+    getbuyhistory,
+    getCourse,
 }

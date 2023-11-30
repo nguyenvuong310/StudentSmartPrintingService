@@ -28,23 +28,26 @@ let initWebRoutes = (app) => {
   //CRUD to ggDrive
   router.get("/drive/createFolder", driveController.handleCreateFolder);
   router.post("/drive/uploadFile", type, driveController.handleUploadFile);
-
+  // userController
   router.get("/api/getUserInfo", userController.handleGetUserInfo);
   router.post("/api/getalldoc", userController.handleGetDoc)
+  router.post("/api/deletedoc", userController.handleDeleteDoc)
+  router.post("/api/getlistcourse", userController.handleGetListCourse)
+  // printController
   router.post("/api/getallprinter", printController.handleGetPrinter)
   router.post("/api/getprintertime", printController.handleGetPrinterTime)
   router.post("/api/print", printController.handlePrint)
-
+  router.post("/api/getprinthistory", printController.handleGetPrintHistory)
+  // buypageController
   router.post("/api/buypage", buypageController.handleBuyPage)
-
+  router.post("/api/getprintbuy", buypageController.handleGetBuyHistory)
+  // searchController
   router.post("/api/search", searchController.handleSearch)
 
+  // adminController
   router.post("/api/getalluser", adminController.handleGetAllUser)
   router.post("/api/getblockeduser", adminController.handleGetBlockedUser)
   router.post("/api/admingetallprinter", adminController.handleGetAllPrinter)
-  router.post("/api/deletedoc", userController.handleDeleteDoc)
-  router.post("/api/getprinthistory", printController.handleGetPrintHistory)
-  router.post("/api/getprintbuy", buypageController.handleGetBuyHistory)
   router.post("/api/blockuser", adminController.handleBlockUser)
   router.post("/api/deleteprinter", adminController.handleDeletePrinter)
   router.post("/api/admingetprinthistory", adminController.handleGetPrintHistory)

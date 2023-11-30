@@ -5,17 +5,19 @@ import FolderCard from "../../components/StudentFolderCard"
 import StudentFolderCard from "../../components/StudentFolderCard";
 import FolderImg from "../../assets/folderimg.png";
 import PagiBar from "../../components/PaginationBar"
-import { getUserInfo, getDocByUserid } from "../../service/userService";
+import { getUserInfo, getListCourse } from "../../service/userService";
 import { useState, useEffect } from "react";
 import { data } from "autoprefixer";
 const HomePageStudent = () => {
   const [userinfo, setUserInfo] = useState({});
+  // const [listCourse, setListCourse] = useState({})
   useEffect(() => {
     const test = async () => {
       try {
         const data = await getUserInfo();
-        // userinfo = data.data.user
-        setUserInfo(() => data.data.user)
+        setUserInfo(data.data.user)
+        // const course = await getListCourse();
+        // setListCourse(course.data.course)
       } catch (error) {
         console.error("Error fetching user information:", error);
       }

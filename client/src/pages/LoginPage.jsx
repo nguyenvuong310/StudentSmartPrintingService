@@ -34,7 +34,7 @@ const LoginPage = () => {
       if (valid) {
         navigate("/homepage-admin");
       } else {
-        handleAuth("admin");
+        handleAuth("officer");
       }
     }
   };

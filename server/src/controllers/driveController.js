@@ -107,6 +107,7 @@ const handleUploadFile = async (req, res) => {
   //   console.log(req.file);
   let folderId
   if (req.body.location === "private") {
+    console.log("hello")
     folderId = await userService.getFolderId(req.user._json.email);
     if (!folderId) {
       folderId = await handleCreateFolder(req);

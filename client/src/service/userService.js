@@ -22,6 +22,15 @@ const getUserInfo = async () => {
     withCredentials: true,
   });
 }
+
+const getListCourse = async () => {
+  const url = "http://localhost:8080/api/getlistcourse";
+  return await axios({
+    url: url,
+    method: "POST",
+    withCredentials: true,
+  });
+}
 const getDocByUserid = async (data) => {
   const url = "http://localhost:8080/api/getalldoc";
   return await axios({
@@ -46,4 +55,13 @@ const uploadFile = async (data) => {
     withCredentials: true,
   });
 }
-export { handleAuth, getUser, saveUserToLocalStorage, logout, getUserInfo, getDocByUserid, uploadFile };
+export {
+  handleAuth,
+  getUser,
+  saveUserToLocalStorage,
+  logout,
+  getUserInfo,
+  getDocByUserid,
+  uploadFile,
+  getListCourse,
+};

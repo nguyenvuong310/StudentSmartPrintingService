@@ -8,41 +8,40 @@ import PagiBar from "../../components/PaginationBar"
 import { getUserInfo, getListCourse } from "../../service/userService";
 import { useState, useEffect } from "react";
 import { data } from "autoprefixer";
+import StudentProfile from "./StudentProfile";
+import PublicStorage from "./PublicStorage";
+import PrivateStorage from "./PrivateStorage";
+import PrintingPage from "./PrintingPage";
 const HomePageStudent = () => {
-  const [userinfo, setUserInfo] = useState({});
-  // const [listCourse, setListCourse] = useState({})
+  const [userinfo, setUserinfo] = useState({})
+  const [check, setCheck] = useState(1);
   useEffect(() => {
     const test = async () => {
       try {
         const data = await getUserInfo();
-        setUserInfo(data.data.user)
-        // const course = await getListCourse();
-        // setListCourse(course.data.course)
+        setUserinfo(data.data.user)
       } catch (error) {
         console.error("Error fetching user information:", error);
       }
     };
 
     test()
-  }, []);
+  }, [check]);
+
+  const handleOnChangeCheck = (data) => {
+    setCheck(() => data)
+  }
+
   return (
     <>
-      <HeaderStudent />
-      <div className="flex h-[40rem] p-5 flex-col items-center bg-white-fill">
-        {/* <div class="grid grid-cols-3 gap-[4rem] mt-2">
-          <StudentFolderCard text={text} />
-          <StudentFolderCard text={text} />
-          <StudentFolderCard text={text} />
-          <StudentFolderCard text={text} />
-          <StudentFolderCard text={text} />
-          <StudentFolderCard text={text} />
-          <StudentFolderCard text={text} />
-          <StudentFolderCard text={text} />
-          <StudentFolderCard text={text} />
-        </div>
-        <PagiBar /> */}
-      </div >
-      <Footer />
+      <HeaderStudent input={handleOnChangeCheck} value={check} />
+      {check == 1 && <PublicStorage />}
+      {check == 2 && <PrivateStorage user={userinfo} />}
+      {check == 3 && <StudentProfile />}
+      {/* <div class="h-screen">
+        <PrintingPage docUrl='https://drive.google.com/file/d/1cyqtTyQLqTV3WePHJKuwjYRhPWainQEG/preview' />
+      </div>
+      {/* <div>HomePageStudent</div> */}
     </>
   );
 };

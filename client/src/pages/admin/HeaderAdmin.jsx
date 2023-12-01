@@ -15,7 +15,11 @@ import {
   UserIcon,
   Bars3Icon,
   XMarkIcon,
-  LanguageIcon
+  LanguageIcon,
+  ArrowLeftOnRectangleIcon,
+  UserGroupIcon,
+  PrinterIcon,
+  ClockIcon
 } from "@heroicons/react/24/outline";
 
 import logo from "../../assets/logo.png";
@@ -42,36 +46,21 @@ const HeaderAdmin = () => {
       </Link>
     </Typography>
   );
-
-  // const navList = (
-  //   <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-14">
-  //     {generateNavItem(<HomeIcon />, "/", "TRANG CHỦ")}
-  //     {generateNavItem(<UserIcon />, "/login", "ĐĂNG NHẬP")}
-  //   </ul>
-  // );
   const [open, setOpen] = React.useState(false);
   const toggleOpen = () => setOpen((cur) => !cur);
 
-
-  // const navList = (
-  //   <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-14">
-  //     {generateNavItem(<HomeIcon />, "/", "TRANG CHỦ")}
-
-  //     {generateNavItem(<UserIcon />, "/login", "ĐĂNG NHẬP")}
-  //   </ul>
-  // );
   const handleLogout = () => {
     // dispatch(logout());
     window.open(`http://localhost:8080/auth/logout`, "_self");
     // navigate("/");
   };
   return (
-    <nav class="bg-white shadow-xl">
+    <nav class="bg-white border-b  sticky top-0 z-40">
       <div class="mx-auto max-w-7xl px-2 py-3 sm:px-6 lg:px-8">
         <div class="relative flex h-16 items-center justify-between">
           <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
 
-            <div class="absolute bottom-0 left-0 py-2  sm:hidden block ">
+            <div class="absolute bottom-5 left-0 py-2  sm:hidden block ">
               <button onClick={toggleOpen} type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-slate-300 hover:text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                 aria-controls="mobile-menu" aria-expanded="false">
                 <span class="absolute -inset-0.5"></span>
@@ -86,7 +75,7 @@ const HeaderAdmin = () => {
             </div>
             <div class="flex flex-shrink-0 items-center">
               <img class="h-11 w-auto" src={logo} alt="HCMUT" />
-              <p class="text-indigo-500 text-2xl px-4 py-2 font-bold ">SPSO</p>
+              <p class="text-indigo-700 text-2xl px-4 py-2 font-bold ">SPSO</p>
             </div>
           </div>
 
@@ -94,15 +83,15 @@ const HeaderAdmin = () => {
 
           <div class="inset-y-0 right-0 flex items-center sm:flex hidden sm:static sm:inset-auto ">
             <div class="flex flex-col  text-black-300 rounded-md text-sm font-semibold pr-5">
-              <div class="pl-4 pt-3 flex flex-row"> <LanguageIcon className="w-5 pr-1" /> Ngôn ngữ</div>
-              <select class="flex flex-col text-black-300 rounded-md px-5 py-1 text-xs font-light">
+              <div class="pl-4 pt-3 flex flex-row "> <LanguageIcon className="w-5 pr-1 " /> Ngôn ngữ</div>
+              <select class="flex flex-col   rounded-md px-5 py-1 text-xs font-light">
                 <option>Tiếng Việt</option>
                 <option>Tiếng Anh</option>
               </select>
             </div>
 
             <div className="flex items-center gap-2">
-              <p class="text-red-500 text-sm py-2 font-bold ">admin</p>
+              {/* <p class="text-red-500 text-sm py-2 font-bold ">admin</p> */}
               <ProfileMenu />
             </div>
 
@@ -115,17 +104,33 @@ const HeaderAdmin = () => {
           <Card className=" mx-auto ">
             <CardBody >
               <Typography variant="small"  >
-                <div class="text-gray-700 hover:bg-blue-200 hover:text-white block rounded-md px-3 py-1 text-base font-medium">
-                  Quản lí sinh viên
+                <hr className="my-2 border-blue-gray-50 " />
+                <div class="flex py-2 pl-1 gap-2 hover:bg-blue-200 hover:text-white text-base font-medium text-gray-700 block rounded-md">
+                  <UserGroupIcon className="w-5" />
+                  <div onClick="#">
+                    Quản lí sinh viên
+                  </div>
                 </div>
-                <div class="text-gray-700 hover:bg-blue-200 hover:text-white block rounded-md px-3 py-1 text-base font-medium">
-                  Quản lí máy in
+                <hr className="my-2 border-blue-gray-50" />
+                <div class="flex py-2 pl-1 gap-2 hover:bg-blue-200 hover:text-white text-base font-medium text-gray-700 block rounded-md">
+                  <PrinterIcon className="w-5" />
+                  <div onClick="#">
+                    Quản lí máy in
+                  </div>
                 </div>
-                <div class="text-gray-700 hover:bg-blue-200 hover:text-white block rounded-md px-3 py-1 text-base font-medium">
-                  Quản lí lịch sử in
+                <hr className="my-2 border-blue-gray-50" />
+                <div class="flex py-2 pl-1 gap-2 hover:bg-blue-200 hover:text-white text-base font-medium text-gray-700 block rounded-md">
+                  <ClockIcon className="w-5" />
+                  <div onClick="#">
+                    Quản lí lịch sử in
+                  </div>
                 </div>
-                <div class="text-gray-700 hover:bg-blue-200 hover:text-white block rounded-md px-3 py-1 text-base font-medium" onClick={handleLogout}>
-                  Đăng xuất
+                <hr className="my-2 border-blue-gray-50 " />
+                <div class="flex py-2 pl-1 gap-2 hover:bg-blue-200 hover:text-white text-base font-medium text-gray-700 block rounded-md">
+                  <ArrowLeftOnRectangleIcon className="w-5" />
+                  <div onClick={handleLogout}>
+                    Đăng xuất
+                  </div>
                 </div>
 
               </Typography>
@@ -133,16 +138,6 @@ const HeaderAdmin = () => {
           </Card>
         </Collapse>
       </div>
-      {/* <!-- Mobile menu, show/hide based on menu state. --> */}
-      {/* <div class="sm:hidden" id="mobile-menu">
-        <div class="space-y-1 px-2 pb-3 pt-2"> */}
-      {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-      {/* <a href="#" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Dashboard</a>
-          <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Team</a>
-          <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Projects</a>
-          <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Calendar</a>
-        </div>
-      </div> */}
     </nav >
   );
 };

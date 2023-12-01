@@ -15,52 +15,28 @@ import {
 import UploadModal from "../../components/UploadModal"
 import logo from "../../assets/logo.png";
 import ProfileMenu from "../../components/ProfileMenu";
+import HomepageStudent from './homepageST';
+import SelectPrinter from "./SelectPrinter";
+import PrintingPage from "./PrintingPage";
 const HeaderStudent = (props) => {
-  const [openNav, setOpenNav] = useState(false);
-  useEffect(() => {
-    window.addEventListener(
-      "resize",
-      () => window.innerWidth >= 960 && setOpenNav(false),
-    );
-  }, []);
+  const [check, setCheck] = useState(1);
 
   useEffect(() => {
     const script = document.createElement('script');
     script.src = "https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js";
     script.async = true;
     document.body.appendChild(script);
-  }, []);
+  }, [check]);
 
-  const generateNavItem = (icon, to, text) => (
-    <Typography
-      as="li"
-      variant="small"
-      className="flex items-center gap-x-2 p-1 font-bold"
-    >
-      {icon && cloneElement(icon, { className: "w-6" })}
-      <Link to={to} className="flex items-center">
-        {text}
-      </Link>
-    </Typography>
+  // const [open, setOpen] = useState(1);
 
-
-  );
-  // const [open, setOpen] = React.useState(false);
-
-  // const toggleOpen = () => setOpen((cur) => !cur);
-
-  const navList = (
-    <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-14">
-      {generateNavItem(<HomeIcon />, "/", "TRANG CHỦ")}
-
-      {generateNavItem(<UserIcon />, "/login", "ĐĂNG NHẬP")}
-    </ul>
-  );
-  const test = () => {
-    props.input(!props.value)
-
-    // props.setCheck(() => true)
-    // console.log()
+  // const toggleOpen = (id) => setOpen(id);
+  const handleOnChangeCheck = (data) => {
+    setCheck(() => data)
+  }
+  const test = (data) => {
+    handleOnChangeCheck(data)
+    props.input(data)
   }
   return (
 
@@ -69,7 +45,7 @@ const HeaderStudent = (props) => {
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 
         {/* ICON & NAME*/}
-        <a href="https://google.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <a href="/homepage-student" class="flex items-center space-x-3 rtl:space-x-reverse">
           <img src="public/logo.png" class="h-8" alt="Flowbite Logo" />
           <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">SSPS</span>
         </a>
@@ -87,10 +63,10 @@ const HeaderStudent = (props) => {
         <div id="KhoHeThong" class="mb-4 border-b border-gray-200 dark:border-gray-700">
           <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
             <li class="me-2" role="presentation">
-              <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false" onClick={() => test()}>KHO HỆ THỐNG</button>
+              <button onClick={() => test(1)} class="inline-block p-4 border-b-2 rounded-t-lg" type="button" role="tab" aria-controls="profile" aria-selected="false">KHO HỆ THỐNG</button>
             </li>
             <li class="me-2" role="presentation">
-              <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false" onClick={() => test()}>KHO CÁ NHÂN</button>
+              <button onClick={() => test(2)} class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" type="button" role="tab" aria-controls="dashboard" aria-selected="false">KHO CÁ NHÂN</button>
             </li>
           </ul>
         </div>
@@ -116,58 +92,12 @@ const HeaderStudent = (props) => {
               <option>Tiếng Anh</option>
             </select>
           </div>
-          {/* <div id="Menu" class="flex md:order-2 space-x-3 md:space-x-0 ltr:space-x-reverse">
-            <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">hello</button>
-          </div> */}
         </div>
         <UploadModal />
-        <ProfileMenu />
-
-
-        {/* USER */}
-
+        <ProfileMenu input={handleOnChangeCheck} value={check} />
+        {check == 3 && props.input(3)}
       </div>
-
     </nav>
-
-
-
-    //// <Navbar
-    //   className="mx-auto  bg-cover px-4 py-2  lg:px-8 lg:py-4"
-    //   fullWidth={true}
-    // >
-    //   <Collapse open={openNav}>
-    //     <div className="container mx-auto text-black">{navList}</div>
-    //   </Collapse>
-    //   <div className="flex w-full items-center justify-between text-blue-gray-900">
-    //     <IconButton
-    //       variant="text"
-    //       className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
-    //       ripple={false}
-    //       onClick={() => setOpenNav(!openNav)}
-    //     >
-    //       {openNav ? (
-    //         <XMarkIcon className="w-6" />
-    //       ) : (
-    //         <Bars3Icon className="w-6" />
-    //       )}
-    //     </IconButton>
-    //     <Link to="/" className="grid grid-cols-5 items-center gap-3">
-    //       <img className="col-span-1 w-16" src={logo} alt="logo" />
-    //       <div className="col-span-4 flex flex-col">
-    //         <Typography variant="small">TRƯỜNG ĐẠI HỌC BÁCH KHOA</Typography>
-    //         <Typography variant="small" className="font-bold">
-    //           HỆ THỐNG IN ẤN SINH VIÊN
-    //         </Typography>
-    //       </div>
-    //     </Link>
-    //     <div className="me-5 hidden lg:block">{navList}</div>
-
-    //     <div className="flex items-center gap-5">
-    //       <ProfileMenu />
-    //     </div>
-    //   </div>
-    // </Navbar>
   );
 };
 

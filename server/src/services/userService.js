@@ -160,7 +160,22 @@ let Print = (data) => {
                 time: data.setupprinter.time,
                 status: false,
             })
-            resolve("Success")
+            let user = await db.Users.findOne({
+                where: { userid: data.doc.userid }
+            })
+            if (user) {
+                user.numpageused = user.numpageused + data.configprint.numpage
+                await user.save();
+                resolve({
+                    errCode: 0,
+                    errMessage: "Print success",
+                })
+            } else {
+                resolve({
+                    errCode: 1,
+                    errMessage: "Print fail"
+                })
+            }
         } catch (e) {
             console.log(e);
             reject(e)

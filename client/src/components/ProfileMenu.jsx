@@ -15,7 +15,8 @@ import { saveUserToLocalStorage } from "../service/userService";
 import { logout } from "../service/userService";
 import { getUser } from "../service/userService";
 import { useState, useEffect, cloneElement } from "react";
-const ProfileMenu = () => {
+import BuyPageModal from "./BuyPageModal";
+const ProfileMenu = (props) => {
   // const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -40,6 +41,9 @@ const ProfileMenu = () => {
 
     fetchData();
   }, []);
+  const showWhat = (data) => {
+    props.input(data)
+  }
   return (
     <Menu>
       <MenuHandler>
@@ -50,7 +54,7 @@ const ProfileMenu = () => {
         />
       </MenuHandler>
       <MenuList>
-        <MenuItem className="flex items-center gap-2">
+        <MenuItem className="flex items-center gap-2" onClick={() => showWhat(3)}>
           <UserCircleIcon className="w-5" />
 
           <Typography variant="small" className="font-medium">

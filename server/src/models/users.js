@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     folderid: DataTypes.STRING,
     numpage: DataTypes.INTEGER,
     block: DataTypes.BOOLEAN,
+    numpageused: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Users',

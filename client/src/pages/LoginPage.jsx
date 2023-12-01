@@ -40,7 +40,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center bg-[#e2e6e9]">
+    <div className="flex flex-col items-center justify-center h-screen bg-[#e2e6e9]">
       <Card className="my-10 w-[475px] px-5 py-10">
         <img src={logo} alt="logo" className="w-36 self-center pb-10" />
         <hr className="my-1 h-0.5 border-t-0 bg-[#ebf1f5] opacity-100 dark:opacity-50" />

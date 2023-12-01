@@ -170,7 +170,8 @@ const handleUploadFile = async (req, res) => {
       media: media,
       fields: "id",
     });
-    let link = "https://drive.google.com/file/d/" + file.data.id + "/view";
+    // let link = "https://drive.google.com/file/d/" + file.data.id + "/view";
+    let link = file.data.id
     await userService.saveDoc(req.user._json.email, req.body.name, link, req.body.course, req.body.location)
     if (file) {
       await fs.unlink(uploadDirectory + req.body.name, () => {

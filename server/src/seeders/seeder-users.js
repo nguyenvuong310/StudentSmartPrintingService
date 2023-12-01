@@ -10,6 +10,7 @@ module.exports = {
       folderid: null,
       numpage: 100,
       block: false,
+      numpageused: 0,
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
@@ -19,6 +20,7 @@ module.exports = {
       folderid: null,
       numpage: 100,
       block: false,
+      numpageused: 0,
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
@@ -28,6 +30,7 @@ module.exports = {
       folderid: null,
       numpage: 100,
       block: false,
+      numpageused: 0,
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
@@ -37,6 +40,7 @@ module.exports = {
       folderid: null,
       numpage: 100,
       block: false,
+      numpageused: 0,
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
@@ -46,6 +50,7 @@ module.exports = {
       folderid: null,
       numpage: 100,
       block: false,
+      numpageused: 0,
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
@@ -55,6 +60,7 @@ module.exports = {
       folderid: null,
       numpage: 100,
       block: false,
+      numpageused: 0,
       createdAt: new Date(),
       updatedAt: new Date(),
     },], {});

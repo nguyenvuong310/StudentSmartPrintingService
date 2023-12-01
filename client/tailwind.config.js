@@ -18,8 +18,10 @@ module.exports = withMT({
         "white-fill": "url('/src/assets/white-fill.png')",
         "blue-fill": "url('/src/assets/blue-fill.png')",
         "bkcs2-fill": "url('/src/assets/bkcs2-fill.jpg')",
+        "fileimg-fill": "url('/src/assets/fileimg.jpg')",
+        "profile-fill": "url('/src/assets/ProfileBg.png')"
       },
     },
   },
-  // plugins: [require('flowbite/plugin')],
+  plugins: [require('flowbite/plugin')],
 });

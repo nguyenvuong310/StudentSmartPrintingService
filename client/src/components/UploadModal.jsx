@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { EnvelopeIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import {
-    LockClosedIcon
+    ArrowUpTrayIcon
 
 } from "@heroicons/react/24/outline";
 import SelectR from 'react-select'
@@ -66,7 +66,7 @@ export default function UploadModal() {
         if (upload && upload.data.errCode === 0) {
             toast.success('Upload thành công', {
                 position: "bottom-right",
-                autoClose: 5000,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -81,17 +81,18 @@ export default function UploadModal() {
     return (
         <>
             <button
-                className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm 
-                px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                className="bg-[#3563E9] flex flex-row space-x-3 text-white active:bg-blue-700font-bold uppercase text-sm 
+                 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 type="button"
                 onClick={() => setShowModal(true)}
             >
+                <ArrowUpTrayIcon className="w-5" />
                 Tải lên
             </button>
             {showModal ? (
                 <>
                     <div class="justify-center flex fixed inset-0 z-50 outline-none focus:outline-none ">
-                        <div class="extraOutline relative w-[45rem] p-4 bg-[#ABD7EF] bg-whtie m-auto rounded-lg">
+                        <div class="extraOutline relative w-[40rem] p-4 bg-[#ABD7EF] bg-whtie m-auto rounded-lg">
                             <div className="w-6 h-6 absolute top-0 right-0 rounded-full border-2 border-blue-700 m-2">
                                 <button className="pl-[5.5px]" type="button"
                                     onClick={() => setShowModal(false)}>

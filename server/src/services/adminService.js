@@ -186,6 +186,44 @@ let updatePrinter = (data) => {
         }
     })
 }
+let getUserbySearch = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let user = await db.Users.findAll({
+                where: {
+                    [Op.or]: [
+                        { name: data.content },
+                        { mail: data.content },
+                        { userid: data.content },
+                    ], block: false
+                }
+            })
+            if (user) resolve(user)
+            else resolve()
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+let getBlockedUserbySearch = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let user = await db.Users.findAll({
+                where: {
+                    [Op.or]: [
+                        { name: data.content },
+                        { mail: data.content },
+                        { userid: data.content },
+                    ], block: true
+                }
+            })
+            if (user) resolve(user)
+            else resolve()
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
 module.exports = {
     getAllUser,
     getBlockedUser,
@@ -195,5 +233,7 @@ module.exports = {
     getPrintHistory,
     getPrintHistoryByMSSV,
     getAddPrinter,
-    updatePrinter
+    updatePrinter,
+    getUserbySearch,
+    getBlockedUserbySearch,
 }

@@ -120,6 +120,38 @@ const handleUpdatePrinter = async (req, res) => {
         })
     }
 }
+const handleGetUserBySearch = async (req, res) => {
+    let data = await adminService.getUserbySearch(req.body);
+    if (data) {
+        return res.status(200).json({
+            errCode: 0,
+            errMessage: "get user success",
+            data: data
+        })
+    } else {
+        return res.status(200).json({
+            errCode: 1,
+            errMessage: "get user fail",
+            data: []
+        })
+    }
+}
+const handleGetBlockedUserBySearch = async (req, res) => {
+    let data = await adminService.getBlockedUserbySearch(req.body);
+    if (data) {
+        return res.status(200).json({
+            errCode: 0,
+            errMessage: "get user success",
+            data: data
+        })
+    } else {
+        return res.status(200).json({
+            errCode: 1,
+            errMessage: "get user fail",
+            data: []
+        })
+    }
+}
 module.exports = {
     handleGetAllUser,
     handleGetBlockedUser,
@@ -130,4 +162,6 @@ module.exports = {
     handleGetPrintHistoryByMSSV,
     handleAddPrinter,
     handleUpdatePrinter,
+    handleGetUserBySearch,
+    handleGetBlockedUserBySearch,
 };

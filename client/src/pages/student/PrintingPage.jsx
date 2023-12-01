@@ -10,24 +10,7 @@ import SelectPrinter from "./SelectPrinter";
 import { getUserInfo } from "../../service/userService";
 import { usePrevious } from "@material-tailwind/react";
 ////////////////////////////////////////////////
-const PrintingPage = (docUrl) => {
-
-  const [userinfo, setUserinfo] = useState({});
-  useEffect(() => {
-    const test = async () => {
-      try {
-        const data = await getUserInfo();
-        setUserinfo(data.data.user)
-      }
-      catch (error) {
-        console.error("Error fetching user infomation", error);
-      }
-    };
-    test()
-  }, []);
-
-
-
+const PrintingPage = ({ docUrl, userNumPage }) => {
 
   const [showModal, setShowModal] = React.useState(false);
 
@@ -128,7 +111,7 @@ const PrintingPage = (docUrl) => {
     <>
 
       <button
-        className="text-white bg-[#658DF1] w-[90px] h-[30px] ml-[30%] opacity-70"
+        className="text-white bg-[#658DF1] w-[60px] h-[20px] ml-[28%] opacity-80"
         type="button"
         onClick={() => setShowModal(true)}
       >
@@ -138,15 +121,15 @@ const PrintingPage = (docUrl) => {
         showModal ? (
           <>
             {/* overflow-x-hidden overflow-y-auto */}
-            <div class=" flex fixed  inset-y-2 z-50 outline-none focus:outline-none ">
-              <div class=" my-6  flex justify-center  w-screen ">
+            <div class=" fixed inset-0  z-50 outline-none focus:outline-none ">
+              <div class=" my-6  flex justify-center w-screen h-screen">
                 {/*content*/}
-                <div class="border-0 h-full w-4/5 min-w-fit flex flex-col bg-cus-blue  rounded-lg shadow-lg 
-                 md:flex-row block outline-none focus:outline-none " >
+                <div class="border-0 h-[90%] w-[80%] min-w-fit flex flex-col bg-cus-blue  rounded-lg shadow-lg 
+                 md:flex-row block outline-none focus:outline-none justify-center" >
 
                   {/* PrintView */}
                   <div class="bg-regal-blue  md:h-full h-96  md:w-full min-w-[400px]  flex flex-col items-center">
-                    <iframe src={docUrl.docUrl}
+                    <iframe src={docUrl}
                       class="h-full  w-4/5 "  >
 
                     </iframe>
@@ -181,7 +164,7 @@ const PrintingPage = (docUrl) => {
                                     id="selectPN"
                                     styles={customStyles}
                                     placeholder='Tùy chọn'
-                                  // onChange={}
+                                    isSearchable={false}
                                   >
                                   </Select>
                                 </div>
@@ -201,6 +184,7 @@ const PrintingPage = (docUrl) => {
                                 <Select options={optionsLayout} id="ppg" backgroundcolor='#9e9e9e'
                                   styles={customStyles}
                                   placeholder='Tùy chọn'
+                                  isSearchable={false}
                                 >
                                 </Select>
                               </div>
@@ -219,6 +203,7 @@ const PrintingPage = (docUrl) => {
                                   <Select options={optionsPaperS} id="ppg" backgroundcolor='#9e9e9e'
                                     styles={customStyles}
                                     placeholder='Tùy chọn'
+                                    isSearchable={false}
                                   >
                                   </Select>
                                 </div>
@@ -249,6 +234,7 @@ const PrintingPage = (docUrl) => {
                                     options={optionsMargin} id="ppg" backgroundcolor='#9e9e9e'
                                     styles={customStyles}
                                     placeholder='Tùy chọn'
+                                    isSearchable={false}
                                   >
                                   </Select>
                                 </div>
@@ -268,6 +254,7 @@ const PrintingPage = (docUrl) => {
                                   <Select options={optionsScale} id="ppg" backgroundcolor='#9e9e9e'
                                     styles={customStyles}
                                     placeholder='Tùy chọn'
+                                    isSearchable={false}
                                   >
                                   </Select>
                                 </div>
@@ -290,12 +277,12 @@ const PrintingPage = (docUrl) => {
                       </nav >
                       {/* PageNum available */}
                       <div class="flex  p-1 items-center italic font-thin text-white brightness-50" id='pageNAvail'>
-                        Số trang bạn có thể in: {userinfo.numpage}
+                        Số trang bạn có thể in: {userNumPage}
                         <div>
                         </div>
                       </div>
                       {/*footer*/}
-                      < div className="flex justify-end  pt-4 px-2 border-t border-solid border-blueGray-200 rounded-b" >
+                      < div className="flex justify-end  pt-7 px-4 border-t border-solid border-blueGray-200 rounded-b" >
 
                         <button
                           className="text-white background-transparent  font-bold uppercase px-6 py-2 text-sm outline-none 

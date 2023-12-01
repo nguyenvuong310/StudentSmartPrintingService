@@ -42,6 +42,7 @@ const HomePageStudent = () => {
         <PrintingPage docUrl='https://drive.google.com/file/d/1cyqtTyQLqTV3WePHJKuwjYRhPWainQEG/preview' />
       </div>
       {/* <div>HomePageStudent</div> */}
+      {/* <PrintingPage docUrl='https://drive.google.com/file/d/1cyqtTyQLqTV3WePHJKuwjYRhPWainQEG/preview' /> */}
     </>
   );
 };

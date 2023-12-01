@@ -35,7 +35,6 @@ const PrivateStorage = (props) => {
                                 filetoDown={"https://drive.google.com/u/0/uc?id=" + doc.link + "&export=download"}
                                 filetoPrint={"https://drive.google.com/file/d/" + doc.link + "/preview"} />
                         )
-
                     })}
                     {/* <PagiBar /> */}
                 </div>

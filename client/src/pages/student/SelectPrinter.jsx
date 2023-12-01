@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Select from 'react-select'
-
 import { useSelector } from "react-redux";
 import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/solid'
 import { getUserInfo, } from "../../service/userService";
@@ -100,6 +99,22 @@ export default function SelectPrinter(pageNum) {
             status: '1'
 
         },
+        {
+            id: '7',
+            name: 'Máy in 2008',
+            location: 'H1, cơ sở 2',
+            status: '1'
+
+        },
+
+        {
+            id: '8',
+            name: 'Máy in 2008',
+            location: 'H1, cơ sở 2',
+            status: '1'
+
+        },
+
 
     ]
     const printerList = [];
@@ -257,7 +272,10 @@ export default function SelectPrinter(pageNum) {
                                             </div>
                                             {/* Bodyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy */}
                                             <div class="flex flex-col w-full  md:grid md:grid-cols-2 md:grid-flow-row
-                                         gap-x-10 gap-y-7  px-12 py-6 overflow-auto">
+                                         gap-x-10 gap-y-7  px-12 py-6 overflow-y-scroll 
+                                         scrollbar-thin scrollbar-thumb-[#a3a2a5]
+                                         scrollbar-track-gray-800/40 hover:scrollbar-thumb-[#c4c3c6] 
+                                         ">
                                                 {printerList}
                                             </div>
                                             {/* Select Time */}

@@ -96,6 +96,7 @@ const HeaderStudent = (props) => {
         <UploadModal />
         <ProfileMenu input={handleOnChangeCheck} value={check} />
         {check == 3 && props.input(3)}
+        {check == 4 && props.input(4)}
       </div>
     </nav>
   );

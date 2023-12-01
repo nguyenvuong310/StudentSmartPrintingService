@@ -12,6 +12,7 @@ import StudentProfile from "./StudentProfile";
 import PublicStorage from "./PublicStorage";
 import PrivateStorage from "./PrivateStorage";
 import PrintingPage from "./PrintingPage";
+import FolderView from "./FolderView";
 const HomePageStudent = () => {
   const [userinfo, setUserinfo] = useState({})
   const [check, setCheck] = useState(1);
@@ -23,6 +24,7 @@ const HomePageStudent = () => {
       } catch (error) {
         console.error("Error fetching user information:", error);
       }
+      console.log('check', check)
     };
 
     test()
@@ -35,9 +37,10 @@ const HomePageStudent = () => {
   return (
     <>
       <HeaderStudent input={handleOnChangeCheck} value={check} />
-      {check == 1 && <PublicStorage />}
+      {check == 1 && <PublicStorage input={handleOnChangeCheck} value={check} />}
       {check == 2 && <PrivateStorage user={userinfo} />}
       {check == 3 && <StudentProfile />}
+      {check == 5 && <FolderView />}
     </>
   );
 };

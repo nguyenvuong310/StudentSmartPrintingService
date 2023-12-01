@@ -20,7 +20,6 @@ import SelectPrinter from "./SelectPrinter";
 import PrintingPage from "./PrintingPage";
 const HeaderStudent = (props) => {
   const [check, setCheck] = useState(1);
-
   useEffect(() => {
     const script = document.createElement('script');
     script.src = "https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js";

@@ -13,9 +13,6 @@ import CreatableSelect from 'react-select/creatable';
 import { uploadFile, getListCourse } from "../service/userService";
 import icon_word from "../assets/icon-word.png";
 import icon_pdf from "../assets/PDF_icon.svg.png";
-import { Worker, Viewer } from '@react-pdf-viewer/core';
-import '@react-pdf-viewer/core/lib/styles/index.css';
-import { pdfjs } from 'react-pdf';
 
 
 

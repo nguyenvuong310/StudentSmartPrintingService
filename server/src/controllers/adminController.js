@@ -55,7 +55,7 @@ const handleBlockUser = async (req, res) => {
     return res.status(200).json(message)
 }
 const handleDeletePrinter = async (req, res) => {
-    let message = await adminService.deletePrinter(req.body.printerid);
+    let message = await adminService.deletePrinter(req.body.id);
     return res.status(200).json(message);
 }
 const handleGetPrintHistory = async (req, res) => {

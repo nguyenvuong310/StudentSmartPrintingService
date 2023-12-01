@@ -68,6 +68,14 @@ module.exports = {
                 type: Sequelize.BOOLEAN,
                 allowNull: false,
             },
+            namefile: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            date: {
+                allowNull: false,
+                type: Sequelize.STRING,
+            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE

@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     link: DataTypes.STRING,
     course: DataTypes.STRING,
     location: DataTypes.STRING,
+    numpage: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Documents',

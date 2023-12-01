@@ -4,32 +4,57 @@ import Select from 'react-select'
 import { render } from "react-dom";
 import { useSelector } from "react-redux";
 // import { Select, Option } from "@material-tailwind/react";
-import { ExclamationTriangleIcon, } from '@heroicons/react/24/outline'
+import { EnvelopeIcon, ExclamationTriangleIcon, } from '@heroicons/react/24/outline'
 import SelectPrinter from "./SelectPrinter";
 
 import { getUserInfo } from "../../service/userService";
 import { usePrevious } from "@material-tailwind/react";
 ////////////////////////////////////////////////
-const PrintingPage = (docUrl) => {
+const PrintingPage = ({ doc, docUrl, userNumPage }) => {
+  const [showModal, setShowModal] = useState(false)
+  const [numpage, setNumpage] = useState("")
+  const [layout, setLayout] = useState("")
+  const [pagesize, setPagesize] = useState("")
+  const [pageperside, setPageperside] = useState("")
+  const [alignment, setAlignment] = useState("")
+  const [scale, setScale] = useState("")
+  const [copy, setCopy] = useState("")
 
-  const [userinfo, setUserinfo] = useState({});
-  useEffect(() => {
-    const test = async () => {
-      try {
-        const data = await getUserInfo();
-        setUserinfo(data.data.user)
-      }
-      catch (error) {
-        console.error("Error fetching user infomation", error);
-      }
-    };
-    test()
-  }, []);
+  let configprint = {
+    numpage: 10,
+    layout: layout,
+    pagesize: pagesize,
+    pageperside: pageperside,
+    alignment: alignment,
+    scale: scale,
+    copy: copy
+  }
+  const handlesetLayout = (event) => {
+    setLayout(event.value)
+    configprint.layout = event.value
+  }
+  const handlesetPagesize = (event) => {
+    setPagesize(event.value)
+    configprint.pagesize = event.value
+  }
+  const handlesetPageperside = (event) => {
+    setPageperside(event.target.value)
+    configprint.pageperside = event.target.value
+  }
+  const handlesetAlignment = (event) => {
+    setAlignment(event.value)
+    configprint.alignment = event.value
+  }
+  const handlesetScale = (event) => {
+    setScale(event.value)
+    configprint.scale = event.value
+  }
+  const handlesetCopy = (event) => {
+    setCopy(event.target.value)
+    configprint.copy = event.target.value
+  }
+  useEffect(() => { }, [showModal]);
 
-
-
-
-  const [showModal, setShowModal] = React.useState(false);
 
   const optionsPageN = [
     { value: 'all', label: 'Tất cả' },
@@ -53,19 +78,14 @@ const PrintingPage = (docUrl) => {
     { value: 'Fit', label: 'Vừa khuôn giấy' },
     { value: 'Actual_size', label: 'Đúng kích thước' },
   ]
-  const [user, setUser] = useState({
-    pNum: '1'
-  });
 
-  const HandleInput = () => {
+  const HandleInput = (event) => {
     const input1 = document.getElementById("inputPageNum")
     const input2 = document.getElementById("pg2")
 
     if (input1) {
       input1.value = ""
-      setUser(previousSate => {
-        return { ...previousSate, pNum: input1.value }
-      })
+      setNumpage(event.value)
     }
     if (input2) {
       input2.classList.remove("brightness-75")
@@ -73,19 +93,19 @@ const PrintingPage = (docUrl) => {
 
   }
 
-  const HandleInput2 = () => {
+  const HandleInput2 = (event) => {
     const input1 = document.getElementById("inputPageNum")
 
-    setUser(previousSate => {
-      return { ...previousSate, pNum: input1.value }
-    })
+    setNumpage(event.target.value)
     const input2 = document.getElementById("pg2")
     if (input2) {
       input2.classList.add("brightness-75")
     }
 
   }
-
+  const HandleInput3 = (event) => {
+    setNumpage(event.value)
+  }
 
   const customStyles = {
     control: (provided, state) => ({
@@ -123,12 +143,15 @@ const PrintingPage = (docUrl) => {
 
   };
 
+  const offModalPrint = () => {
+    setShowModal(false)
+  }
 
   return (
     <>
 
       <button
-        className="text-white bg-[#658DF1] w-[90px] h-[30px] ml-[30%] opacity-70"
+        className="text-white bg-[#658DF1] w-[60px] h-[20px] ml-[28%] opacity-80"
         type="button"
         onClick={() => setShowModal(true)}
       >
@@ -138,15 +161,15 @@ const PrintingPage = (docUrl) => {
         showModal ? (
           <>
             {/* overflow-x-hidden overflow-y-auto */}
-            <div class=" flex fixed  inset-y-2 z-50 outline-none focus:outline-none ">
-              <div class=" my-6  flex justify-center  w-screen ">
+            <div class=" fixed inset-0  z-50 outline-none focus:outline-none ">
+              <div class=" my-6  flex justify-center w-screen h-screen">
                 {/*content*/}
-                <div class="border-0 h-full w-4/5 min-w-fit flex flex-col bg-cus-blue  rounded-lg shadow-lg 
-                 md:flex-row block outline-none focus:outline-none " >
+                <div class="border-0 h-[90%] w-[80%] min-w-fit flex flex-col bg-cus-blue  rounded-lg shadow-lg 
+                 md:flex-row block outline-none focus:outline-none justify-center" >
 
                   {/* PrintView */}
                   <div class="bg-regal-blue  md:h-full h-96  md:w-full min-w-[400px]  flex flex-col items-center">
-                    <iframe src={docUrl.docUrl}
+                    <iframe src={docUrl}
                       class="h-full  w-4/5 "  >
 
                     </iframe>
@@ -171,7 +194,7 @@ const PrintingPage = (docUrl) => {
                           </div>
                           <div class="flex flex-col items-center">
                             <input type="text" name="pageNum1"
-                              onChange={() => HandleInput2()} id="inputPageNum" class="w-32 h-7 rounded-sm px-3 text-gray-900 
+                              onChange={(event) => HandleInput2(event)} id="inputPageNum" class="w-32 h-7 rounded-sm px-3 text-gray-900 
                             placeholder:text-gray-400 text-[12px] leading-4" placeholder="Eg: 1-5, 8,11-13..." />
                             <div >
                               <div class="mt-1  w-32  shadow-sm">
@@ -181,7 +204,8 @@ const PrintingPage = (docUrl) => {
                                     id="selectPN"
                                     styles={customStyles}
                                     placeholder='Tùy chọn'
-                                  // onChange={}
+                                    isSearchable={false}
+                                    onChange={(event) => HandleInput3(event)}
                                   >
                                   </Select>
                                 </div>
@@ -201,6 +225,8 @@ const PrintingPage = (docUrl) => {
                                 <Select options={optionsLayout} id="ppg" backgroundcolor='#9e9e9e'
                                   styles={customStyles}
                                   placeholder='Tùy chọn'
+                                  isSearchable={false}
+                                  onChange={(event) => handlesetLayout(event)}
                                 >
                                 </Select>
                               </div>
@@ -219,6 +245,8 @@ const PrintingPage = (docUrl) => {
                                   <Select options={optionsPaperS} id="ppg" backgroundcolor='#9e9e9e'
                                     styles={customStyles}
                                     placeholder='Tùy chọn'
+                                    isSearchable={false}
+                                    onChange={(event) => handlesetPagesize(event)}
                                   >
                                   </Select>
                                 </div>
@@ -232,7 +260,7 @@ const PrintingPage = (docUrl) => {
                             Số trang trên một mặt
                           </div>
                           <div>
-                            <input type="text" name="pageNum1" id="pageNum1" class="w-32 h-7 rounded-sm py-1 pl-3 pr-3 text-gray-900 
+                            <input onChange={(event) => handlesetPageperside(event)} type="text" name="pageNum1" id="pageNum1" class="w-32 h-7 rounded-sm py-1 pl-3 pr-3 text-gray-900 
                           placeholder:text-gray-400 text-[12px] sm:leading-6" placeholder="Eg: 1,4,8..." />
                           </div>
                         </div>
@@ -249,6 +277,8 @@ const PrintingPage = (docUrl) => {
                                     options={optionsMargin} id="ppg" backgroundcolor='#9e9e9e'
                                     styles={customStyles}
                                     placeholder='Tùy chọn'
+                                    isSearchable={false}
+                                    onChange={(event) => handlesetAlignment(event)}
                                   >
                                   </Select>
                                 </div>
@@ -268,6 +298,8 @@ const PrintingPage = (docUrl) => {
                                   <Select options={optionsScale} id="ppg" backgroundcolor='#9e9e9e'
                                     styles={customStyles}
                                     placeholder='Tùy chọn'
+                                    isSearchable={false}
+                                    onChange={(event) => handlesetScale(event)}
                                   >
                                   </Select>
                                 </div>
@@ -280,7 +312,7 @@ const PrintingPage = (docUrl) => {
                             Số bản in
                           </div>
                           <div>
-                            <input type="text" name="pageNum1" id="pageNum1" class="w-32 rounded-sm h-7 py-1 pl-3 pr-3 text-gray-900 
+                            <input onChange={(event) => handlesetCopy(event)} type="text" name="pageNum1" id="pageNum1" class="w-32 rounded-sm h-7 py-1 pl-3 pr-3 text-gray-900 
                           placeholder:text-gray-400 text-[12px] leading-6" placeholder="Eg: 1,4,8..." />
                           </div>
                         </div>
@@ -290,12 +322,12 @@ const PrintingPage = (docUrl) => {
                       </nav >
                       {/* PageNum available */}
                       <div class="flex  p-1 items-center italic font-thin text-white brightness-50" id='pageNAvail'>
-                        Số trang bạn có thể in: {userinfo.numpage}
+                        Số trang bạn có thể in: {userNumPage}
                         <div>
                         </div>
                       </div>
                       {/*footer*/}
-                      < div className="flex justify-end  pt-4 px-2 border-t border-solid border-blueGray-200 rounded-b" >
+                      < div className="flex justify-end  pt-7 px-4 border-t border-solid border-blueGray-200 rounded-b" >
 
                         <button
                           className="text-white background-transparent  font-bold uppercase px-6 py-2 text-sm outline-none 
@@ -303,15 +335,11 @@ const PrintingPage = (docUrl) => {
                           type="button"
                           onClick={() => {
                             setShowModal(false)
-                            setUser(previousSate => {
-                              return { ...previousSate, pNum: 0 }
-                            })
                           }}
                         >
                           Hủy
                         </button>
-
-                        <SelectPrinter pageNum={user.pNum} />
+                        <SelectPrinter doc={doc} configprint={configprint} offModalPrint={offModalPrint} />
                       </div >
                     </div >
                   </div >

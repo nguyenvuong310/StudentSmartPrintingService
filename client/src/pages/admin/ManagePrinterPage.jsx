@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 const ManagePrinterPage = () => {
   const [listPrinter, setListPrinter] = useState([])
   useEffect(() => {
@@ -19,12 +20,13 @@ const ManagePrinterPage = () => {
 
     test()
   }, []);
+
   const handleActivePrinter = async (printerid) => {
     alert("Chua lam")
   }
-  const handleDeletePrinter = async (printerid, index) => {
+  const handleDeletePrinter = async (id, index) => {
     const data = {
-      printerid: printerid
+      id: id
     }
     await deletePrinter(data)
     const newList = [...listPrinter]
@@ -126,7 +128,7 @@ const ManagePrinterPage = () => {
                             </td>
                             <td class="text-lg text-gray-900 font-light px-10 py-4 whitespace-nowrap text-center">
                               <label class="mt-3 relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" value="" class="sr-only peer" onClick={() => handleActivePrinter(printer.printerid)}></input>
+                                <input type="checkbox" value="" class="sr-only peer" onClick={() => handleActivePrinter(printer.id)}></input>
                                 <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
                                 </div>
 
@@ -135,7 +137,7 @@ const ManagePrinterPage = () => {
                             <td class="text-lg text-gray-900 font-light px-10 py-4 whitespace-nowrap text-center">
                               <div className="flex flex-row">
                                 <button href="#" class="flex-row border-4 border-[#c4c4c4] bg-blue-300 px-3 py-1 text-white hover:shadow text-sm font-thin">CHỈNH SỬA</button>
-                                <button href="#" class="mx-3 border-4 border-[#c4c4c4] bg-red-500 px-3 py-1 text-white hover:shadow text-sm font-thin" onClick={() => handleDeletePrinter(printer.printerid, index)}>XÓA</button>
+                                <button href="#" class="mx-3 border-4 border-[#c4c4c4] bg-red-500 px-3 py-1 text-white hover:shadow text-sm font-thin" onClick={() => handleDeletePrinter(printer.id, index)}>XÓA</button>
                               </div>
                             </td>
                           </tr>

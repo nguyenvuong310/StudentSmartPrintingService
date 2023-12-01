@@ -1,15 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import {
     LockClosedIcon
 
 } from "@heroicons/react/24/outline";
-
-
+import CreatableSelect from 'react-select/creatable';
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { AddPrinter } from "../service/adminService";
 export default function AddPrinterModal() {
     const [showModal, setShowModal] = React.useState(false);
-
+    const [name, setName] = useState("")
+    const [location, setLocation] = useState("")
+    const [type, setType] = useState("")
+    const handleOnChangeName = (event) => {
+        setName(event.target.value)
+    }
+    const handleOnChangeLocation = (event) => {
+        setLocation(event.target.value)
+    }
+    const handleOnChangeType = (event) => {
+        setType(event.value)
+    }
+    const optionsType = [
+        { value: 'In thường', label: 'In thường' },
+        { value: 'In màu', label: 'In màu' },
+    ]
+    const handleAddPrinter = async () => {
+        const data = {
+            name: name,
+            location: location,
+            type: type
+        }
+        await AddPrinter(data)
+        setShowModal(false)
+        toast.success('Thêm máy in thành công', {
+            position: "bottom-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        })
+    }
     return (
         <>
             <button className="flex bg-[#7FB519] border rounded-lg my-2 text-white text-sm px-1 py-1" onClick={() => setShowModal(true)}>
@@ -40,28 +77,24 @@ export default function AddPrinterModal() {
                                     <div className="mb-2 text-xl">
                                         Tên
                                     </div>
-                                    <input type="text" class="block h-20 w-full p-2 ps-2 text-medium text-gray-900 border border-gray-400 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Điền tên máy in" />
+                                    <input onChange={(event) => handleOnChangeName(event)} type="text" class="block h-20 w-full p-2 ps-2 text-medium text-gray-900 border border-gray-400 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Điền tên máy in" />
                                 </div>
                                 <div className="mt-5">
                                     <div className="mb-2 text-xl">
                                         Địa chỉ của máy
                                     </div>
 
-                                    <input type="text" class="block h-20 w-full p-2 ps-2 text-medium text-gray-900 border border-gray-400 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ĐHBK cơ sở 1, tòa B6, tầng 1" />
+                                    <input onChange={(event) => handleOnChangeLocation(event)} type="text" class="block h-20 w-full p-2 ps-2 text-medium text-gray-900 border border-gray-400 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ĐHBK cơ sở 1, tòa B6, tầng 1" />
                                 </div>
                                 <div className="mt-5">
                                     <div className="mb-2 text-xl">
                                         Loại máy
                                     </div>
-
-                                    <select class="block h-20 w-full p-2 ps-2 text-medium text-gray-900 border border-gray-400 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option selected> In thường</option>
-                                        <option>In màu</option>
-                                    </select>
+                                    <CreatableSelect onChange={(event) => handleOnChangeType(event)} options={optionsType} />
                                 </div>
                             </div>
                             <div className="mt-10">
-                                <button type="button" className="bg-[#3563E9] p-1 w-20 m-2 absolute bottom-0 right-0 text-white">
+                                <button onClick={() => handleAddPrinter()} type="button" className="bg-[#3563E9] p-1 w-20 m-2 absolute bottom-0 right-0 text-white">
                                     Xác nhận
                                 </button>
                             </div>

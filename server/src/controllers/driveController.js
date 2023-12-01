@@ -172,7 +172,8 @@ const handleUploadFile = async (req, res) => {
     });
     // let link = "https://drive.google.com/file/d/" + file.data.id + "/view";
     let link = file.data.id
-    await userService.saveDoc(req.user._json.email, req.body.name, link, req.body.course, req.body.location)
+    const numpage = 10
+    await userService.saveDoc(req.user._json.email, req.body.name, link, req.body.course, req.body.location, numpage)
     if (file) {
       await fs.unlink(uploadDirectory + req.body.name, () => {
         console.log("file deleted");
@@ -184,6 +185,8 @@ const handleUploadFile = async (req, res) => {
     console.log(error);
   }
 };
+
+
 async function validateGoogleToken(accessToken) {
   try {
     const response = await axios.get(

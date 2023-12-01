@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   Prints.init({
     userid: DataTypes.INTEGER,
     name: DataTypes.STRING,
+    namefile: DataTypes.STRING,
     link: DataTypes.STRING,
     course: DataTypes.STRING,
     numpage: DataTypes.INTEGER,
@@ -28,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     printerid: DataTypes.STRING,
     time: DataTypes.STRING,
     status: DataTypes.BOOLEAN,
+    date: DataTypes.STRING,
 
   }, {
     sequelize,

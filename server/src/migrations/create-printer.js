@@ -12,24 +12,12 @@ module.exports = {
                 primaryKey: true,
                 allowNull: false,
             },
-            printerid: {
-                type: Sequelize.INTEGER,
-                allowNull: false,
-            },
             status: {
                 type: Sequelize.BOOLEAN,
                 allowNull: false,
             },
             location: {
                 type: Sequelize.STRING,
-                allowNull: false,
-            },
-            time: {
-                type: Sequelize.STRING,
-                allowNull: false,
-            },
-            slot: {
-                type: Sequelize.INTEGER,
                 allowNull: false,
             },
             name: {

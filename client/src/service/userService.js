@@ -55,6 +55,23 @@ const uploadFile = async (data) => {
     withCredentials: true,
   });
 }
+const getAllPrinter = async () => {
+  const url = "http://localhost:8080/api/getallprinter";
+  return await axios({
+    url: url,
+    method: "POST",
+    withCredentials: true,
+  });
+}
+const Print = async (data) => {
+  const url = "http://localhost:8080/api/print";
+  return await axios({
+    url: url,
+    method: "POST",
+    withCredentials: true,
+    data: data
+  });
+}
 export {
   handleAuth,
   getUser,
@@ -64,4 +81,6 @@ export {
   getDocByUserid,
   uploadFile,
   getListCourse,
+  getAllPrinter,
+  Print,
 };

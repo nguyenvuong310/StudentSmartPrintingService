@@ -14,11 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Printers.init({
-    printerid: DataTypes.INTEGER,
     status: DataTypes.BOOLEAN,
     location: DataTypes.STRING,
-    time: DataTypes.STRING,
-    slot: DataTypes.INTEGER,
     name: DataTypes.STRING,
     type: DataTypes.STRING,
   }, {

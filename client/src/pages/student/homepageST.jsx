@@ -38,10 +38,6 @@ const HomePageStudent = () => {
       {check == 1 && <PublicStorage />}
       {check == 2 && <PrivateStorage user={userinfo} />}
       {check == 3 && <StudentProfile />}
-      {/* <div class="h-screen">
-        <PrintingPage docUrl='https://drive.google.com/file/d/1cyqtTyQLqTV3WePHJKuwjYRhPWainQEG/preview' />
-      </div>
-      {/* <div>HomePageStudent</div> */}
     </>
   );
 };

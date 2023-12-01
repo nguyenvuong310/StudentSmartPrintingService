@@ -41,7 +41,7 @@ let updateFolderId = (email, folderid) => {
     })
 }
 
-let saveDoc = (email, name, link, course, location) => {
+let saveDoc = (email, name, link, course, location, numpage) => {
     return new Promise(async (resolve, reject) => {
         try {
             let user = await db.Users.findOne({
@@ -54,6 +54,7 @@ let saveDoc = (email, name, link, course, location) => {
                     link: link,
                     course: course,
                     location: location,
+                    numpage: numpage,
                 })
                 resolve({
                     errCode: 0,
@@ -105,32 +106,7 @@ let getDoc = (userid) => {
 let getPrinter = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let data = await db.Printers.findAll({
-                where: { status: true }
-            })
-            const uniqueValues = {};
-            const filteredData = data.filter(item => {
-                const key = item.printerid;
-                if (!uniqueValues[key]) {
-                    uniqueValues[key] = true;
-                    return true;
-                }
-                return false;
-            });
-            if (filteredData) resolve(filteredData)
-            else resolve()
-        } catch (e) {
-            console.log(e);
-            reject(e)
-        }
-    })
-}
-let getPrinterTime = (printerid) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let data = await db.Printers.findAll({
-                where: { printerid: printerid, status: 1 }
-            })
+            let data = await db.Printers.findAll({})
             if (data) resolve(data)
             else resolve()
         } catch (e) {
@@ -139,14 +115,14 @@ let getPrinterTime = (printerid) => {
         }
     })
 }
-
 let Print = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
             // console.log("here: ", data)
             await db.Prints.create({
+                name: data.user.name,
                 userid: data.doc.userid,
-                name: data.doc.name,
+                namefile: data.doc.name,
                 link: data.doc.link,
                 course: data.doc.course,
                 numpage: data.configprint.numpage,
@@ -158,6 +134,7 @@ let Print = (data) => {
                 copy: data.configprint.copy,
                 printerid: data.setupprinter.printerid,
                 time: data.setupprinter.time,
+                date: data.setupprinter.date,
                 status: false,
             })
             let user = await db.Users.findOne({
@@ -178,33 +155,6 @@ let Print = (data) => {
             }
         } catch (e) {
             console.log(e);
-            reject(e)
-        }
-    })
-}
-let updatePrinter = (data) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let printer = await db.Printers.findOne({
-                where: { printerid: data.printerid, time: data.time }
-            })
-            if (printer) {
-                printer.slot = printer.slot - 1
-                if (printer.slot === 0) {
-                    printer.status = false
-                }
-                await printer.save();
-                resolve({
-                    errCode: 0,
-                    errMessage: "Update success",
-                })
-            } else {
-                resolve({
-                    errCode: 1,
-                    errMessage: "Not exit printer in database"
-                })
-            }
-        } catch (e) {
             reject(e)
         }
     })
@@ -334,9 +284,7 @@ module.exports = {
     getUserInfo,
     getDoc,
     getPrinter,
-    getPrinterTime,
     Print,
-    updatePrinter,
     buyPage,
     searchDoc,
     deleteDoc,

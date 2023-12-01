@@ -38,9 +38,9 @@ const handleGetPrinterTime = async (req, res) => {
     }
 }
 const handlePrint = async (req, res) => {
+
     let data = await userService.Print(req.body)
     if (data) {
-        await userService.updatePrinter(req.body.setupprinter)
         return res.status(200).json({
             errCode: 0,
             errMessage: "print success",

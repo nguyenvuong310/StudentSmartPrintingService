@@ -36,16 +36,7 @@ let getPrinter = () => {
     return new Promise(async (resolve, reject) => {
         try {
             let data = await db.Printers.findAll()
-            const uniqueValues = {};
-            const filteredData = data.filter(item => {
-                const key = item.printerid;
-                if (!uniqueValues[key]) {
-                    uniqueValues[key] = true;
-                    return true;
-                }
-                return false;
-            });
-            if (filteredData) resolve(filteredData)
+            if (data) resolve(data)
             else resolve()
         } catch (e) {
             console.log(e);
@@ -80,20 +71,11 @@ let blockUser = (userid) => {
     })
 }
 
-let deletePrinter = (printerid) => {
+let deletePrinter = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let data = await db.Printers.findAll({
-                where: { printerid: printerid }
-            })
-            if (!data) {
-                resolve({
-                    errCode: 1,
-                    errMessage: `not exit`
-                })
-            }
             await db.Printers.destroy({
-                where: { printerid: printerid }
+                where: { id: id }
             });
             resolve({
                 errCode: 0,
@@ -134,19 +116,12 @@ let getPrintHistoryByMSSV = (userid) => {
 let getAddPrinter = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            for (let i = 6; i <= 17; i++) {
-                const temp = i + 1;
-                const time = i + "h-" + temp + "h"
-                await db.Printers.create({
-                    printerid: data.printerid,
-                    status: data.status,
-                    location: data.location,
-                    slot: data.slot,
-                    name: data.name,
-                    type: data.type,
-                    time: time,
-                })
-            }
+            await db.Printers.create({
+                status: true,
+                location: data.location,
+                name: data.name,
+                type: data.type,
+            })
             resolve({
                 errCode: 0,
                 errMessage: 'Success'

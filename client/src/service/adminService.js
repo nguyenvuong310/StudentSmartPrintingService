@@ -62,6 +62,15 @@ const getBlockedUserBySearch = async (data) => {
         data: data
     });
 }
+const AddPrinter = async (data) => {
+    const url = "http://localhost:8080/api/addprinter";
+    return await axios({
+        url: url,
+        method: "POST",
+        withCredentials: true,
+        data: data
+    });
+}
 export {
     getAllUser,
     getBlockedUser,
@@ -70,4 +79,5 @@ export {
     deletePrinter,
     getUserBySearch,
     getBlockedUserBySearch,
+    AddPrinter,
 };

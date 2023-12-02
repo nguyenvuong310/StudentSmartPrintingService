@@ -56,6 +56,7 @@ let initWebRoutes = (app) => {
   router.post("/api/updateprinter", adminController.handleUpdatePrinter)
   router.post("/api/admingetuserbysearch", adminController.handleGetUserBySearch)
   router.post("/api/admingetblockeduserbysearch", adminController.handleGetBlockedUserBySearch)
+  router.post("/api/activeprinter", adminController.handleActivePrinter)
   return app.use("/", router);
 };
 module.exports = initWebRoutes;

@@ -16,8 +16,10 @@ export default function SelectPrinter(props) {
     const [time, setTime] = useState("")
     const [date, setDate] = useState("")
     const [printerid, setPrinterid] = useState("")
-    const handlesetPrinterid = (printerid) => {
-        setPrinterid(printerid)
+    const [location, setLocation] = useState("")
+    const handlesetPrinterid = (printer) => {
+        setPrinterid(printer.id)
+        setLocation(printer.location)
     }
     const handleChangeDate = (event) => {
         setDate(event.target.value)
@@ -52,17 +54,6 @@ export default function SelectPrinter(props) {
         } else setShowModal(true)
 
     }
-    const optionsDay = [
-        { value: '01/01/2024', label: '01/01/2024' },
-        { value: '02/01/2024', label: '02/01/2024' },
-        { value: '03/01/2024', label: '03/01/2024' },
-        { value: '04/01/2024', label: '04/01/2024' },
-        { value: '05/01/2024', label: '05/01/2024' },
-        { value: '06/01/2024', label: '06/01/2024' },
-        { value: '07/01/2024', label: '07/01/2024' },
-        { value: '08/01/2024', label: '08/01/2024' },
-
-    ]
     const optionsTime = [
         { value: '6h-7h', label: '6h-7h' },
         { value: '7h-8h', label: '7h-8h' },
@@ -102,7 +93,7 @@ export default function SelectPrinter(props) {
             <>
                 {/* Item */}
                 <button
-                    onClick={() => handlesetPrinterid(printer.id)}
+                    onClick={() => handlesetPrinterid(printer)}
                     class="hover:shadow-lg hover:shadow-gray-900/50 active:shadow-none bg-white duration-125 ease-in-out transform hover:scale-105 
                  focus-within:scale-105 focus:ring rounded-lg"
                     onBlur={e => {
@@ -155,6 +146,7 @@ export default function SelectPrinter(props) {
             printerid: printerid,
             time: time,
             date: date,
+            location: location
         }
         props.offModalPrint()
         setShowModal(false)

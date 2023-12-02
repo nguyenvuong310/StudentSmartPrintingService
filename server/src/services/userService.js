@@ -135,6 +135,7 @@ let Print = (data) => {
                 printerid: data.setupprinter.printerid,
                 time: data.setupprinter.time,
                 date: data.setupprinter.date,
+                location: data.setupprinter.location,
                 status: false,
             })
             let user = await db.Users.findOne({

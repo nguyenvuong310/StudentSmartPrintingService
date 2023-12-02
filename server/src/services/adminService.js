@@ -99,11 +99,17 @@ let getPrintHistory = () => {
         }
     })
 }
-let getPrintHistoryByMSSV = (userid) => {
+let getPrintHistoryByMSSV = (content) => {
     return new Promise(async (resolve, reject) => {
         try {
             let data = await db.Prints.findAll({
-                where: { userid: userid }
+                where: {
+                    [Op.or]: [
+                        { userid: content.content },
+                        { name: content.content },
+                    ]
+                }
+
             })
             if (data) resolve(data)
             else resolve()
@@ -199,6 +205,30 @@ let getBlockedUserbySearch = (data) => {
         }
     })
 }
+let activePrinter = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let printer = await db.Printers.findOne({
+                where: { id: data.id }
+            })
+            if (printer) {
+                printer.status = !printer.status;
+                await printer.save();
+                resolve({
+                    errCode: 0,
+                    errMessage: "Active printer success",
+                })
+            } else {
+                resolve({
+                    errCode: 1,
+                    errMessage: "Not exit printer in database"
+                })
+            }
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
 module.exports = {
     getAllUser,
     getBlockedUser,
@@ -211,4 +241,5 @@ module.exports = {
     updatePrinter,
     getUserbySearch,
     getBlockedUserbySearch,
+    activePrinter
 }

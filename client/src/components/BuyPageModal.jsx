@@ -1,26 +1,48 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import {
     ShoppingCartIcon
-
 } from "@heroicons/react/24/outline";
-import SelectR from 'react-select'
+import Select from 'react-select'
 import CreatableSelect from 'react-select/creatable';
-import { Checkbox } from "flowbite-react";
-
-const optionsPaper = [
-    { value: 'a4', label: 'A4' },
-    { value: 'a5', label: 'A5' },
-]
-
-const PaperTypes = () => (
-    <CreatableSelect isClearable options={optionsPaper} />
-)
+import { useState, useEffect } from "react";
 
 
 export default function BuyPageModal() {
+    const optionsPaper = [
+        { value: 1000, label: 'A3' },
+        { value: 500, label: 'A4' },
+        { value: 250, label: 'A5' },
+    ]
+    // const PaperTypes = () => (
+    //     <CreatableSelect isClearable options={optionsPaper}
+    //         onChange={(event) => handlesetPagesize(event)}
+    //     />
+    // )
+
     const [showModal, setShowModal] = React.useState(false);
+    const [numpage, setNumpage] = useState(0)
+    const [pagesize, setPagesize] = useState(0)
+    const [totalMoney, setMoney] = useState(0)
+    useEffect(() => {
+        if (showModal == false) {
+            setNumpage(0);
+            setPagesize(0);
+        }
+        calMoney()
+    }, [pagesize, numpage, showModal]);
+
+    const handlesetPagenum = (event) => {
+        setNumpage(event.target.value)
+    }
+
+    const handlesetPagesize = (event) => {
+        setPagesize(event.value)
+    }
+
+    const calMoney = () => {
+        setMoney(pagesize * numpage)
+    }
+
     return (
         <>
             <button
@@ -40,20 +62,35 @@ export default function BuyPageModal() {
                                     <div className="font-bold mb-2">
                                         Số trang:
                                     </div>
-                                    <input type="text" class="block w-full p-2 ps-2 text-sm text-gray-900 border border-gray-400 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nhập số trang..." />
+                                    <input onChange={(event) => handlesetPagenum(event)} type="text" class="block w-full p-2 ps-2 text-sm text-gray-900 border border-gray-400 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nhập số trang..." />
 
                                 </div>
                                 <div>
                                     <div className="font-bold mb-2">
                                         Loại giấy:
                                     </div>
-                                    <PaperTypes />
+                                    {/* <PaperTypes /> */}
+                                    <Select options={optionsPaper}
+                                        placeholder='Tùy chọn'
+                                        onChange={(event) => handlesetPagesize(event)}
+                                    >
+                                    </Select>
                                 </div>
+                                <div className="font-bold mb-2 flex flex-col space-y-3">
+                                    <p>Tổng tiền:</p>
+                                    <div className="grid grid-cols-2 gap-[20rem] place-content-between">
+                                        <p className="ml-2">{totalMoney.toLocaleString()}</p>
+                                        <p>VND</p>
+                                    </div>
+                                    <hr className=" border-blue-gray-50" />
+                                </div>
+
                                 <div className="flex flex-row space-x-3 mx-2">
                                     <input type="checkbox" />
                                     <p className="font-semibold text-sm"> Bạn đồng ý với các điều khoản thanh toán cũng như các chính sách của dịch vụ SPSS </p>
                                 </div>
                             </div>
+
                             <div className="grid grid-cols-2 gap-[7rem] items-center px-[50px]">
                                 <button type="button" className="bg-[#658DF1] p-1  w-20 text-white">
                                     Đồng ý

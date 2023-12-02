@@ -193,7 +193,7 @@ const HeaderStudent = (props) => {
         {/* LANGUAGE */}
         <div class="relative hidden xl:flex space-x-4 pb-5">
           <div class="flex flex-col text-black-300 rounded-md text-sm font-semibold px-3">
-            <div class="pl-4 pt-3 flex flex-row"> <HomeIcon className="w-5 pr-1" /> Ngôn ngữ</div>
+            <div class="pl-4 pt-3 flex flex-row"> <LanguageIcon className="w-5 pr-1" /> Ngôn ngữ</div>
             <select class="flex flex-col text-black-300 rounded-md px-5 py-1 text-xs font-light">
               <option>Tiếng Việt</option>
               <option>Tiếng Anh</option>

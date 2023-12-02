@@ -151,11 +151,12 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
     <>
 
       <button
-        className="text-white bg-[#658DF1] w-[60px] h-[20px] ml-[28%] opacity-80"
+        className="text-white text-sm bg-[#658DF1] w-[75px] h-[25px] hover:scale-110  justify-self-center  opacity-80
+        hover:bg-white hover:text-blue-600 hover:drop-shadow-2xl hover:opacity-100 active:drop-shadow-none active:ring focus:ring-blue-400"
         type="button"
         onClick={() => setShowModal(true)}
       >
-        Print
+        In
       </button>
       {
         showModal ? (
@@ -177,7 +178,10 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
                   {/* PrintConfig */}
                   <div class="md:h-full w-full flex-1 h-2/5 ">
 
-                    <div class=" h-full overflow-auto justify-center">
+                    <div class=" h-full overflow-auto justify-center
+                      scrollbar-thin scrollbar-thumb-[#a3a2a5]
+                      scrollbar-track-gray-800/40 hover:scrollbar-thumb-[#c4c3c6] 
+                      ">
 
                       {/* Header */}
                       <div class="flex sticky top-0 z-40 bg-cus-blue items-start p-3 border-b border-solid border-blueGray-200 rounded-t">

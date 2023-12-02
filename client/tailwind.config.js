@@ -21,7 +21,13 @@ module.exports = withMT({
         "fileimg-fill": "url('/src/assets/fileimg.jpg')",
         "profile-fill": "url('/src/assets/ProfileBg.png')"
       },
+
     },
   },
-  plugins: [require('flowbite/plugin')],
+  plugins: [require('flowbite/plugin'), require('@tailwindcss/line-clamp'), require('tailwind-scrollbar')],
+
+  variants: {
+    scrollbar: ['rounded']
+  }
+
 });

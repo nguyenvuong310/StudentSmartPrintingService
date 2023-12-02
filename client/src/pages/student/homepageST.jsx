@@ -19,6 +19,7 @@ const HomePageStudent = () => {
     const test = async () => {
       try {
         const data = await getUserInfo();
+        console.log(data)
         setUserinfo(data.data.user)
       } catch (error) {
         console.error("Error fetching user information:", error);

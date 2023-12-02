@@ -103,7 +103,8 @@ export default function SelectPrinter(props) {
                 {/* Item */}
                 <button
                     onClick={() => handlesetPrinterid(printer.id)}
-                    class="hover:shadow-lg hover:shadow-gray-900/50 active:shadow-none bg-white duration-125 ease-in-out transform hover:scale-105 
+                    class="hover:shadow-lg hover:shadow-gray-900/50 active:shadow-none bg-white duration-125 
+                    ease-in-out transform hover:scale-105 
                  focus-within:scale-105 focus:ring rounded-lg"
                     onBlur={e => {
                         // only re-focus if the user clicked on something
@@ -261,12 +262,13 @@ export default function SelectPrinter(props) {
                                             </div>
                                             {/* Bodyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy */}
                                             <div class="flex flex-col w-full  md:grid md:grid-cols-2 md:grid-flow-row
-                                         gap-x-10 gap-y-7  px-12 py-6 overflow-auto">
+                                         gap-x-10 gap-y-7  px-12 py-6 overflow-auto   scrollbar-thin scrollbar-thumb-[#a3a2a5]
+                                         scrollbar-track-gray-800/40 hover:scrollbar-thumb-[#c4c3c6] ">
                                                 {printerList}
                                             </div>
                                             {/* Select Time */}
-                                            <div class="flex flex-row">
-                                                <div class='w-1/2'>
+                                            <div class="flex md:flex-row flex-col">
+                                                <div class='md:w-1/2'>
                                                     <div class="flex  bg-cus-blue items-start p-3 
                                             border-b border-solid border-blueGray-200 rounded-t
                                              ">
@@ -275,8 +277,12 @@ export default function SelectPrinter(props) {
                                                         </h3>
                                                     </div>
                                                     <div class="px-6 py-6 w-80 ">
-                                                        <input onChange={(event) => handleChangeDate(event)} id="selectTime" styles={customStyles} maxMenuHeight={100}
-                                                            isSearchable={false} type="date" />
+                                                        <input onChange={(event) => handleChangeDate(event)}
+                                                            id="selectTime"
+                                                            // styles={customStyles}
+                                                            maxMenuHeight={100}
+                                                            isSearchable={false}
+                                                            type="date" />
                                                     </div>
                                                 </div>
                                                 <div>

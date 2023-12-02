@@ -15,6 +15,7 @@ import { saveUserToLocalStorage } from "../service/userService";
 import { logout } from "../service/userService";
 import { getUser } from "../service/userService";
 import { useState, useEffect, cloneElement } from "react";
+
 import BuyPageModal from "./BuyPageModal";
 const ProfileMenu = (props) => {
   // const dispatch = useDispatch();
@@ -31,6 +32,7 @@ const ProfileMenu = (props) => {
         // setUser(userInfo);
         if (info && info.data && info.data.user && info.data.user._json) {
           await setUserInfor(info.data.user._json);
+
           saveUserToLocalStorage(info.data.user);
           //dispatch(setUser(info.data.user));
         }
@@ -42,8 +44,8 @@ const ProfileMenu = (props) => {
     fetchData();
   }, []);
   const showWhat = (data) => {
-    props.input(data)
-  }
+    props.input(data);
+  };
   return (
     <Menu>
       <MenuHandler>
@@ -54,7 +56,10 @@ const ProfileMenu = (props) => {
         />
       </MenuHandler>
       <MenuList>
-        <MenuItem className="flex items-center gap-2" onClick={() => showWhat(3)}>
+        <MenuItem
+          className="flex items-center gap-2"
+          onClick={() => showWhat(3)}
+        >
           <UserCircleIcon className="w-5" />
 
           <Typography variant="small" className="font-medium">

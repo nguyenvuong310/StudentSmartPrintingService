@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { handleAuth } from "../service/userService";
 import checkValidToken from "../hoc/checkValidToken";
 import { path } from "../utils/constant";
+
 const LoginPage = () => {
   const [language, setLanguage] = useState("vie");
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ const LoginPage = () => {
 
   const handleLogin = async (role) => {
     const valid = await checkValidToken();
+
     if (role === "student") {
       if (valid) {
         navigate(path.HOMEPAGESTUDENT);

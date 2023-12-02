@@ -34,6 +34,7 @@ const router = createBrowserRouter(
       <Route path="/login-success" element={<NavigateRoute />} />
       <Route path="/" element={<App />}>
         <Route index={true} path="/home" element={<HomePage />} />
+
         <Route path="/student" element={<AuthenStudent />}>
           <Route
             index={true}

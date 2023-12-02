@@ -321,8 +321,6 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
                           </div>
                         </div>
 
-
-
                       </nav >
                       {/* PageNum available */}
                       <div class="flex  p-1 items-center italic font-thin text-white brightness-50" id='pageNAvail'>
@@ -331,7 +329,7 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
                         </div>
                       </div>
                       {/*footer*/}
-                      < div className="flex justify-end  pt-7 px-4 border-t border-solid border-blueGray-200 rounded-b" >
+                      < div className="flex justify-end  pt-7 pb-4 px-4 border-t border-solid border-blueGray-200 rounded-b" >
 
                         <button
                           className="text-white background-transparent  font-bold uppercase px-6 py-2 text-sm outline-none 

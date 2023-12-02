@@ -12,6 +12,7 @@ import StudentProfile from "./StudentProfile";
 import PublicStorage from "./PublicStorage";
 import PrivateStorage from "./PrivateStorage";
 import PrintingPage from "./PrintingPage";
+import TabsDefault from "./test";
 const HomePageStudent = () => {
   const [userinfo, setUserinfo] = useState({})
   const [check, setCheck] = useState(1);
@@ -35,7 +36,9 @@ const HomePageStudent = () => {
 
   return (
     <>
-      <HeaderStudent input={handleOnChangeCheck} value={check} />
+      {/* <TabsDefault /> */}
+
+      <HeaderStudent input={handleOnChangeCheck} />
       {check == 1 && <PublicStorage />}
       {check == 2 && <PrivateStorage user={userinfo} />}
       {check == 3 && <StudentProfile />}

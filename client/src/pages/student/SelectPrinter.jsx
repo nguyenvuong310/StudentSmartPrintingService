@@ -279,7 +279,7 @@ export default function SelectPrinter(props) {
                                                     <div class="px-6 py-6 w-80 ">
                                                         <input onChange={(event) => handleChangeDate(event)}
                                                             id="selectTime"
-                                                            // styles={customStyles}
+                                                            class="text-[#333333] rounded-md"
                                                             maxMenuHeight={100}
                                                             isSearchable={false}
                                                             type="date" />

@@ -61,12 +61,18 @@ const HeaderStudent = (props) => {
 
         {/* KHO HỆ THỐNG & CÁ NHÂN */}
         <div id="KhoHeThong" class="mb-4 border-b border-gray-200 dark:border-gray-700">
-          <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
+          <ul class="flex flex-wrap -mb-px text-sm font-medium text-center list-none" id="default-tab" data-tabs="tabs" role="tablist">
             <li class="me-2" role="presentation">
-              <button onClick={() => test(1)} class="inline-block p-4 border-b-2 rounded-t-lg" type="button" role="tab" aria-controls="profile" aria-selected="false">KHO HỆ THỐNG</button>
+              <button onClick={() => test(1)} class="inline-block p-4 border-b-2 rounded-t-lg" type="button" active role="tab" aria-controls="profile"
+                aria-selected="false">
+                KHO HỆ THỐNG
+              </button>
             </li>
             <li class="me-2" role="presentation">
-              <button onClick={() => test(2)} class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" type="button" role="tab" aria-controls="dashboard" aria-selected="false">KHO CÁ NHÂN</button>
+              <button onClick={() => test(2)} class="inline-block p-4 border-b-2  rounded-t-lg hover:text-gray-600 
+              hover:border-gray-300 " type="button" role="tab" aria-controls="dashboard" aria-selected="false">
+                KHO CÁ NHÂN
+              </button>
             </li>
           </ul>
         </div>

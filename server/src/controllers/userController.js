@@ -58,6 +58,22 @@ const handleGetListCourse = async (req, res) => {
         })
     }
 }
+const handleGetDocbySearch = async (req, res) => {
+    let doc = await userService.getDocbySearch(req.body)
+    if (doc) {
+        return res.status(200).json({
+            errCode: 0,
+            errMessage: "Find document success",
+            doc
+        })
+    } else {
+        return res.status(200).json({
+            errCode: 1,
+            errMessage: "Find document fail",
+            doc: []
+        })
+    }
+}
 module.exports = {
-    handleGetUserInfo, handleGetDoc, handleDeleteDoc, handleGetListCourse
+    handleGetUserInfo, handleGetDoc, handleDeleteDoc, handleGetListCourse, handleGetDocbySearch
 };

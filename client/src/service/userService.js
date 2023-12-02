@@ -40,7 +40,15 @@ const getDocByUserid = async (data) => {
     data: data,
   })
 }
-
+const getPrivateDocBySearch = async (data) => {
+  const url = "http://localhost:8080/api/getdocbysearch";
+  return await axios({
+    url: url,
+    method: "POST",
+    withCredentials: true,
+    data: data,
+  })
+}
 const uploadFile = async (data) => {
   const formData = new FormData();
   formData.append("file", data.file);
@@ -83,4 +91,5 @@ export {
   getListCourse,
   getAllPrinter,
   Print,
+  getPrivateDocBySearch,
 };

@@ -277,6 +277,26 @@ let getCourse = () => {
         }
     })
 }
+let getDocbySearch = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let doc = await db.Documents.findAll({
+                where: {
+                    [Op.or]: [
+                        { name: data.content },
+                        { course: data.content } // Thêm điều kiện tìm kiếm khác nếu cần
+                    ], location: data.location,
+                    userid: data.userid
+                }
+            })
+            if (doc) resolve(doc)
+            else resolve()
+        } catch (e) {
+            console.log(e);
+            reject(e)
+        }
+    })
+}
 module.exports = {
     getFolderId,
     updateFolderId,
@@ -291,4 +311,5 @@ module.exports = {
     getprinthistory,
     getbuyhistory,
     getCourse,
+    getDocbySearch,
 }

@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AddPrinter } from "../service/adminService";
-export default function AddPrinterModal() {
+export default function AddPrinterModal(props) {
     const [showModal, setShowModal] = React.useState(false);
     const [name, setName] = useState("")
     const [location, setLocation] = useState("")
@@ -36,6 +36,7 @@ export default function AddPrinterModal() {
         }
         await AddPrinter(data)
         setShowModal(false)
+        props.input()
         toast.success('Thêm máy in thành công', {
             position: "bottom-right",
             autoClose: 3000,

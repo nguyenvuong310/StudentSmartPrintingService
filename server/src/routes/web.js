@@ -33,6 +33,7 @@ let initWebRoutes = (app) => {
   router.post("/api/getalldoc", userController.handleGetDoc)
   router.post("/api/deletedoc", userController.handleDeleteDoc)
   router.post("/api/getlistcourse", userController.handleGetListCourse)
+  router.post("/api/getdocbysearch", userController.handleGetDocbySearch)
   // printController
   router.post("/api/getallprinter", printController.handleGetPrinter)
   router.post("/api/getprintertime", printController.handleGetPrinterTime)
@@ -43,7 +44,6 @@ let initWebRoutes = (app) => {
   router.post("/api/getprintbuy", buypageController.handleGetBuyHistory)
   // searchController
   router.post("/api/search", searchController.handleSearch)
-
   // adminController
   router.post("/api/getalluser", adminController.handleGetAllUser)
   router.post("/api/getblockeduser", adminController.handleGetBlockedUser)

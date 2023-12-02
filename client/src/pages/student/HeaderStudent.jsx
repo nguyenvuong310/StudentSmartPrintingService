@@ -26,7 +26,7 @@ const HeaderStudent = (props) => {
     script.src = "https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js";
     script.async = true;
     document.body.appendChild(script);
-  }, [check]);
+  }, []);
 
   // const [open, setOpen] = useState(1);
 
@@ -37,6 +37,15 @@ const HeaderStudent = (props) => {
   const test = (data) => {
     handleOnChangeCheck(data)
     props.input(data)
+    props.inputsearch(1)
+    props.inputcontent("")
+  }
+  const handleSearch = async (event) => {
+    if (event.key == "Enter") {
+      if (props.value == 1) props.inputsearch(2)
+      if (props.value == 2) props.inputsearch(3)
+      props.inputcontent(event.target.value)
+    }
   }
   return (
 
@@ -79,7 +88,7 @@ const HeaderStudent = (props) => {
             </svg>
             <span class="sr-only">Search icon</span>
           </div>
-          <input type="text" id="search-navbar" class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tìm kiếm..." />
+          <input onKeyDown={(event) => handleSearch(event)} type="text" id="search-navbar" class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tìm kiếm..." />
 
         </div>
 

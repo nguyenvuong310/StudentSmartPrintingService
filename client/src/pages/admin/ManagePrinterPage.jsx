@@ -43,6 +43,10 @@ const ManagePrinterPage = () => {
       theme: "light",
     })
   }
+  const handleAfterAdd = async () => {
+    const printer = await getAllPrinter();
+    setListPrinter(printer.data.printer)
+  }
   return (
     <>
       <HeaderAdmin />
@@ -89,7 +93,7 @@ const ManagePrinterPage = () => {
                 </div>
                 <div class="bg-white border border-b-black flex w-full">
                   <div class="relative flex-wrap justify-between ml-auto mr-3">
-                    <AddPrinterModal />
+                    <AddPrinterModal input={handleAfterAdd} />
                   </div>
                 </div>
                 <div className="flex">

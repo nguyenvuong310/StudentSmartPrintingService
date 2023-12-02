@@ -3,25 +3,40 @@ import BuyPageModal from "../../components/BuyPageModal";
 import StudentFileCard from "../../components/StudentFileCard"
 import PagiBar from "../../components/PaginationBar"
 import Footer from "../../components/Footer"
-import { getDocByUserid } from "../../service/userService";
+import { getDocByUserid, getPrivateDocBySearch } from "../../service/userService";
 import UploadModal from "../../components/UploadModal";
+import { input } from "@material-tailwind/react";
 const PrivateStorage = (props) => {
     const [listdoc, setListdoc] = useState([])
     useEffect(() => {
         const test = async () => {
             try {
-                const data = {
-                    userid: props.user.userid
+                if (props.search == 1) {
+                    const data = {
+                        userid: props.user.userid,
+
+                    }
+                    const doc = await getDocByUserid(data);
+                    setListdoc(doc.data.doc)
                 }
-                const doc = await getDocByUserid(data);
-                setListdoc(doc.data.doc)
+                if (props.search == 3) {
+                    console.log(props.content)
+                    const data = {
+                        userid: props.user.userid,
+                        content: props.content,
+                        location: "private",
+                    }
+                    const doc = await getPrivateDocBySearch(data);
+                    setListdoc(doc.data.doc)
+                }
+
             } catch (error) {
                 console.error("Error fetching user information:", error);
             }
         };
 
         test()
-    }, []);
+    }, [props.content, props.search]);
     return (
         <>
             <div className="flex h-[40rem] p-5 flex-col items-center bg-white-fill">

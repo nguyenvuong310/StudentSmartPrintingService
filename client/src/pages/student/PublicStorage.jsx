@@ -17,9 +17,12 @@ const PublicStorage = () => {
         <>
             <div className="flex h-[40rem] p-5 flex-col items-center bg-white-fill">
                 <div class="grid grid-cols-3 gap-[4rem] mt-2">
-                    {listCourse && listCourse.map((course, index) => (
+                    {listCourse && listCourse.slice(0, 10).map((course, index) => (
                         <StudentFolderCard text={course.name} />
                     ))}
+                    {/* {listCourse && listCourse.from({ length: 8 }, (_, index) => (
+                        <StudentFolderCard key={index} text={`Course ${index + 1}`} />
+                    ))} */}
                 </div>
                 {/* <PagiBar /> */}
             </div>

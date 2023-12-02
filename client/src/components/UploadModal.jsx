@@ -66,6 +66,7 @@ export default function UploadModal() {
         }
         const upload = await uploadFile(data)
         setShowModal(() => false)
+        setUploaded(() => false)
         if (upload && upload.data.errCode === 0) {
             toast.success('Upload thành công', {
                 position: "bottom-right",
@@ -81,7 +82,10 @@ export default function UploadModal() {
             toast.error("error!!!");
         }
     }
-
+    const handleClose = () => {
+        setShowModal(() => false)
+        setUploaded(() => false)
+    }
     return (
         <>
             <button
@@ -99,7 +103,7 @@ export default function UploadModal() {
                         <div class="extraOutline relative w-[40rem] p-4 bg-[#ABD7EF] bg-whtie m-auto rounded-lg">
                             <div className="w-6 h-6 absolute top-0 right-0 rounded-full border-2 border-blue-700 m-2">
                                 <button className="pl-[5.5px]" type="button"
-                                    onClick={() => setShowModal(false)}>
+                                    onClick={() => handleClose()}>
                                     X
                                 </button>
                             </div>

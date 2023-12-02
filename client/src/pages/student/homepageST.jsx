@@ -15,6 +15,8 @@ import PrintingPage from "./PrintingPage";
 const HomePageStudent = () => {
   const [userinfo, setUserinfo] = useState({})
   const [check, setCheck] = useState(1);
+  const [searchlocation, setSearchlocation] = useState(1)
+  const [content, setContent] = useState("")
   useEffect(() => {
     const test = async () => {
       try {
@@ -26,17 +28,24 @@ const HomePageStudent = () => {
     };
 
     test()
-  }, [check]);
+  }, []);
 
   const handleOnChangeCheck = (data) => {
     setCheck(() => data)
   }
-
+  const handleOnChangeSearchLocation = (data) => {
+    setSearchlocation(() => data)
+  }
+  const handleChangeContent = (data) => {
+    setContent(() => data)
+  }
   return (
     <>
-      <HeaderStudent input={handleOnChangeCheck} value={check} />
+      <HeaderStudent input={handleOnChangeCheck} value={check}
+        inputsearch={handleOnChangeSearchLocation} search={searchlocation}
+        inputcontent={handleChangeContent} content={content} />
       {check == 1 && <PublicStorage />}
-      {check == 2 && <PrivateStorage user={userinfo} />}
+      {check == 2 && <PrivateStorage user={userinfo} check={check} search={searchlocation} inputsearch={handleOnChangeSearchLocation} content={content} />}
       {check == 3 && <StudentProfile />}
     </>
   );

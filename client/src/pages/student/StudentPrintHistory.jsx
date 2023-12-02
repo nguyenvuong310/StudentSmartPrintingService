@@ -7,7 +7,7 @@ const StudentPrintHistory = () => {
     return (
         <>
             <div className="flex h-[40rem] p-5 flex-col items-center bg-white-fill">
-                lịch sử nè
+                lịch sử nèeee
             </div>
         </>
     );

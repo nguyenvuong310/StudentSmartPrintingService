@@ -140,18 +140,14 @@ let getAddPrinter = (data) => {
 let updatePrinter = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let printers = await db.Printers.findAll({
-                where: { printerid: data.printerid }
+            let printer = await db.Printers.findOne({
+                where: { id: data.printerid }
             })
-            if (printers) {
-                printers.map(async (printer, index) => {
-                    printer.status = true
-                    printer.location = "H1"
-                    printer.slot = 10
-                    printer.name = "Tên máy đã được sửa đổi"
-                    printer.type = "In thường",
-                        await printer.save();
-                })
+            if (printer) {
+                printer.name = data.name
+                printer.location = data.location
+                printer.type = data.type
+                await printer.save();
                 resolve({
                     errCode: 0,
                     errMessage: "Update success",

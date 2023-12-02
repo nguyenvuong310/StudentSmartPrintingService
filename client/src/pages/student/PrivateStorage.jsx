@@ -45,7 +45,7 @@ const PrivateStorage = (props) => {
                         return (
                             < StudentFileCard
                                 doc={doc}
-                                numpPage={props.user.numpage}
+                                numpPage={props.user.numpage - props.user.numpageused}
                                 textFile={doc.name} textSubject={doc.course}
                                 textType={'.pdf'}
                                 fileLink={"https://drive.google.com/file/d/" + doc.link + "/view"}

@@ -7,7 +7,7 @@ import {
     ClockIcon
 } from "@heroicons/react/24/solid";
 
-const MenuBarAdmin = () => {
+const MenuAdmin = () => {
     const navigate = useNavigate();
     const handleMenu = (title) => {
         if (title === "student-manage") {
@@ -23,12 +23,12 @@ const MenuBarAdmin = () => {
     return (
         <>
             {/* <!-- component --> */}
-            <div class="pt-20 z-20  w-[18rem] sm:flex hidden bg-gradient-to-b from-blue-800 to-cyan-500 h-screen rounded-r-xl">
+            <div class="z-20 pt-20 w-[18rem] sm:flex hidden bg-gradient-to-b from-blue-800 to-cyan-500  h-screen rounded-r-xl">
                 <div class=" flex flex-col bg-gradient-to-b from-indigo-800/10 to-blue-500 text-white  w-[16rem] p-4 shadow-xl shadow-blue-gray-900/5">
-                    <div class="mb-2 p-5 border-b ">
+                    <div class="flex mb-2 p-5 border-b ">
                         <h5 class=" antialiased tracking-normal text-4xl font-bold font-mono leading-snug ">MENU</h5>
                     </div>
-                    <nav class="flex flex-col gap-3  py-5 pr-2 font-sans text-start text-lg leading-tight">
+                    <nav class="flex flex-1 flex-col gap-3  py-5 pr-2 font-sans text-start text-lg leading-tight">
                         <div onClick={() => handleMenu("student-manage")} role="button" tabindex="0" class="border-solid border-2 flex gap-2 items-center w-full p-3 rounded-lg transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-gray-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900">
                             <UserGroupIcon className="w-6" />
                             <div class="grid place-items-center mr-4">
@@ -49,6 +49,25 @@ const MenuBarAdmin = () => {
                         </div>
 
                     </nav>
+                    <div class=" flex grid grid-rows gap-1 mb-2 pt-3 pl-3 border-t ">
+                        <div>
+                            <a class="text-white   text-sm" href="">Điều khoản dịch vụ</a>
+                        </div>
+                        <div>
+                            <a class="text-white   text-sm" href="">Về chúng tôi</a>
+
+                        </div>
+                        <div>
+                            <a class="text-white   text-sm" href="">Liên hệ</a>
+
+                        </div>
+                        <div class="text-white w-[80%] text-sm">
+
+                            Copyright 2023 SPSS - Power by BAOSRANGER
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
 
@@ -59,4 +78,4 @@ const MenuBarAdmin = () => {
 }
 
 
-export default MenuBarAdmin;
+export default MenuAdmin;

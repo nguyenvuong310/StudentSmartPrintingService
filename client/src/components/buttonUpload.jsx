@@ -16,12 +16,15 @@ export default function ButtonUpload(props) {
     return (
         <>
             <button
-                className="active:bg-blue-700font-bold mb-1 mr-1 flex flex-row space-x-3 rounded bg-[#3563E9] 
-                 px-6 py-3 text-sm uppercase text-white shadow outline-none transition-all duration-150 ease-linear hover:shadow-lg focus:outline-none"
+                className="bg-[#3563E9] flex text-white active:bg-blue-700 font-semibold uppercase text-sm
+                 pr-5 pl-4 py-[11px] rounded shadow hover:bg-blue-700 hover:shadow-lg outline-none focus:outline-none mr-1 mb-1
+                 items-center
+                 ease-linear transition-all duration-150 active:ring ring-blue-400 focus:ring
+                 "
                 type="button"
                 onClick={toggle}
             >
-                <ArrowUpTrayIcon className="w-5" />
+                <ArrowUpTrayIcon className="w-6 mr-1" />
                 Tải lên
             </button>
             <UploadModal isOpen={showModal} toggle={toggle} inputupload={props.inputupload} upload={props.upload} />

@@ -4,10 +4,12 @@ import { getAllPrinter, deletePrinter, activePrinter } from "../../service/admin
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
+import UpdatePrinterModal from "../../components/UpdatePrinterModal";
 import "react-toastify/dist/ReactToastify.css";
 import MenuBarAdmin from "./MenuBarAdmin";
 const ManagePrinterPage = () => {
   const [listPrinter, setListPrinter] = useState([])
+  const [updated, setUpdated] = useState(false)
   useEffect(() => {
     const test = async () => {
       try {
@@ -49,6 +51,10 @@ const ManagePrinterPage = () => {
     })
   }
   const handleAfterAdd = async () => {
+    const printer = await getAllPrinter();
+    setListPrinter(printer.data.printer)
+  }
+  const handleAfterUpdate = async () => {
     const printer = await getAllPrinter();
     setListPrinter(printer.data.printer)
   }
@@ -123,7 +129,7 @@ const ManagePrinterPage = () => {
                               </td>
                               <td class="text-lg text-gray-900 font-light py-4 whitespace-nowrap text-center">
                                 <div className="flex-row">
-                                  <button href="#" class="flex-row border-4 border-[#c4c4c4] bg-[#658DF1] px-3 py-1 text-white hover:shadow text-sm font-thin">CHỈNH SỬA</button>
+                                  <UpdatePrinterModal printerId={printer.id} printerName={printer.name} printerLocation={printer.location} printerType={printer.type} input={handleAfterAdd} />
                                   <button href="#" class="mx-3 border-4 border-[#c4c4c4] bg-red-500 px-3 py-1 text-white hover:shadow text-sm font-thin" onClick={() => handleDeletePrinter(printer.id, index)}>XÓA</button>
                                 </div>
                               </td>

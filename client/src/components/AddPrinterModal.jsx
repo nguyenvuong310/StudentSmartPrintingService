@@ -59,7 +59,7 @@ export default function AddPrinterModal() {
             {showModal ? (
                 <>
                     <div class="justify-center flex fixed inset-0 z-50 outline-none focus:outline-none ">
-                        <div class="extraOutline relative w-[30rem] p-4 bg-white m-auto rounded-lg">
+                        <div class="extraOutline relative h-[33rem] w-[30rem] p-4 bg-white m-auto rounded-lg">
                             <div class="w-full flex bg-white border-b-2 border-b-gray-500">
                                 <div class="w-full font-bold px-3 py-3 text-black-600 text-2xl">Nhập thông tin máy in</div>
                                 <div className="pt-1 px-4 flex items-center text-medium font-medium leading-none cursor-pointer">
@@ -77,14 +77,14 @@ export default function AddPrinterModal() {
                                     <div className="mb-2 text-xl">
                                         Tên
                                     </div>
-                                    <input onChange={(event) => handleOnChangeName(event)} type="text" class="block h-20 w-full p-2 ps-2 text-medium text-gray-900 border border-gray-400 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Điền tên máy in" />
+                                    <input onChange={(event) => handleOnChangeName(event)} type="text" class="block h-14 w-full p-2 ps-2 text-medium text-gray-900 border border-gray-400 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
                                 </div>
                                 <div className="mt-5">
                                     <div className="mb-2 text-xl">
                                         Địa chỉ của máy
                                     </div>
 
-                                    <input onChange={(event) => handleOnChangeLocation(event)} type="text" class="block h-20 w-full p-2 ps-2 text-medium text-gray-900 border border-gray-400 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ĐHBK cơ sở 1, tòa B6, tầng 1" />
+                                    <input onChange={(event) => handleOnChangeLocation(event)} type="text" class="block h-14 w-full p-2 ps-2 text-medium text-gray-900 border border-gray-400 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                                 </div>
                                 <div className="mt-5">
                                     <div className="mb-2 text-xl">
@@ -94,7 +94,7 @@ export default function AddPrinterModal() {
                                 </div>
                             </div>
                             <div className="mt-10">
-                                <button onClick={() => handleAddPrinter()} type="button" className="bg-[#3563E9] p-1 w-20 m-2 absolute bottom-0 right-0 text-white">
+                                <button onClick={() => handleAddPrinter()} type="button" className="bg-[#3563E9] p-1 w-20 m-5 absolute bottom-0 right-0 text-white">
                                     Xác nhận
                                 </button>
                             </div>

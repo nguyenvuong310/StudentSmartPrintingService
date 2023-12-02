@@ -23,17 +23,17 @@ const HomePageAdmin = () => {
             <nav class="flex flex-col gap-3 min-w-[220px] py-5 pr-2 font-sans text-base text-xl ">
               <div role="button" tabindex="0" class="border-solid border-2 flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-gray-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none">
                 <div class="grid place-items-center mr-4">
-                  <a href="./student-manage">Quản lý sinh viên</a>
+                  <a href="/admin/student-manage">Quản lý sinh viên</a>
                 </div>
               </div>
               <div role="button" tabindex="0" class="border-solid border-2 flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-gray-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none">
                 <div class="grid place-items-center mr-4">
-                  <a href="./printer-manage">Quản lý máy in</a>
+                  <a href="/admin/printer-manage">Quản lý máy in</a>
                 </div>
               </div>
               <div role="button" tabindex="0" class="border-solid border-2 flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-gray-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none">
                 <div class="grid place-items-center mr-4">
-                  <a href="./printing-history-manage">Quản lý máy in</a>
+                  <a href="/admin/printing-history-manage">Quản lý lịch sử in</a>
                 </div>
               </div>
 

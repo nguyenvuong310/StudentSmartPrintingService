@@ -26,7 +26,7 @@ module.exports = {
     }, {
       userid: "2115337",
       name: "Nguyễn Trung Vương",
-      mail: "vuong.nguyentrurng310@hcmut.edu.vn",
+      mail: "vuong.nguyentrung310@hcmut.edu.vn",
       folderid: null,
       numpage: 100,
       block: false,

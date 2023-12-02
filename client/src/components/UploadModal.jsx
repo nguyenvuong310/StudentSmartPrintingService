@@ -3,10 +3,9 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { EnvelopeIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import {
-    ArrowUpTrayIcon
-
+    ArrowUpTrayIcon,
+    EnvelopeIcon, ExclamationTriangleIcon
 } from "@heroicons/react/24/outline";
 import SelectR from 'react-select'
 import CreatableSelect from 'react-select/creatable';
@@ -17,7 +16,7 @@ import icon_pdf from "../assets/PDF_icon.svg.png";
 
 
 export default function UploadModal(props) {
-    const [showModal, setShowModal] = useState(false);
+    const [showModal, setShowModal] = useState(props.isOpen);
     const [file, setFile] = useState({})
     const [location, setlocation] = useState("")
     const [course, setCourse] = useState("")
@@ -28,11 +27,12 @@ export default function UploadModal(props) {
         const getdata = async () => {
             const course = await getListCourse();
             await setListCourse(course.data.course)
+            setShowModal(props.isOpen);
         }
 
         // console.log(listCourse)
         getdata()
-    }, [file, location, course, name, showModal, uploaded]);
+    }, [showModal, uploaded, props.isOpen]);
     const optionsLocation = [
         { value: 'private', label: 'Kho cá nhân' },
         { value: 'public', label: 'Kho cộng đồng' },
@@ -65,10 +65,10 @@ export default function UploadModal(props) {
             location: location,
         }
         const upload = await uploadFile(data)
-        setShowModal(() => false)
+        props.toggle()
         setUploaded(() => false)
         props.inputupload(!props.upload)
-        if (upload && upload.data.errCode === 0) {
+        if (upload && upload.data && upload.data.errCode === 0) {
             toast.success('Upload thành công', {
                 position: "bottom-right",
                 autoClose: 3000,
@@ -84,12 +84,13 @@ export default function UploadModal(props) {
         }
     }
     const handleClose = () => {
-        setShowModal(() => false)
+        // setShowModal(() => false)
+        props.toggle()
         setUploaded(() => false)
     }
     return (
         <>
-            <button
+            {/* <button
                 className="bg-[#3563E9] flex flex-row space-x-3 text-white active:bg-blue-700font-bold uppercase text-sm 
                  px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 type="button"
@@ -97,7 +98,7 @@ export default function UploadModal(props) {
             >
                 <ArrowUpTrayIcon className="w-5" />
                 Tải lên
-            </button>
+            </button> */}
             {showModal ? (
                 <>
                     <div class="justify-center flex fixed inset-0 z-50 outline-none focus:outline-none ">

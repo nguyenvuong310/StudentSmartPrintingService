@@ -198,7 +198,7 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
                             placeholder:text-gray-400 text-[12px] leading-4" placeholder="Eg: 1-5, 8,11-13..." />
                             <div >
                               <div class="mt-1  w-32  shadow-sm">
-                                <div id="pg2" onFocus={() => HandleInput()} class="h-full w-full text-[12px]  items-center ">
+                                <div id="pg2" class="h-full w-full text-[12px]  items-center ">
                                   <Select
                                     options={optionsPageN}
                                     id="selectPN"
@@ -206,6 +206,7 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
                                     placeholder='Tùy chọn'
                                     isSearchable={false}
                                     onChange={(event) => HandleInput3(event)}
+                                    onFocus={(event) => HandleInput(event)}
                                   >
                                   </Select>
                                 </div>

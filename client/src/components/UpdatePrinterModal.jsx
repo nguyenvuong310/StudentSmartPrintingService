@@ -22,7 +22,7 @@ export default function UpdatePrinterModal({ printerId, printerName, printerLoca
         setLocation(event.target.value)
     }
     const handleOnChangeType = (event) => {
-        setType(event.value)
+        setType(event.target.value)
     }
     const handleUpdatePrinter = async () => {
         const data = {

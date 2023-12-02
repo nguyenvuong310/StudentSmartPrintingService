@@ -11,6 +11,7 @@ module.exports = {
       numpage: 100,
       block: false,
       numpageused: 0,
+      role: "STUDENT",
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
@@ -21,6 +22,7 @@ module.exports = {
       numpage: 100,
       block: false,
       numpageused: 0,
+      role: "STUDENT",
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
@@ -31,6 +33,7 @@ module.exports = {
       numpage: 100,
       block: false,
       numpageused: 0,
+      role: "STUDENT",
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
@@ -41,6 +44,7 @@ module.exports = {
       numpage: 100,
       block: false,
       numpageused: 0,
+      role: "STUDENT",
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
@@ -51,6 +55,7 @@ module.exports = {
       numpage: 100,
       block: false,
       numpageused: 0,
+      role: "STUDENT",
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
@@ -61,6 +66,7 @@ module.exports = {
       numpage: 100,
       block: false,
       numpageused: 0,
+      role: "STUDENT",
       createdAt: new Date(),
       updatedAt: new Date(),
     },], {});

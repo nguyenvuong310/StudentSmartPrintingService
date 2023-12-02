@@ -39,7 +39,7 @@ const StudentFolderCard = (props) => {
         }
     }
     return (
-        <ol className="flex justify-center absolute inset-x-0 bottom-0 gap-1 text-xs font-medium">
+        <ol className="flex justify-center absolute inset-x-0 bottom-0 gap-1 text-xs font-medium mb-5">
             <li>
                 <button
                     onClick={() => handlePrevPage()}

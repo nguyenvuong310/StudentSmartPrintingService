@@ -9,6 +9,7 @@ import WelcomeIcon from "../../assets/ae.png"
 const StudentProfile = () => {
     const [userInfor, setUserInfor] = useState({});
     const [userinfo, setUserinfo] = useState({})
+    const [buyed, setbuyed] = useState(false)
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -24,8 +25,10 @@ const StudentProfile = () => {
         };
 
         fetchData();
-    }, []);
-
+    }, [buyed]);
+    const handleAfterBuy = (data) => {
+        setbuyed(data)
+    }
     return (
         <>
             <div className="w-full h-[20rem] ">
@@ -42,7 +45,7 @@ const StudentProfile = () => {
                         </div>
                     </div>
                     <div className="flex flex-row space-x-5">
-                        <BuyPageModal />
+                        <BuyPageModal userinfo={userinfo} input={handleAfterBuy} buyed={buyed} />
                     </div>
 
                 </div>

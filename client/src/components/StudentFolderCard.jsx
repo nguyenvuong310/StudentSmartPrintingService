@@ -22,20 +22,29 @@ const StudentFolderCard = ({ text }) => {
 
     return (
         <button
-            class="flex flex-row space-x-5 bg-white border border-gray-200 rounded-lg w-64 hover:border-b-3 hover:border-b-blue-500 active:border-blue-100">
-            <div class="flex justify-center bg-white items-center text-gray-500 rounded-l-lg">
-                <img
-                    src={FolderImg}
-                    alt="image 1"
-                    className="m-1 object-cover"
-                />
-            </div>
-            <div class="text-center bg-[#98D3FF] h-full p-6 rounded-r-lg">
-                <h1 class="font-bold text-gray-700 text"> {text} </h1>
+            class="hover:shadow-lg hover:shadow-gray-900/50 active:shadow-none bg-white duration-125 ease-in-out transform hover:scale-105 
+        focus-within:scale-105 focus:ring rounded-lg"
+            onBlur={e => {
+                // only re-focus if the user clicked on something
+                // that was NOT an input element
+                if (e.relatedTarget === null) {
+                    e.target.focus();
+                }
+            }}
+        >
+            <div class='flex w-72 h-24' >
+                <div class="flex flex-1 bg-white justify-items-center 
+        bg-[url('././assets/folderimg.png')] bg-cover bg-center bg-no-repeat bg-[length:81px_76px] rounded-lg"  >
+                </div>
+                <div class=' w-44 bg-[#98D3FF] rounded-r-lg grid grid-cols-1 gap-4 place-content-center px-5'>
+                    <div class="flex text-lg font-bold opacity-90">
+                        {text}
+                    </div>
+                </div>
+
             </div>
         </button>
 
     );
 };
-
 export default StudentFolderCard;

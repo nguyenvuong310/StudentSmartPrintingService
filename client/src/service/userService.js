@@ -80,6 +80,15 @@ const Print = async (data) => {
     data: data
   });
 }
+const buypage = async (data) => {
+  const url = "http://localhost:8080/api/buypage";
+  return await axios({
+    url: url,
+    method: "POST",
+    withCredentials: true,
+    data: data
+  });
+}
 export {
   handleAuth,
   getUser,
@@ -92,4 +101,5 @@ export {
   getAllPrinter,
   Print,
   getPrivateDocBySearch,
+  buypage,
 };

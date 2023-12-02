@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     numpage: DataTypes.INTEGER,
     block: DataTypes.BOOLEAN,
     numpageused: DataTypes.INTEGER,
+    role: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Users',

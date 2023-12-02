@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import CustomerRoute from "./components/CustomerRoute";
-import AdminRoute from "./components/AdminRoute";
+import NavigateRoute from "./routes/NavigateRoute.jsx";
 import HomePage from "./pages/HomePage";
 import InstructionPage from "./pages/InstructionPage";
 import LoginPage from "./pages/LoginPage";
@@ -12,7 +11,7 @@ import FeedbackPage from "./pages/FeedbackPage";
 import ManagePrinterPage from "./pages/admin/ManagePrinterPage";
 import HomePageStudent from "./pages/student/homepageST.jsx";
 import HomePageAdmin from "./pages/admin/homepageAd.jsx";
-import ManageStudentPage from "./pages/admin/ManageStudentPage.jsx"
+import ManageStudentPage from "./pages/admin/ManageStudentPage.jsx";
 import { Counter } from "./pages/Counter.jsx";
 import "./index.css";
 import { Provider } from "react-redux";
@@ -26,22 +25,27 @@ import {
 } from "react-router-dom";
 import { ThemeProvider } from "@material-tailwind/react";
 import AuthenAdmin from "./hoc/authenAdmin.jsx";
+import AuthenStudent from "./hoc/authenStudent.jsx";
 import ManagePrintingHistory from "./pages/admin/ManagePrintingHistory.jsx";
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
+      <Route path="/login-success" element={<NavigateRoute />} />
       <Route path="/" element={<App />}>
         <Route index={true} path="/home" element={<HomePage />} />
+        <Route path="/student" element={<AuthenStudent />}>
+          <Route
+            index={true}
+            path={path.HOMEPAGESTUDENT}
+            element={<HomePageStudent />}
+          />
+        </Route>
         <Route path="/instruction" element={<InstructionPage />} />
         <Route path="/printing" element={<PrintingPage />} />
-        <Route path="" element={<CustomerRoute />}>
-          <Route path="/history" element={<HistoryPage />} />
-          <Route path="/feedback" element={<FeedbackPage />} />
-        </Route>
-        <Route path="" element={<AdminRoute />}>
+        <Route path="/history" element={<HistoryPage />} />
+        <Route path="/feedback" element={<FeedbackPage />} />
 
-        </Route>
-        <Route path={path.HOMEPAGESTUDENT} element={<HomePageStudent />} />
         <Route
           path={path.HOMEPAGEADMIN}
           element={

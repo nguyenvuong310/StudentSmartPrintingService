@@ -9,6 +9,12 @@ const getUser = async () => {
 const saveUserToLocalStorage = async (user) => {
   await localStorage.setItem("user", JSON.stringify(user));
 };
+const saveRoleToLocalStorage = async (role) => {
+  await localStorage.setItem("role", JSON.stringify(role));
+};
+const getRoleFromLocalStorage = () => {
+  return JSON.parse(localStorage.getItem("role"));
+};
 const logout = () => {
   localStorage.removeItem("user");
   window.open(`http://localhost:8080/auth/logout`, "_self");
@@ -21,7 +27,7 @@ const getUserInfo = async () => {
     method: "GET",
     withCredentials: true,
   });
-}
+};
 
 const getListCourse = async () => {
   const url = "http://localhost:8080/api/getlistcourse";
@@ -30,7 +36,7 @@ const getListCourse = async () => {
     method: "POST",
     withCredentials: true,
   });
-}
+};
 const getDocByUserid = async (data) => {
   const url = "http://localhost:8080/api/getalldoc";
   return await axios({
@@ -38,8 +44,8 @@ const getDocByUserid = async (data) => {
     method: "POST",
     withCredentials: true,
     data: data,
-  })
-}
+  });
+};
 const getPrivateDocBySearch = async (data) => {
   const url = "http://localhost:8080/api/getdocbysearch";
   return await axios({
@@ -47,22 +53,22 @@ const getPrivateDocBySearch = async (data) => {
     method: "POST",
     withCredentials: true,
     data: data,
-  })
-}
+  });
+};
 const uploadFile = async (data) => {
   const formData = new FormData();
   formData.append("file", data.file);
   formData.append("name", data.name);
   formData.append("course", data.course);
   formData.append("location", data.location);
-  const url = "http://localhost:8080/drive/uploadFile"
+  const url = "http://localhost:8080/drive/uploadFile";
   return await axios({
     url: url,
     method: "POST",
     data: formData,
     withCredentials: true,
   });
-}
+};
 const getAllPrinter = async () => {
   const url = "http://localhost:8080/api/getallprinter";
   return await axios({
@@ -70,16 +76,16 @@ const getAllPrinter = async () => {
     method: "POST",
     withCredentials: true,
   });
-}
+};
 const Print = async (data) => {
   const url = "http://localhost:8080/api/print";
   return await axios({
     url: url,
     method: "POST",
     withCredentials: true,
-    data: data
+    data: data,
   });
-}
+};
 export {
   handleAuth,
   getUser,
@@ -92,4 +98,6 @@ export {
   getAllPrinter,
   Print,
   getPrivateDocBySearch,
+  saveRoleToLocalStorage,
+  getRoleFromLocalStorage,
 };

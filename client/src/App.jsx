@@ -25,7 +25,7 @@ const App = () => {
           // Validate token and redirect only after fetching and saving user information
           await validateTokenAndRedirect();
         } else {
-          navigate("/home");
+          navigate("/login");
         }
       } catch (error) {
         console.error("Error fetching user information:", error);
@@ -39,7 +39,7 @@ const App = () => {
     const validateTokenAndRedirect = async () => {
       try {
         const isValid = await checkValidToken();
-
+        console.log("valid", isValid);
         // If not valid or not authenticated, redirect to /login
         if (!isValid) {
           navigate("/login");

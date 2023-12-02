@@ -4,6 +4,6 @@ export const path = {
   LOG_OUT: "/logout",
   SYSTEM: "/system",
   HOMEPAGE: "/home",
-  HOMEPAGESTUDENT: "/homepage-student",
-  HOMEPAGEADMIN: "/homepage-admin",
+  HOMEPAGESTUDENT: "/student/homepage",
+  HOMEPAGEADMIN: "/admin/homepage",
 };

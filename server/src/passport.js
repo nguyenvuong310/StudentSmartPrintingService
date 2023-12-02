@@ -11,6 +11,9 @@ passport.use(
     },
     function (accessToken, refreshToken, profile, callback) {
       //   console.log("Access Token:", accessToken);
+      // const email = profile.emails ? profile.emails[0].value : null;
+      // req.session.email = email;
+      console.log("passport");
       profile.accessToken = accessToken;
       callback(null, profile);
     }
@@ -22,5 +25,6 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((user, done) => {
+  // console.log(user);
   done(null, user);
 });

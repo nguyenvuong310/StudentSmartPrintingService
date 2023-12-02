@@ -16,7 +16,7 @@ import icon_pdf from "../assets/PDF_icon.svg.png";
 
 
 
-export default function UploadModal() {
+export default function UploadModal(props) {
     const [showModal, setShowModal] = useState(false);
     const [file, setFile] = useState({})
     const [location, setlocation] = useState("")
@@ -67,6 +67,7 @@ export default function UploadModal() {
         const upload = await uploadFile(data)
         setShowModal(() => false)
         setUploaded(() => false)
+        props.inputupload(!props.upload)
         if (upload && upload.data.errCode === 0) {
             toast.success('Upload thành công', {
                 position: "bottom-right",

@@ -1,10 +1,48 @@
+import { useState, useEffect } from "react";
 
-const StudentFolderCard = () => {
+const StudentFolderCard = (props) => {
+    const [check, setCheck] = useState(1);
+
+    useEffect(() => {
+        console.log('check in pagbar ', check)
+    }, [check]);
+
+    const handleOnChangeCheck = (data) => {
+        setCheck(() => data)
+    }
+    const changePagenum = (data) => {
+        handleOnChangeCheck(data)
+        props.input(data)
+    }
+
+    const handleNextPage = () => {
+        const test = check + 1;
+        if (test > 3) {
+            setCheck(() => 3)
+            changePagenum(3)
+        }
+        else {
+            setCheck(() => test)
+            changePagenum(test)
+        }
+    }
+
+    const handlePrevPage = () => {
+        const test = check - 1;
+        if (test < 1) {
+            setCheck(() => 1)
+            changePagenum(1)
+        }
+        else {
+            setCheck(() => test)
+            changePagenum(test)
+        }
+    }
     return (
         <ol className="flex justify-center absolute inset-x-0 bottom-0 gap-1 text-xs font-medium">
             <li>
-                <a
-                    href="#"
+                <button
+                    onClick={() => handlePrevPage()}
                     className="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180"
                 >
                     <span className="sr-only">Prev Page</span>
@@ -20,42 +58,36 @@ const StudentFolderCard = () => {
                             clipRule="evenodd"
                         />
                     </svg>
-                </a>
+                </button>
             </li>
             <li>
-                <a
-                    href="#"
-                    className="block h-8 w-8 rounded border border-gray-100 bg-white text-center leading-8 text-gray-900"
+                <button onClick={() => changePagenum(1)}
+                    className={check == 1 ? "block h-8 w-8 rounded border-blue-600 bg-blue-600 text-center leading-8 text-white" :
+                        "block h-8 w-8 rounded border border-gray-100 bg-white text-center leading-8 text-gray-900"}
                 >
                     1
-                </a>
+                </button>
             </li>
-            <li
-                className="block h-8 w-8 rounded border-blue-600 bg-blue-600 text-center leading-8 text-white"
-            >
-                2
+            <li>
+                <button onClick={() => changePagenum(2)}
+                    className={check == 2 ? "block h-8 w-8 rounded border-blue-600 bg-blue-600 text-center leading-8 text-white" :
+                        "block h-8 w-8 rounded border border-gray-100 bg-white text-center leading-8 text-gray-900"}>
+                    2
+                </button>
+
             </li>
 
             <li>
-                <a
-                    href="#"
-                    className="block h-8 w-8 rounded border border-gray-100 bg-white text-center leading-8 text-gray-900"
+                <button onClick={() => changePagenum(3)}
+                    className={check == 3 ? "block h-8 w-8 rounded border-blue-600 bg-blue-600 text-center leading-8 text-white" :
+                        "block h-8 w-8 rounded border border-gray-100 bg-white text-center leading-8 text-gray-900"}
                 >
                     3
-                </a>
-            </li>
-
-            <li>
-                <a
-                    href="#"
-                    className="block h-8 w-8 rounded border border-gray-100 bg-white text-center leading-8 text-gray-900"
-                >
-                    4
-                </a>
+                </button>
             </li>
             <li>
-                <a
-                    href="#"
+                <button
+                    onClick={() => handleNextPage()}
                     className="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180"
                 >
                     <span className="sr-only">Next Page</span>
@@ -71,11 +103,10 @@ const StudentFolderCard = () => {
                             clipRule="evenodd"
                         />
                     </svg>
-                </a>
+                </button>
             </li>
         </ol>
 
     );
 };
-
 export default StudentFolderCard;

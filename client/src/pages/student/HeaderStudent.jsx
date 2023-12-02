@@ -20,7 +20,7 @@ import SelectPrinter from "./SelectPrinter";
 import PrintingPage from "./PrintingPage";
 const HeaderStudent = (props) => {
   const [check, setCheck] = useState(1);
-
+  const [content, setContent] = useState("")
   useEffect(() => {
     const script = document.createElement('script');
     script.src = "https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js";
@@ -42,9 +42,16 @@ const HeaderStudent = (props) => {
   }
   const handleSearch = async (event) => {
     if (event.key == "Enter") {
-      if (props.value == 1) props.inputsearch(2)
+      if (props.value == 1) {
+        props.inputsearch(2)
+        props.input(5)
+      }
       if (props.value == 2) props.inputsearch(3)
+      if (props.value == 5) {
+        props.inputsearch(5)
+      }
       props.inputcontent(event.target.value)
+      setContent("")
     }
   }
   return (
@@ -88,7 +95,7 @@ const HeaderStudent = (props) => {
             </svg>
             <span class="sr-only">Search icon</span>
           </div>
-          <input onKeyDown={(event) => handleSearch(event)} type="text" id="search-navbar" class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tìm kiếm..." />
+          <input onKeyDown={(event) => handleSearch(event)} value={content} onChange={(event) => setContent(event.target.value)} type="text" id="search-navbar" class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tìm kiếm..." />
 
         </div>
 
@@ -102,7 +109,7 @@ const HeaderStudent = (props) => {
             </select>
           </div>
         </div>
-        <UploadModal />
+        <UploadModal inputupload={props.inputupload} upload={props.upload} />
         <ProfileMenu input={handleOnChangeCheck} value={check} />
         {check == 3 && props.input(3)}
       </div>

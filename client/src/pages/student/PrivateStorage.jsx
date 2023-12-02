@@ -36,7 +36,7 @@ const PrivateStorage = (props) => {
         };
 
         test()
-    }, [props.content, props.search]);
+    }, [props.content, props.search, props.upload]);
     return (
         <>
             <div className="flex h-[40rem] p-5 flex-col items-center bg-white-fill">

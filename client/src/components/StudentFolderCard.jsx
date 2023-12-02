@@ -18,7 +18,8 @@ import React from "react";
 
 import FolderImg from "../assets/folderimg.png"
 
-const StudentFolderCard = ({ text, imageUrl }) => {
+const StudentFolderCard = ({ text }) => {
+
     return (
         <button
             class="flex flex-row space-x-5 bg-white border border-gray-200 rounded-lg w-64 hover:border-b-3 hover:border-b-blue-500 active:border-blue-100">

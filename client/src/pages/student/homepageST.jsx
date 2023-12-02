@@ -12,11 +12,13 @@ import StudentProfile from "./StudentProfile";
 import PublicStorage from "./PublicStorage";
 import PrivateStorage from "./PrivateStorage";
 import PrintingPage from "./PrintingPage";
+import FolderView from "./FolderView";
 const HomePageStudent = () => {
   const [userinfo, setUserinfo] = useState({})
   const [check, setCheck] = useState(1);
   const [searchlocation, setSearchlocation] = useState(1)
   const [content, setContent] = useState("")
+  const [uploaded, setUploaded] = useState(false)
   useEffect(() => {
     const test = async () => {
       try {
@@ -39,14 +41,23 @@ const HomePageStudent = () => {
   const handleChangeContent = (data) => {
     setContent(() => data)
   }
+  const handleChangeUpload = (data) => {
+    setUploaded(() => data)
+  }
   return (
     <>
       <HeaderStudent input={handleOnChangeCheck} value={check}
         inputsearch={handleOnChangeSearchLocation} search={searchlocation}
-        inputcontent={handleChangeContent} content={content} />
-      {check == 1 && <PublicStorage />}
-      {check == 2 && <PrivateStorage user={userinfo} check={check} search={searchlocation} inputsearch={handleOnChangeSearchLocation} content={content} />}
+        inputcontent={handleChangeContent} content={content}
+        inputupload={handleChangeUpload} upload={uploaded} />
+      {check == 1 && <PublicStorage input={handleOnChangeCheck} value={check} />}
+      {check == 2 && <PrivateStorage
+        user={userinfo} check={check}
+        search={searchlocation} inputsearch={handleOnChangeSearchLocation}
+        content={content}
+        inputupload={handleChangeUpload} upload={uploaded} />}
       {check == 3 && <StudentProfile />}
+      {check == 5 && <FolderView inputsearch={handleOnChangeSearchLocation} search={searchlocation} />}
     </>
   );
 };

@@ -2,6 +2,7 @@ import db from "../models/index";
 import bcrypt from 'bcryptjs';
 const salt = bcrypt.genSaltSync(10);
 const { Op } = require("sequelize");
+const { google } = require("googleapis");
 let getFolderId = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -88,21 +89,51 @@ let getUserInfo = (email) => {
         }
     })
 }
-let getDoc = (userid) => {
+let getDoc = (drive, userid) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let data = await db.Documents.findAll({
-                where: { userid: userid, location: "private" }
-            })
-            if (data) resolve(data)
-            else resolve()
+            const documents = await db.Documents.findAll({
+                where: { userid: userid },
+            });
+            // console.log(documents);
+            if (documents && documents.length > 0) {
+                const fileIds = documents.map((doc) => doc.link);
+                const validityResults = await Promise.all(
+                    fileIds.map((fileId) => isDriveFileIdValid(drive, fileId))
+                );
+                const validDocuments = documents.filter(
+                    (_, index) => validityResults[index] === true
+                );
+                console.log("length", validDocuments.length);
+                // Resolve with the documents or filtered documents based on validity
+                resolve(validDocuments);
+            } else {
+                // No documents found
+                resolve([]);
+            }
         } catch (e) {
             console.log(e);
-            reject(e)
+            reject(e);
         }
-    })
-}
+    });
+};
+const isDriveFileIdValid = async (drive, fileId) => {
+    try {
+        // Make an API request to get file information
+        const fileInfo = await drive.files.get({ fileId });
 
+        if (fileInfo && fileInfo.data && fileInfo.data.id) {
+            // console.log(`Drive file ID ${fileId} is valid`);
+            return true;
+        } else {
+            // console.log(`Drive file ID ${fileId} is not valid`);
+            return false;
+        }
+    } catch (error) {
+        // console.error(`Error checking Google Drive file ID ${fileId}:`, error);
+        return false;
+    }
+};
 let getPrinter = () => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -278,10 +309,10 @@ let getCourse = () => {
         }
     })
 }
-let getDocbySearch = (data) => {
+let getDocbySearch = (drive, data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let doc = await db.Documents.findAll({
+            let documents = await db.Documents.findAll({
                 where: {
                     [Op.or]: [
                         { name: data.content },
@@ -290,8 +321,21 @@ let getDocbySearch = (data) => {
                     userid: data.userid
                 }
             })
-            if (doc) resolve(doc)
-            else resolve()
+            if (documents && documents.length > 0) {
+                const fileIds = documents.map((doc) => doc.link);
+                const validityResults = await Promise.all(
+                    fileIds.map((fileId) => isDriveFileIdValid(drive, fileId))
+                );
+                const validDocuments = documents.filter(
+                    (_, index) => validityResults[index] === true
+                );
+                console.log("length", validDocuments.length);
+                // Resolve with the documents or filtered documents based on validity
+                resolve(validDocuments);
+            } else {
+                // No documents found
+                resolve([]);
+            }
         } catch (e) {
             console.log(e);
             reject(e)
@@ -302,11 +346,26 @@ let getDocbySearchPublic = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
             let doc = await db.Documents.findAll({
+                where: { course: data.content, location: "public", }
+            })
+            if (doc) resolve(doc)
+            else resolve()
+        } catch (e) {
+            console.log(e);
+            reject(e)
+        }
+    })
+}
+let getDocbySearchName = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let doc = await db.Documents.findAll({
                 where: {
-                    [Op.or]: [
-                        { name: data.content },
-                        { course: data.content } // Thêm điều kiện tìm kiếm khác nếu cần
-                    ], location: "public",
+                    location: "public",
+                    name: data.content,
+                    // { course: data.content },
+                    course: data.course,// Thêm điều kiện tìm kiếm khác nếu cần
+
                 }
             })
             if (doc) resolve(doc)
@@ -332,5 +391,6 @@ module.exports = {
     getbuyhistory,
     getCourse,
     getDocbySearch,
-    getDocbySearchPublic
+    getDocbySearchPublic,
+    getDocbySearchName,
 }

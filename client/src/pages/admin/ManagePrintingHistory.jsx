@@ -121,7 +121,7 @@ const ManagePrintingHistory = () => {
                                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="text-[#545F71] place-items-center ml-1 mt-1 w-4 h-4">
                                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                                 </svg>
-                                                                <span className="mx-1 text-[#545F71] font-semibold">Trong hàng chờ</span>
+                                                                <span className="mx-1 text-[#545F71] font-semibold">Chưa được in</span>
                                                             </div>
                                                         </td>}
                                                     </tr>

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import checkValidToken from "./hoc/checkValidToken";
-import { getUser } from "./service/userService";
+import { getUser, logout } from "./service/userService";
 import { saveUserToLocalStorage } from "./service/userService";
 const App = () => {
-  const [userInfor, setUserInfor] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,18 +13,16 @@ const App = () => {
         const info = await getUser();
 
         if (info && info.data && info.data.user && info.data.user._json) {
-          setUserInfor(info.data.user._json);
 
           // Save user information to localStorage
           await saveUserToLocalStorage(info.data.user);
           setTimeout(() => {
-            clearUserFromLocalStorage();
-            validateTokenAndRedirect();
+            logout();
           }, 1800000);
           // Validate token and redirect only after fetching and saving user information
           await validateTokenAndRedirect();
         } else {
-          navigate("/home");
+          navigate("/login");
         }
       } catch (error) {
         console.error("Error fetching user information:", error);
@@ -42,7 +39,7 @@ const App = () => {
 
         // If not valid or not authenticated, redirect to /login
         if (!isValid) {
-          navigate("/login");
+          navigate("/home");
         }
       } catch (error) {
         console.error("Error validating token:", error);

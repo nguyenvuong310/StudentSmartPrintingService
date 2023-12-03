@@ -32,10 +32,10 @@ const getListCourse = async () => {
   });
 }
 const getDocByUserid = async (data) => {
-  const url = "http://localhost:8080/api/getalldoc";
+  const url = `http://localhost:8080/api/getalldoc?userid=${data}`;;
   return await axios({
     url: url,
-    method: "POST",
+    method: "GET",
     withCredentials: true,
     data: data,
   })
@@ -107,6 +107,15 @@ const getDocBySearchPublic = async (data) => {
     data: data
   });
 }
+const getDocBySearchName = async (data) => {
+  const url = "http://localhost:8080/api/getdocbysearchname";
+  return await axios({
+    url: url,
+    method: "POST",
+    withCredentials: true,
+    data: data
+  });
+}
 export {
   handleAuth,
   getUser,
@@ -122,4 +131,5 @@ export {
   buypage,
   getHistory,
   getDocBySearchPublic,
+  getDocBySearchName,
 };

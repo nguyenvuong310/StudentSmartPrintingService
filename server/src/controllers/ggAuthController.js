@@ -3,12 +3,12 @@ let handleLoginSuccess = (req, res) => {
   //   console.log(req);
   if (req.user) {
     res.status(200).json({
-      error: false,
+      errCode: 0,
       message: "Successfully Loged In",
       user: req.user,
     });
   } else {
-    res.status(403).json({ error: true, message: "Not Authorized" });
+    res.status(200).json({ errCode: 1, message: "Not Authorized" });
   }
 };
 let handleLoginFailed = (req, res) => {

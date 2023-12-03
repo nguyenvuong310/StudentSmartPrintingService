@@ -4,7 +4,6 @@ import App from "./App.jsx";
 import CustomerRoute from "./components/CustomerRoute";
 import AdminRoute from "./components/AdminRoute";
 import HomePage from "./pages/HomePage";
-import InstructionPage from "./pages/InstructionPage";
 import LoginPage from "./pages/LoginPage";
 import PrintingPage from "./pages/student/PrintingPage.jsx";
 import HistoryPage from "./pages/HistoryPage";
@@ -32,7 +31,6 @@ const router = createBrowserRouter(
     <>
       <Route path="/" element={<App />}>
         <Route index={true} path="/home" element={<HomePage />} />
-        <Route path="/instruction" element={<InstructionPage />} />
         <Route path="/printing" element={<PrintingPage />} />
 
         <Route path="/history" element={<HistoryPage />} />
@@ -60,6 +58,26 @@ const router = createBrowserRouter(
         element={<ManagePrintingHistory />}
       />
     </>,
+    // <>
+    //   <Route path={path.LOGIN} element={<LoginPage />} />
+    //   {/* <Route path="/login-success" element={<NavigateRoute />} /> */}
+    //   < Route path="/" element={< App />}>
+    //     <Route index={true} path="/home" element={<HomePage />} />
+
+    //     <Route path="/student" element={<AuthenStudent />}>
+    //       <Route index={true} element={<HomePageStudent />} />
+    //     </Route>
+    //     <Route path="/admin" element={<AuthenAdmin />}>
+    //       <Route index={true} element={<HomePageAdmin />} />
+    //       <Route path="/admin/student-manage" element={<ManageStudentPage />} />
+    //       <Route path="/admin/printer-manage" element={<ManagePrinterPage />} />
+    //       <Route
+    //         path="/admin/printing-history-manage"
+    //         element={<ManagePrintingHistory />}
+    //       />
+    //     </Route>
+    //   </Route >
+    // </>,
   ),
 );
 

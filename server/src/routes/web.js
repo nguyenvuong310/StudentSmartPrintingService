@@ -30,11 +30,12 @@ let initWebRoutes = (app) => {
   router.post("/drive/uploadFile", type, driveController.handleUploadFile);
   // userController
   router.get("/api/getUserInfo", userController.handleGetUserInfo);
-  router.post("/api/getalldoc", userController.handleGetDoc)
+  router.get("/api/getalldoc", userController.handleGetDoc);
   router.post("/api/deletedoc", userController.handleDeleteDoc)
   router.post("/api/getlistcourse", userController.handleGetListCourse)
   router.post("/api/getdocbysearch", userController.handleGetDocbySearch)
   router.post("/api/getdocbysearchpublic", userController.handleGetDocbySearchPublic)
+  router.post("/api/getdocbysearchname", userController.handleGetDocbySearchName)
   // printController
   router.post("/api/getallprinter", printController.handleGetPrinter)
   router.post("/api/getprintertime", printController.handleGetPrinterTime)

@@ -4,10 +4,10 @@ import React from "react";
 import PrintingPage from "../pages/student/PrintingPage";
 import FolderImg from "../assets/folderimg.png"
 
-const StudentFolderCard = ({ doc, numpPage, textFile, textSubject, textType, fileLink, filetoDown, filetoPrint }) => {
+const StudentFileCard = ({ doc, numpPage, textFile, textSubject, textType, fileLink, filetoDown, filetoPrint }) => {
     return (
         <>
-            <div class="bg-blue-100 w-[12rem] rounded-lg  group/item  shadow-lg hover:shadow-none">
+            <div class="bg-blue-100 w-[12rem] rounded-lg h-fit  group/item  shadow-lg hover:shadow-none">
                 <div class="w-[12rem] rounded-t-lg  flex  bg-blue-600 group-hover/item:bg-blue-800">
                     <div class="h-[9.5rem] w-full border grid gap-0 items-center p-7 my-1.5  bg-cover bg-center
                                 bg-fileimg-fill  " >
@@ -43,4 +43,4 @@ const StudentFolderCard = ({ doc, numpPage, textFile, textSubject, textType, fil
     );
 };
 
-export default StudentFolderCard;
+export default StudentFileCard;

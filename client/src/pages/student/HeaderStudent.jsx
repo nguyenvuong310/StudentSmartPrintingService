@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect, cloneElement } from "react";
+import { LayersManager, Layer } from 'react-layers-manager'
 import {
   Navbar,
   Typography,
@@ -57,7 +58,7 @@ const HeaderStudent = (props) => {
   return (
 
 
-    <nav class="bg-white dark:bg-gray-900 sticky fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+    <nav class="bg-white  dark:bg-gray-900 sticky fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 
         {/* ICON & NAME*/}

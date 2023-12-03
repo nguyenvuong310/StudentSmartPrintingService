@@ -162,10 +162,10 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
         showModal ? (
           <>
             {/* overflow-x-hidden overflow-y-auto */}
-            <div class=" fixed inset-0  z-50 outline-none focus:outline-none ">
-              <div class=" my-6  flex justify-center w-screen h-screen">
+            <div class=" fixed inset-0 z-50 fixed outline-none focus:outline-none ">
+              <div class=" my-7  flex justify-center w-screen h-screen">
                 {/*content*/}
-                <div class="border-0 h-[90%] w-[80%] min-w-fit flex flex-col bg-cus-blue  rounded-lg shadow-lg 
+                <div class="border-0 h-full max-h-[90%] w-[80%] min-w-fit flex flex-col bg-cus-blue  rounded-lg shadow-lg 
                  md:flex-row block outline-none focus:outline-none justify-center" >
 
                   {/* PrintView */}
@@ -176,21 +176,21 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
                     </iframe>
                   </div>
                   {/* PrintConfig */}
-                  <div class="md:h-full w-full flex-1 h-2/5 ">
+                  <div class="md:h-full w-fit flex flex-1  h-2/5 ">
 
-                    <div class=" h-full overflow-auto justify-center
+                    <div class=" h-full w-max flex flex-col overflow-auto justify-center
                       scrollbar-thin scrollbar-thumb-[#a3a2a5]
                       scrollbar-track-gray-800/40 hover:scrollbar-thumb-[#c4c3c6] 
                       ">
 
                       {/* Header */}
-                      <div class="flex sticky top-0 z-40 bg-cus-blue items-start p-3 border-b border-solid border-blueGray-200 rounded-t">
+                      <div class="flex sticky top-0 z-40 bg-cus-blue items-start p-3 border-b border-solid  rounded-t">
                         <h3 class="text-white text-xl font-semibold">
                           Cài đặt cấu hình in
                         </h3>
                       </div>
                       {/* Body */}
-                      <nav class="flex flex-col gap-4 py-5 px-8 font-sans text-start text-base text-white leading-tight ">
+                      <nav class="flex  flex-1 flex-col gap-4 pt-5 px-8 font-sans text-start text-base text-white leading-tight ">
 
                         <div class="flex flex-row items-center justify-between  py-1.5 px-3 border-solid border-2  gap-2">
                           <div>
@@ -322,16 +322,16 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
                           placeholder:text-gray-400 text-[12px] leading-6" placeholder="Eg: 1,4,8..." />
                           </div>
                         </div>
-
-                      </nav >
-                      {/* PageNum available */}
-                      <div class="flex  p-1 items-center italic font-thin text-white brightness-50" id='pageNAvail'>
-                        Số trang bạn có thể in: {userNumPage}
-                        <div>
+                        {/* PageNum available */}
+                        <div class="flex pt-5 items-center italic font-thin text-white brightness-50" id='pageNAvail'>
+                          Số trang bạn có thể in: {userNumPage}
+                          <div>
+                          </div>
                         </div>
-                      </div>
+                      </nav >
+
                       {/*footer*/}
-                      < div className="flex justify-end  pt-7 pb-4 px-4 border-t border-solid border-blueGray-200 rounded-b" >
+                      < div className="flex justify-end  py-3  px-4 border-t border-solid border-blueGray-200 rounded-b" >
 
                         <button
                           className="text-white background-transparent  font-bold uppercase px-6 py-2 text-sm outline-none 

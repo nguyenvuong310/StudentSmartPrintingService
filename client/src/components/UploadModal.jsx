@@ -19,7 +19,7 @@ import icon_pdf from "../assets/PDF_icon.svg.png";
 
 export default function UploadModal(props) {
     const [showModal, setShowModal] = useState(props.isOpen);
-    const [file, setFile] = useState({})
+    const [file, setFile] = useState(null)
     const [location, setlocation] = useState("")
     const [course, setCourse] = useState("")
     const [name, setName] = useState("")
@@ -46,9 +46,13 @@ export default function UploadModal(props) {
         return { value, label };
     })
     const handleFileChange = async (event) => {
-        await setFile(() => event.target.files[0])
-        await setUploaded(() => true)
-
+        const selectedFile = event.target.files[0]
+        if (selectedFile) {
+            await setFile(() => selectedFile)
+        } else {
+            setFile(null)
+        }
+        setUploaded(true)
     }
     const handleOnchangeLocation = async (event) => {
         await setlocation(() => event.value)
@@ -60,6 +64,58 @@ export default function UploadModal(props) {
         await setName(() => event.target.value)
     }
     let handleUpload = async () => {
+        if (!location) {
+            toast.error('Chưa chọn vị trí để lưu tài liệu', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            return
+        }
+        if (!course) {
+            toast.error('Chưa chọn môn học', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            return
+        }
+        if (!name) {
+            toast.error('Chưa có tên tài liệu', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            return
+        }
+        if (!file) {
+            toast.error('Chưa có file để upload', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            return
+        }
         let data = {
             file: file,
             name: name,
@@ -69,6 +125,10 @@ export default function UploadModal(props) {
         const upload = await uploadFile(data)
         props.toggle()
         setUploaded(() => false)
+        setCourse("")
+        setlocation("")
+        setFile(null)
+        setName("")
         props.inputupload(!props.upload)
         if (upload && upload.data && upload.data.errCode === 0) {
             toast.success('Upload thành công', {
@@ -82,13 +142,17 @@ export default function UploadModal(props) {
                 theme: "light",
             })
         } else {
-            toast.error("error!!!");
+            toast.error("Upload không thành công");
         }
     }
     const handleClose = () => {
         // setShowModal(() => false)
         props.toggle()
         setUploaded(() => false)
+        setCourse("")
+        setlocation("")
+        setFile(null)
+        setName("")
     }
     return (
         <>

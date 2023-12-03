@@ -25,6 +25,45 @@ export default function UpdatePrinterModal({ printerId, printerName, printerLoca
         setType(event.target.value)
     }
     const handleUpdatePrinter = async () => {
+        if (!name) {
+            toast.error('Chưa nhập tên máy in', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            return
+        }
+        if (!location) {
+            toast.error('Chưa nhập địa chỉ máy in', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            return
+        }
+        if (!type) {
+            toast.error('Chưa chọn loại máy in', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            return
+        }
         const data = {
             printerid: printerid,
             name: name,

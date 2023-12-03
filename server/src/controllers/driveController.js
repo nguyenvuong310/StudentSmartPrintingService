@@ -92,6 +92,7 @@ const handleUploadFile = async (req, res) => {
         resource: fileMetadata,
         media: media,
         fields: "id",
+        supportsAllDrives: true,
       });
 
       let link = file.data.id;

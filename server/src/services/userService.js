@@ -92,7 +92,7 @@ let getDoc = (userid) => {
     return new Promise(async (resolve, reject) => {
         try {
             let data = await db.Documents.findAll({
-                where: { userid: userid }
+                where: { userid: userid, location: "private" }
             })
             if (data) resolve(data)
             else resolve()
@@ -241,7 +241,7 @@ let deleteDoc = (docid) => {
 let getprinthistory = (userid) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let history = await db.Prints.findOne({
+            let history = await db.Prints.findAll({
                 where: { userid: userid }
             })
             if (history) resolve(history)
@@ -298,6 +298,25 @@ let getDocbySearch = (data) => {
         }
     })
 }
+let getDocbySearchPublic = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let doc = await db.Documents.findAll({
+                where: {
+                    [Op.or]: [
+                        { name: data.content },
+                        { course: data.content } // Thêm điều kiện tìm kiếm khác nếu cần
+                    ], location: "public",
+                }
+            })
+            if (doc) resolve(doc)
+            else resolve()
+        } catch (e) {
+            console.log(e);
+            reject(e)
+        }
+    })
+}
 module.exports = {
     getFolderId,
     updateFolderId,
@@ -313,4 +332,5 @@ module.exports = {
     getbuyhistory,
     getCourse,
     getDocbySearch,
+    getDocbySearchPublic
 }

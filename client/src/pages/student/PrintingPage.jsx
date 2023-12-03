@@ -15,10 +15,10 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
   const [numpage, setNumpage] = useState("")
   const [layout, setLayout] = useState("")
   const [pagesize, setPagesize] = useState("")
-  const [pageperside, setPageperside] = useState("")
+  const [pageperside, setPageperside] = useState(0)
   const [alignment, setAlignment] = useState("")
   const [scale, setScale] = useState("")
-  const [copy, setCopy] = useState("")
+  const [copy, setCopy] = useState(0)
 
   let configprint = {
     numpage: 10,
@@ -142,11 +142,17 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
 
 
   };
-
-  const offModalPrint = () => {
+  const handleCancel = () => {
     setShowModal(false)
-  }
+    setNumpage("")
+    setLayout("")
+    setPagesize("")
+    setPageperside(0)
+    setAlignment("")
+    setScale("")
+    setCopy(0)
 
+  }
   return (
     <>
 
@@ -339,12 +345,12 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
                           focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                           type="button"
                           onClick={() => {
-                            setShowModal(false)
+                            handleCancel()
                           }}
                         >
                           Hủy
                         </button>
-                        <SelectPrinter doc={doc} configprint={configprint} offModalPrint={offModalPrint} />
+                        <SelectPrinter doc={doc} configprint={configprint} offModalPrint={handleCancel} />
                       </div >
                     </div >
                   </div >

@@ -5,7 +5,7 @@ import PagiBar from "../../components/PaginationBar"
 import Footer from "../../components/Footer"
 import { getDocByUserid, getPrivateDocBySearch } from "../../service/userService";
 import UploadModal from "../../components/UploadModal";
-import { input } from "@material-tailwind/react";
+import { List, input } from "@material-tailwind/react";
 const PrivateStorage = (props) => {
     const [listdoc, setListdoc] = useState([])
     useEffect(() => {
@@ -54,6 +54,7 @@ const PrivateStorage = (props) => {
                         )
 
                     })}
+                    {!listdoc.length && <div>Không có nội dung cần tìm</div>}
                     {/* <PagiBar /> */}
                 </div>
             </div>

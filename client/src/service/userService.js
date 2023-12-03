@@ -89,6 +89,24 @@ const buypage = async (data) => {
     data: data
   });
 }
+const getHistory = async (data) => {
+  const url = "http://localhost:8080/api/getprinthistory";
+  return await axios({
+    url: url,
+    method: "POST",
+    withCredentials: true,
+    data: data
+  });
+}
+const getDocBySearchPublic = async (data) => {
+  const url = "http://localhost:8080/api/getdocbysearchpublic";
+  return await axios({
+    url: url,
+    method: "POST",
+    withCredentials: true,
+    data: data
+  });
+}
 export {
   handleAuth,
   getUser,
@@ -102,4 +120,6 @@ export {
   Print,
   getPrivateDocBySearch,
   buypage,
+  getHistory,
+  getDocBySearchPublic,
 };

@@ -26,6 +26,7 @@ export default function BuyPageModal(props) {
     const [pagesize, setPagesize] = useState(0)
     const [totalMoney, setMoney] = useState(0)
     const [numpagebill, setnumpagebill] = useState(0)
+    const [check, setCheck] = useState(false)
     useEffect(() => {
         if (showModal == false) {
             setNumpage(0);
@@ -48,7 +49,62 @@ export default function BuyPageModal(props) {
     const calMoney = () => {
         setMoney(pagesize * numpage)
     }
+    const handlecheck = () => {
+        setCheck(!check)
+    }
     const handleBuyPage = async () => {
+        if (numpage == 0) {
+            toast.error('Chưa nhập số trang cần mua', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            return
+        }
+        if (!/^\d+$/.test(numpage)) {
+            toast.error('Nhập số trang chưa hợp lệ', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            return
+        }
+        if (pagesize == 0) {
+            toast.error('Chưa chọn kích thước trang', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            return
+        }
+        if (!check) {
+            toast.error('Chưa đồng ý các điều khoản và chính sách', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            return
+        }
         const data = {
             userid: props.userinfo.userid,
             numpage: numpage * numpagebill,
@@ -58,6 +114,9 @@ export default function BuyPageModal(props) {
         await buypage(data)
         setShowModal(false)
         props.input(!props.buyed)
+        setNumpage(0)
+        setPagesize(0)
+        setCheck(false)
         toast.success('Mua thành công', {
             position: "bottom-right",
             autoClose: 3000,
@@ -68,6 +127,12 @@ export default function BuyPageModal(props) {
             progress: undefined,
             theme: "light",
         })
+    }
+    const handleCancle = () => {
+        setShowModal(false)
+        setNumpage(0)
+        setPagesize(0)
+        setCheck(false)
     }
     return (
         <>
@@ -112,16 +177,16 @@ export default function BuyPageModal(props) {
                                 </div>
 
                                 <div className="flex flex-row space-x-3 mx-2">
-                                    <input type="checkbox" />
+                                    <input type="checkbox" onClick={handlecheck} />
                                     <p className="font-semibold text-sm"> Bạn đồng ý với các điều khoản thanh toán cũng như các chính sách của dịch vụ SPSS </p>
                                 </div>
                             </div>
 
                             <div className="grid grid-cols-2 gap-[7rem] items-center px-[50px]">
-                                <button onClick={() => handleBuyPage()} type="button" className="bg-[#658DF1] p-1  w-20 text-white">
+                                <button disable onClick={() => handleBuyPage()} type="button" className="bg-[#658DF1] p-1  w-20 text-white">
                                     Đồng ý
                                 </button>
-                                <button type="button" onClick={() => setShowModal(false)} className="bg-white p-1 w-20 border border-black">
+                                <button type="button" onClick={() => handleCancle()} className="bg-white p-1 w-20 border border-black">
                                     Hủy
                                 </button>
                             </div>
@@ -131,6 +196,7 @@ export default function BuyPageModal(props) {
                 </>
             ) : null
             }
+            <ToastContainer />
         </>
     );
 }

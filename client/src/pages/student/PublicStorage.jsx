@@ -17,15 +17,17 @@ const PublicStorage = (props) => {
     const handleOnChangePagenum = (data) => {
         setPagenum(() => data)
     }
-    const handleOpen = (data) => {
+    const handleOpen = (data, course) => {
+        props.course(course)
         props.input(data)
+
     }
     return (
         <>
             <div className="flex h-[40rem] p-5 flex-col items-center bg-white-fill">
                 <div class="grid grid-cols-3 gap-[4rem] mt-2">
                     {listCourse && pagenum == 1 && listCourse.slice(0, 9).map((course, index) => (
-                        <div onClick={() => handleOpen(5)}>
+                        <div onClick={() => handleOpen(5, course.name)}>
                             <StudentFolderCard text={course.name} />
                         </div>
                     ))}

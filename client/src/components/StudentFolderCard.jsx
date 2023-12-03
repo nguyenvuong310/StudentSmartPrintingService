@@ -19,7 +19,6 @@ import React from "react";
 import FolderImg from "../assets/folderimg.png"
 
 const StudentFolderCard = ({ text }) => {
-
     return (
         <button
             class="hover:shadow-lg hover:shadow-gray-900/50 active:shadow-none bg-white duration-125 ease-in-out transform hover:scale-105 

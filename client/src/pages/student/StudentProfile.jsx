@@ -81,7 +81,7 @@ const StudentProfile = () => {
                                                 Số trang đã sử dụng: {userinfo.numpageused}
                                             </p>
                                             <p className="text-lg">
-                                                Số trang còn lại: {userinfo.numpage - userinfo.numpageused}
+                                                Số trang còn lại (theo A4): {userinfo.numpage - userinfo.numpageused}
                                             </p>
                                         </div>
                                     </div>

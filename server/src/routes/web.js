@@ -34,6 +34,7 @@ let initWebRoutes = (app) => {
   router.post("/api/deletedoc", userController.handleDeleteDoc)
   router.post("/api/getlistcourse", userController.handleGetListCourse)
   router.post("/api/getdocbysearch", userController.handleGetDocbySearch)
+  router.post("/api/getdocbysearchpublic", userController.handleGetDocbySearchPublic)
   // printController
   router.post("/api/getallprinter", printController.handleGetPrinter)
   router.post("/api/getprintertime", printController.handleGetPrinterTime)

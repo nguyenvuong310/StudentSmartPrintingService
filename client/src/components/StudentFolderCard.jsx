@@ -34,10 +34,10 @@ const StudentFolderCard = ({ text }) => {
         >
             <div class='flex w-72 h-24' >
                 <div class="flex flex-1 bg-white justify-items-center 
-        bg-[url('././assets/folderimg.png')] bg-cover bg-center bg-no-repeat bg-[length:81px_76px] rounded-lg"  >
+        bg-[url('././assets/folderimg.png')] bg-center bg-no-repeat bg-[length:81px_76px] rounded-lg"  >
                 </div>
-                <div class=' w-44 bg-[#98D3FF] rounded-r-lg grid grid-cols-1 gap-4 place-content-center px-5'>
-                    <div class="flex text-lg font-bold opacity-90">
+                <div class='w-44 bg-[#98D3FF] rounded-r-lg grid grid-cols-1 gap-4 place-content-center px-5'>
+                    <div class="flex text-lg font-bold opacity-90 place-content-center">
                         {text}
                     </div>
                 </div>

@@ -13,6 +13,7 @@ import PublicStorage from "./PublicStorage";
 import PrivateStorage from "./PrivateStorage";
 import PrintingPage from "./PrintingPage";
 import FolderView from "./FolderView";
+import StudentPrintHistory from "./StudentPrintHistory";
 const HomePageStudent = () => {
   const [userinfo, setUserinfo] = useState({})
   const [check, setCheck] = useState(1);
@@ -57,6 +58,7 @@ const HomePageStudent = () => {
         content={content}
         inputupload={handleChangeUpload} upload={uploaded} />}
       {check == 3 && <StudentProfile />}
+      {check == 4 && <StudentPrintHistory />}
       {check == 5 && <FolderView inputsearch={handleOnChangeSearchLocation} search={searchlocation} />}
     </>
   );

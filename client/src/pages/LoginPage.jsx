@@ -26,18 +26,20 @@ const LoginPage = () => {
 
   const handleLogin = async (role) => {
     const valid = await checkValidToken();
-
+    // console.log(role);
     if (role === "student") {
       if (valid) {
+        console.log("hi");
         navigate(path.HOMEPAGESTUDENT);
       } else {
-        handleAuth("student");
+        console.log("auth");
+        handleAuth("STUDENT");
       }
     } else {
       if (valid) {
         navigate(path.HOMEPAGEADMIN);
       } else {
-        handleAuth("officer");
+        handleAuth("ADMIN");
       }
     }
   };

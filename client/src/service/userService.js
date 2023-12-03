@@ -10,12 +10,14 @@ const saveUserToLocalStorage = async (user) => {
   await localStorage.setItem("user", JSON.stringify(user));
 };
 const saveRoleToLocalStorage = async (role) => {
+  console.log("role", role);
   await localStorage.setItem("role", JSON.stringify(role));
 };
 const getRoleFromLocalStorage = () => {
   return JSON.parse(localStorage.getItem("role"));
 };
 const logout = () => {
+  localStorage.removeItem("role");
   localStorage.removeItem("user");
   window.open(`http://localhost:8080/auth/logout`, "_self");
 };
@@ -38,12 +40,11 @@ const getListCourse = async () => {
   });
 };
 const getDocByUserid = async (data) => {
-  const url = "http://localhost:8080/api/getalldoc";
+  const url = `http://localhost:8080/api/getalldoc?userid=${data}`;
   return await axios({
     url: url,
-    method: "POST",
+    method: "GET",
     withCredentials: true,
-    data: data,
   });
 };
 const getPrivateDocBySearch = async (data) => {

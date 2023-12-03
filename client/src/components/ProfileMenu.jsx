@@ -29,6 +29,7 @@ const ProfileMenu = (props) => {
     const fetchData = async () => {
       try {
         const info = await getUser();
+        console.log(info);
         // setUser(userInfo);
         if (info && info.data && info.data.user && info.data.user._json) {
           await setUserInfor(info.data.user._json);

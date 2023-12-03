@@ -8,32 +8,28 @@ const handleCreateFolder = async (req) => {
   if (req.user && req.user.accessToken) {
     try {
       const accessToken = req.user.accessToken;
-      const isTokenValid = await validateGoogleToken(accessToken);
+      const result = await checkAuth(accessToken);
 
-      if (!isTokenValid) {
-        return;
+      if (result && result.errCode === 0) {
+        const auth = result.auth;
+        const drive = google.drive({ version: "v3", auth });
+
+        // Create a folder in Google Drive
+        const folderMetadata = {
+          name: "SmartPrintingService", // Replace with the desired folder name
+          mimeType: "application/vnd.google-apps.folder",
+        };
+
+        const folder = await drive.files.create({
+          resource: folderMetadata,
+          fields: "id",
+        });
+        // let message = await userService.createNewUser(folder.data.id);
+        console.log(`Folder created with ID: ${folder.data.id}`);
+        return folder.data.id;
+      } else {
+        return -1;
       }
-      // Initialize the Google Drive API client
-      const auth = new google.auth.OAuth2(
-        process.env.CLIENT_ID,
-        process.env.CLIENT_SECRET
-      );
-      auth.setCredentials({ access_token: accessToken });
-      const drive = google.drive({ version: "v3", auth });
-
-      // Create a folder in Google Drive
-      const folderMetadata = {
-        name: "SmartPrintingService", // Replace with the desired folder name
-        mimeType: "application/vnd.google-apps.folder",
-      };
-
-      const folder = await drive.files.create({
-        resource: folderMetadata,
-        fields: "id",
-      });
-      // let message = await userService.createNewUser(folder.data.id);
-      console.log(`Folder created with ID: ${folder.data.id}`);
-      return folder.data.id;
     } catch (error) {
       if (error.response && error.response.data && error.response.data.error) {
         // Extract the specific error message from the Google Drive API response
@@ -62,7 +58,7 @@ const handleUploadFile = async (req, res) => {
         await userService.updateFolderId(req.user._json.email, folderId);
       }
     } else {
-      folderId = "15P_UWZOdS5zomYPWzsSNlzOaEgOU1MqI";
+      folderId = "1LWOTRQZoHeRm8n0ta0YD5oHDmCvALFts";
     }
 
     if (!req.file) {
@@ -92,6 +88,7 @@ const handleUploadFile = async (req, res) => {
         resource: fileMetadata,
         media: media,
         fields: "id",
+        supportsAllDrives: true,
       });
 
       let link = file.data.id;
@@ -160,4 +157,5 @@ const getNumberOfPages = async (buffer) => {
 module.exports = {
   handleCreateFolder,
   handleUploadFile,
+  checkAuth,
 };

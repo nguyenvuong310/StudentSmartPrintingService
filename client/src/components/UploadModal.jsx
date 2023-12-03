@@ -66,8 +66,9 @@ export default function UploadModal(props) {
       location: location,
     };
     const upload = await uploadFile(data);
+
+    // props.inputupload(!props.upload);
     console.log(upload);
-    props.inputupload(!props.upload);
     if (upload && upload.data && upload.data.errCode === 0) {
       toast.success("Upload thành công", {
         position: "bottom-right",

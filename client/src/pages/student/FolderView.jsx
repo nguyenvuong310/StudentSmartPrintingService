@@ -1,10 +1,19 @@
 import { useState, useEffect } from "react";
+import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
+import React from 'react'
 import BuyPageModal from "../../components/BuyPageModal";
 import StudentFileCard from "../../components/StudentFileCard"
 import PagiBar from "../../components/PaginationBar"
 import Footer from "../../components/Footer"
 import { getDocBySearchPublic } from "../../service/userService";
 import UploadModal from "../../components/UploadModal";
+
+
+import {
+    Button, IconButton
+} from "@material-tailwind/react";
+import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
 const FolderView = (props) => {
     const [listCourse, setListCourse] = useState([])
     useEffect(() => {
@@ -27,18 +36,121 @@ const FolderView = (props) => {
         }
         test()
     }, [props.search, props.content]);
+
+
+
+
+    const pageIndex = listCourse.filter((value, index) => (
+        index % 10 === 0
+    ))
+
+
+    const [active, setActive] = React.useState(1);
+    useEffect(() => {
+        const test = async () => {
+            console.log(listCourse)
+            handleIndex(1)
+
+        };
+
+        test()
+    }, [listCourse]);
+
+    const handleIndex = (index) => {
+        setActive(index)
+        const root = ReactDOM.createRoot(
+            document.getElementById('storage')
+        );
+        const element = (
+            <div class="grid md:grid-cols-5 grid-cols-2 grid-flow-row  gap-x-[4rem] gap-y-[2rem] p-10">
+                {listCourse && listCourse.slice((index - 1) * 10, (index * 10)).map((doc, index) =>
+                (
+                    < StudentFileCard
+                        doc={doc}
+                        numpPage={props.user.numpage}
+                        textFile={doc.name} textSubject={doc.course}
+                        textType={'.pdf'}
+                        fileLink={"https://drive.google.com/file/d/" + doc.link + "/view"}
+                        filetoDown={"https://drive.google.com/u/0/uc?id=" + doc.link + "&export=download"}
+                        filetoPrint={"https://drive.google.com/file/d/" + doc.link + "/preview"} />
+                ))}
+                {!listCourse.length && <div>Không có nội dung cần tìm</div>}
+
+            </div>
+        )
+
+        root.render(element);
+    }
+
+    const getItemProps = (index) =>
+    ({
+        className: active === index ? "bg-blue-400 text-white" : "bg-white text-gray-900",
+        onClick: () => {
+            handleIndex(index)
+        }
+    });
+
+    const listButton = pageIndex.map((pageIndex, index) => (
+        <>
+            <IconButton className=""
+                {...getItemProps(index + 1)}>
+                {index + 1}
+            </IconButton>
+        </>
+    ))
+    const frameNum = pageIndex.length
+
+    const next = () => {
+        if (active === frameNum) return;
+        handleIndex(active + 1)
+    };
+    const prev = () => {
+        if (active === 1) return;
+        handleIndex(active - 1)
+    };
+
+
     return (
         <>
-            <div className="flex h-[40rem] p-5 flex-col items-center bg-white-fill">
-                <div class="grid grid-cols-4 gap-[4rem] mt-2">
+            <div className="flex  flex-col min-h-[770px] w-[90%] self-center bg-blue-200 mt-5 rounded-xl">
+                <div class="flex sticky top-0 z-10 bg-[#678CF8] items-start p-3 border-b border-solid  rounded-t">
+                    <h3 class="text-gray-900 text-xl font-semibold">
+                        {props.course}
+                    </h3>
+                </div>
+                <div id="storage" class=" flex flex-1 w-fit self-center justify-center">
 
                 </div>
+
+                <div className="flex justify-center gap-4 pt-3 pb-2">
+                    <Button
+                        variant="text"
+                        className="flex items-center gap-2 "
+                        onClick={prev}
+                        disabled={active === 1}
+                    >
+                        <ArrowLeftIcon strokeWidth={2} className="h-4 w-4" /> Trước
+                    </Button>
+                    <div className="flex items-center  gap-2">
+                        {listButton}
+                    </div>
+                    <Button
+                        variant="text"
+                        className="flex items-center gap-2"
+                        onClick={next}
+                        disabled={active === frameNum || frameNum === 0}
+                    >
+                        Sau
+                        <ArrowRightIcon strokeWidth={2} className="h-4 w-4" />
+                    </Button>
+                </div>
+
             </div>
+            <div class="pt-10">
+                <Footer />
 
-            <Footer />
-
+            </div>
         </>
     );
 };
-
 export default FolderView;

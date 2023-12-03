@@ -51,19 +51,23 @@ const HomePageStudent = () => {
   }
   return (
     <>
-      <HeaderStudent input={handleOnChangeCheck} value={check}
-        inputsearch={handleOnChangeSearchLocation} search={searchlocation}
-        inputcontent={handleChangeContent} content={content}
-        inputupload={handleChangeUpload} upload={uploaded} />
-      {check == 1 && <PublicStorage input={handleOnChangeCheck} value={check} course={handleChooseCourse} />}
-      {check == 2 && <PrivateStorage
-        user={userinfo} check={check}
-        search={searchlocation} inputsearch={handleOnChangeSearchLocation}
-        content={content}
-        inputupload={handleChangeUpload} upload={uploaded} />}
-      {check == 3 && <StudentProfile />}
-      {check == 4 && <StudentPrintHistory user={userinfo} />}
-      {check == 5 && <FolderView course={course} inputcontent={handleChangeContent} content={content} inputsearch={handleOnChangeSearchLocation} search={searchlocation} />}
+      <div class="bg-white-fill flex flex-col">
+
+        <HeaderStudent input={handleOnChangeCheck} value={check}
+          inputsearch={handleOnChangeSearchLocation} search={searchlocation}
+          inputcontent={handleChangeContent} content={content}
+          inputupload={handleChangeUpload} upload={uploaded} />
+        {check == 1 && <PublicStorage input={handleOnChangeCheck} value={check} course={handleChooseCourse} />}
+        {check == 2 && <PrivateStorage
+          user={userinfo} check={check}
+          search={searchlocation} inputsearch={handleOnChangeSearchLocation}
+          content={content}
+          inputupload={handleChangeUpload} upload={uploaded} />}
+        {check == 3 && <StudentProfile />}
+        {check == 4 && <StudentPrintHistory user={userinfo} />}
+        {check == 5 && <FolderView course={course} user={userinfo} inputcontent={handleChangeContent} content={content} inputsearch={handleOnChangeSearchLocation} search={searchlocation} />}
+      </div>
+
     </>
   );
 };

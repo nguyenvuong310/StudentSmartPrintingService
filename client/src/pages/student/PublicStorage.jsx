@@ -24,6 +24,7 @@ const PublicStorage = (props) => {
     }
     return (
         <>
+
             <div className="flex h-[40rem] p-5 flex-col items-center bg-white-fill">
                 <div class="grid grid-cols-3 gap-[4rem] mt-2">
                     {listCourse && pagenum == 1 && listCourse.slice(0, 9).map((course, index) => (
@@ -32,12 +33,12 @@ const PublicStorage = (props) => {
                         </div>
                     ))}
                     {listCourse && pagenum == 2 && listCourse.slice(9, 18).map((course, index) => (
-                        <div onClick={() => handleOpen(5)}>
+                        <div onClick={() => handleOpen(5, course.name)}>
                             <StudentFolderCard text={course.name} />
                         </div>
                     ))}
                     {listCourse && pagenum == 3 && listCourse.slice(18, 30).map((course, index) => (
-                        <div onClick={() => handleOpen(5)}>
+                        <div onClick={() => handleOpen(5, course.name)}>
                             <StudentFolderCard text={course.name} />
                         </div>
                     ))}

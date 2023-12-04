@@ -10,11 +10,13 @@ const PaginationBar = (props) => {
         setCheck(() => data);
     };
     const changePagenum = (data) => {
+        window.scrollTo(0, 0);
         handleOnChangeCheck(data);
         props.input(data);
     };
 
     const handleNextPage = () => {
+        window.scrollTo(0, 0);
         const test = check + 1;
         if (test > 3) {
             setCheck(() => 3);
@@ -26,6 +28,7 @@ const PaginationBar = (props) => {
     };
 
     const handlePrevPage = () => {
+        window.scrollTo(0, 0);
         const test = check - 1;
         if (test < 1) {
             setCheck(() => 1);
@@ -36,7 +39,7 @@ const PaginationBar = (props) => {
         }
     }
     return (
-        <ol className="absolute inset-x-0 bottom-0 flex justify-center gap-1 text-xs font-medium mb-5">
+        <ol className="absolute inset-x-0  bottom-0 flex justify-center gap-1 text-xs font-medium mb-0">
             <li>
                 <button
                     onClick={() => handlePrevPage()}

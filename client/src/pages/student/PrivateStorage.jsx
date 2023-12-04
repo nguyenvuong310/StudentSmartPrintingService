@@ -49,7 +49,7 @@ const PrivateStorage = (props) => {
     const [active, setActive] = React.useState(1);
     useEffect(() => {
         const test = async () => {
-            console.log(listdoc)
+            // console.log(listdoc)
             handleIndex(1)
 
         };
@@ -86,7 +86,9 @@ const PrivateStorage = (props) => {
     ({
         className: active === index ? "bg-blue-400 text-white" : "bg-white text-gray-900",
         onClick: () => {
+            if (active === index) return
             handleIndex(index)
+            window.scrollTo(0, 0);
         }
     });
 
@@ -103,10 +105,12 @@ const PrivateStorage = (props) => {
     const next = () => {
         if (active === frameNum) return;
         handleIndex(active + 1)
+        window.scrollTo(0, 0);
     };
     const prev = () => {
         if (active === 1) return;
         handleIndex(active - 1)
+        window.scrollTo(0, 0);
     };
 
     return (

@@ -19,8 +19,20 @@ export default function SelectPrinter(props) {
     const [location, setLocation] = useState("")
     const [configprint, setConfig] = useState({})
     const handlesetPrinterid = (printer) => {
+        const idx = printer.id
         setPrinterid(printer.id)
         setLocation(printer.location)
+        const ele = document.getElementById(idx)
+        ele.classList.add('scale-105')
+        ele.classList.add('ring')
+        const getPrinter = printers.filter((printer) => (printer.id !== idx))
+
+        getPrinter.forEach((printer, index) => {
+            const printerEle = document.getElementById(printer.id)
+            printerEle.classList.remove('scale-105')
+            printerEle.classList.remove('ring')
+        });
+
     }
     const handleChangeDate = (event) => {
         setDate(event.target.value)
@@ -209,6 +221,8 @@ export default function SelectPrinter(props) {
     ]
 
 
+
+
     const printerList = [];
     printers.forEach((printer, index) => {
         let statusDiv = []
@@ -231,13 +245,12 @@ export default function SelectPrinter(props) {
         printerList.push(
             <>
                 {/* Item */}
-                <button
+                <button id={printer.id}
                     onClick={() => handlesetPrinterid(printer)}
                     class="hover:shadow-lg hover:shadow-gray-900/50 active:shadow-none bg-white duration-125 ease-in-out transform hover:scale-105 
-                 focus-within:scale-105 focus:ring rounded-lg"
+                  rounded-lg"
                     onBlur={e => {
-                        // only re-focus if the user clicked on something
-                        // that was NOT an input element
+
                         if (e.relatedTarget === null) {
                             e.target.focus();
                         }

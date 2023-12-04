@@ -24,7 +24,8 @@ const PublicStorage = (props) => {
     }
     return (
         <>
-            <div className="flex h-[40rem] p-5 flex-col items-center bg-white-fill">
+
+            <div className="flex h-[40rem] p-5 flex-col items-center  self-center w-[85%] bg-[#E3E3E3] mt-5 rounded-xl">
                 <div class="grid grid-cols-3 gap-[4rem] mt-2">
                     {listCourse && pagenum == 1 && listCourse.slice(0, 9).map((course, index) => (
                         <div onClick={() => handleOpen(5, course.name)}>
@@ -45,7 +46,10 @@ const PublicStorage = (props) => {
 
                 <PagiBar input={handleOnChangePagenum} value={pagenum} />
             </div>
-            <Footer />
+            <div class="pt-10">
+                <Footer />
+
+            </div>
         </>
     );
 };

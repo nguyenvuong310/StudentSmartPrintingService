@@ -32,8 +32,8 @@ const router = createBrowserRouter(
           <Route index={true} element={<HomePageStudent />} />
         </Route>
         <Route path="/admin" element={<AuthenAdmin />}>
-          <Route index={true} element={<HomePageAdmin />} />
-          <Route path="/admin/student-manage" element={<ManageStudentPage />} />
+          {/* <Route index={true}path="/admin/student-manage" element={<HomePageAdmin />} /> */}
+          <Route index={true} element={<ManageStudentPage />} />
           <Route path="/admin/printer-manage" element={<ManagePrinterPage />} />
           <Route
             path="/admin/printing-history-manage"
@@ -42,7 +42,6 @@ const router = createBrowserRouter(
         </Route>
       </Route>
     </>,
-
   ),
 );
 

@@ -4,7 +4,7 @@ import React from "react";
 import PrintingPage from "../pages/student/PrintingPage";
 import FolderImg from "../assets/folderimg.png";
 
-const StudentFileCard = ({ doc, numpPage, textFile, textSubject, textType, fileLink, filetoDown, filetoPrint }) => {
+const StudentFileCard = ({ doc, textFile, textSubject, textType, fileLink, filetoDown, filetoPrint }) => {
     return (
         <>
             <div class="bg-blue-100 w-[12rem] rounded-lg h-fit group/item  shadow-lg hover:shadow-none">
@@ -19,7 +19,7 @@ const StudentFileCard = ({ doc, numpPage, textFile, textSubject, textType, fileL
                         hover:bg-white hover:text-blue-600 hover:drop-shadow-2xl hover:opacity-100 active:drop-shadow-none active:ring focus:ring-blue-500">
                             <a href={filetoDown} target="_blank">Tải về</a>
                         </button>
-                        <PrintingPage doc={doc} docUrl={filetoPrint} userNumPage={numpPage} />
+                        <PrintingPage doc={doc} docUrl={filetoPrint} />
                     </div>
                 </div>
                 <div class="px-2 pb-2 h-[100px] flex flex-col rounded-b-md  group-hover/item:bg-blue-400 ">

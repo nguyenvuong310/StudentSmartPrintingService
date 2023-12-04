@@ -1,8 +1,8 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { getUserInfo } from "../service/userService";
-const AuthenAdmin = () => {
+const AuthenStudent = () => {
     const [role, setRole] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
@@ -15,10 +15,10 @@ const AuthenAdmin = () => {
                     userData.data.user &&
                     userData.data.user.role
                 ) {
-                    // console.log("User Data:", userData.data);
+                    console.log("User Data:", userData.data);
                     setRole(userData.data.user.role);
-                    saveRoleToLocalStorage(userData.data.user.role);
-                    // saveRoleToLocalStorage(userData.data.user.role);
+                    // await saveRoleToLocalStorage(userData.data.user.role);
+                    // await saveRoleToLocalStorage(userData.data.user.role);
                 }
             } catch (error) {
                 console.error("Error fetching user role", error);
@@ -31,17 +31,16 @@ const AuthenAdmin = () => {
     if (isLoading) {
         return null;
     }
-    // Check if the user has the "ADMIN" role
-    if (role === "ADMIN") {
+    // Check if the user has the "STUDENT" role
+    if (role === "STUDENT") {
+        // console.log("rollle", role);
         return (
             <>
-                {/* <main> */}
                 <Outlet />
-                {/* </main> */}
             </>
         );
     } else {
         return <Navigate to="/login" />;
     }
 };
-export default AuthenAdmin;
+export default AuthenStudent;

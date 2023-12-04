@@ -19,6 +19,7 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
   const [alignment, setAlignment] = useState("")
   const [scale, setScale] = useState("")
   const [copy, setCopy] = useState(0)
+  const [userinfo, setUserinfo] = useState({})
   const handleNumpage = (numpage) => {
     if (numpage === "all") {
       if (pagesize == "A3") return doc.numpage * 2 * copy
@@ -52,7 +53,7 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
             return true
           }
           num = Number(num)
-          if (num == 0) {
+          if (num == 0 || num > doc.numpage) {
             return true
           }
           sumnumpage = sumnumpage + 1
@@ -68,7 +69,7 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
           }
           num1 = Number(num1)
           num2 = Number(num2)
-          if (num1 > num2 || num1 == 0 || num2 == 0) {
+          if (num1 > num2 || num1 == 0 || num2 == 0 || num1 > doc.numpage || num2 > doc.numpage) {
             return true
           }
           sumnumpage = sumnumpage + num2 - num1 + 1
@@ -107,6 +108,16 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
     setCopy(event.target.value)
   }
   useEffect(() => {
+    const test = async () => {
+      try {
+        const data = await getUserInfo();
+        setUserinfo(data.data.user)
+      } catch (error) {
+        console.error("Error fetching user information:", error);
+      }
+    };
+
+    test()
   }, [showModal]);
 
 
@@ -388,7 +399,7 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
                       </nav >
                       {/* PageNum available */}
                       <div class="flex  p-1 items-center italic font-thin text-white brightness-50" id='pageNAvail'>
-                        Số trang bạn có thể in: {userNumPage}
+                        Số trang bạn có thể in: {userinfo.numpage - userinfo.numpageused}
                         <div>
                         </div>
                       </div>

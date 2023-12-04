@@ -1,7 +1,7 @@
 import axios from "axios";
-
+import { backendURL } from "../utils/constant";
 const getAllUser = async () => {
-    const url = "http://localhost:8080/api/getalluser";
+    const url = `${backendURL}/api/getalluser`;
     return await axios({
         url: url,
         method: "POST",
@@ -10,7 +10,7 @@ const getAllUser = async () => {
 };
 
 const getBlockedUser = async () => {
-    const url = "http://localhost:8080/api/getblockeduser";
+    const url = `${backendURL}/api/getblockeduser`;
     return await axios({
         url: url,
         method: "POST",
@@ -19,7 +19,7 @@ const getBlockedUser = async () => {
 }
 
 const blockUser = async (data) => {
-    const url = "http://localhost:8080/api/blockuser";
+    const url = `${backendURL}/api/blockuser`;
     return await axios({
         url: url,
         method: "POST",
@@ -28,7 +28,7 @@ const blockUser = async (data) => {
     });
 }
 const getAllPrinter = async () => {
-    const url = "http://localhost:8080/api/admingetallprinter";
+    const url = `${backendURL}/api/admingetallprinter`;
     return await axios({
         url: url,
         method: "POST",
@@ -36,7 +36,7 @@ const getAllPrinter = async () => {
     });
 }
 const deletePrinter = async (data) => {
-    const url = "http://localhost:8080/api/deleteprinter";
+    const url = `${backendURL}/api/deleteprinter`;
     return await axios({
         url: url,
         method: "POST",
@@ -45,7 +45,7 @@ const deletePrinter = async (data) => {
     });
 }
 const getUserBySearch = async (data) => {
-    const url = "http://localhost:8080/api/admingetuserbysearch";
+    const url = `${backendURL}/api/admingetuserbysearch`;
     return await axios({
         url: url,
         method: "POST",
@@ -54,7 +54,7 @@ const getUserBySearch = async (data) => {
     });
 }
 const getBlockedUserBySearch = async (data) => {
-    const url = "http://localhost:8080/api/admingetblockeduserbysearch";
+    const url = `${backendURL}/api/admingetblockeduserbysearch`;
     return await axios({
         url: url,
         method: "POST",
@@ -63,7 +63,7 @@ const getBlockedUserBySearch = async (data) => {
     });
 }
 const AddPrinter = async (data) => {
-    const url = "http://localhost:8080/api/addprinter";
+    const url = `${backendURL}/api/addprinter`;
     return await axios({
         url: url,
         method: "POST",
@@ -72,7 +72,7 @@ const AddPrinter = async (data) => {
     });
 }
 const activePrinter = async (data) => {
-    const url = "http://localhost:8080/api/activeprinter";
+    const url = `${backendURL}/api/activeprinter`;
     return await axios({
         url: url,
         method: "POST",
@@ -81,7 +81,7 @@ const activePrinter = async (data) => {
     });
 }
 const getHistory = async () => {
-    const url = "http://localhost:8080/api/admingetprinthistory";
+    const url = `${backendURL}/api/admingetprinthistory`;
     return await axios({
         url: url,
         method: "POST",
@@ -89,7 +89,7 @@ const getHistory = async () => {
     });
 }
 const getHistorybySearch = async (data) => {
-    const url = "http://localhost:8080/api/admingetprinthistorybymssv";
+    const url = `${backendURL}/api/admingetprinthistorybymssv`;
     return await axios({
         url: url,
         method: "POST",
@@ -98,7 +98,7 @@ const getHistorybySearch = async (data) => {
     });
 }
 const UpdatePrinter = async (data) => {
-    const url = "http://localhost:8080/api/updateprinter";
+    const url = `${backendURL}/api/updateprinter`;
     return await axios({
         url: url,
         method: "POST",

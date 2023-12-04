@@ -14,8 +14,8 @@ import CreatableSelect from 'react-select/creatable';
 import { uploadFile, getListCourse } from "../service/userService";
 import icon_word from "../assets/icon-word.png";
 import icon_pdf from "../assets/PDF_icon.svg.png";
-
-
+import { Spinner } from "@material-tailwind/react";
+import ReactDOM from 'react-dom/client';
 
 export default function UploadModal(props) {
     const [showModal, setShowModal] = useState(props.isOpen);
@@ -25,6 +25,14 @@ export default function UploadModal(props) {
     const [name, setName] = useState("")
     const [uploaded, setUploaded] = useState(false)
     const [listCourse, setListCourse] = useState([])
+    const [loading, setLoading] = useState(false)
+    useEffect(() => {
+        const check = async () => {
+            setLoading(false)
+        }
+
+        check()
+    }, []);
     useEffect(() => {
         const getdata = async () => {
             const course = await getListCourse();
@@ -122,6 +130,14 @@ export default function UploadModal(props) {
             course: course,
             location: location,
         }
+        setLoading(true)
+        ReactDOM.createRoot(document.getElementById('upLoadBtn')).render(
+            <>
+                <div class="flex gap-2 items-center">
+                    <Spinner color="indigo" className="h-5 w-5 text-white" /> Loading...
+                </div>
+            </>
+        )
         const upload = await uploadFile(data)
         props.toggle()
         setUploaded(() => false)
@@ -144,6 +160,7 @@ export default function UploadModal(props) {
         } else {
             toast.error("Upload không thành công");
         }
+        setLoading(false)
     }
     const handleClose = () => {
         // setShowModal(() => false)
@@ -289,12 +306,11 @@ export default function UploadModal(props) {
                             </div>
                             <div class='pt-3 grid w-full'>
 
-                                <button onClick={() => handleUpload()} type="button" className="bg-blue-600 justify-self-end
-        rounded-xl m-2 px-5 py-1.5
-        text-white  active:bg-blue-700
-         shadow hover:bg-blue-700 hover:shadow-lg outline-none focus:outline-none mr-1 mb-1
-        items-center
-        ease-linear transition-all duration-150 active:ring ring-blue-400 focus:ring">
+                                <button id="upLoadBtn" onClick={() => handleUpload()} disabled={loading} type="button" className="enabled:bg-blue-600 justify-self-end rounded-xl m-2 px-5 py-1.5
+                                        text-white  enabled:active:bg-blue-700 shadow enabled:hover:bg-blue-700 enabled:hover:shadow-lg outline-none 
+                                        enabled:focus:outline-none mr-1 mb-1
+                                        items-center ease-linear transition-all duration-150 enabled:active:ring ring-blue-400 enabled:focus:ring
+                                        disabled:bg-blue-400">
                                     Tải lên
                                 </button>
                             </div>

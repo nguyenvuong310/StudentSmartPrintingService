@@ -49,7 +49,7 @@ const PrivateStorage = (props) => {
     const [active, setActive] = React.useState(1);
     useEffect(() => {
         const test = async () => {
-            console.log(listdoc)
+            // console.log(listdoc)
             handleIndex(1)
 
         };
@@ -68,7 +68,6 @@ const PrivateStorage = (props) => {
                 (
                     < StudentFileCard
                         doc={doc}
-                        numpPage={props.user.numpage - props.user.numpageused}
                         textFile={doc.name} textSubject={doc.course}
                         textType={'.pdf'}
                         fileLink={"https://drive.google.com/file/d/" + doc.link + "/view"}

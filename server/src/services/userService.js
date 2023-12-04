@@ -104,7 +104,7 @@ let getDoc = (drive, userid) => {
                 const validDocuments = documents.filter(
                     (_, index) => validityResults[index] === true
                 );
-                console.log("length", validDocuments.length);
+                // console.log("length", validDocuments.length);
                 // Resolve with the documents or filtered documents based on validity
                 resolve(validDocuments);
             } else {
@@ -329,7 +329,7 @@ let getDocbySearch = (drive, data) => {
                 const validDocuments = documents.filter(
                     (_, index) => validityResults[index] === true
                 );
-                console.log("length", validDocuments.length);
+                // console.log("length", validDocuments.length);
                 // Resolve with the documents or filtered documents based on validity
                 resolve(validDocuments);
             } else {

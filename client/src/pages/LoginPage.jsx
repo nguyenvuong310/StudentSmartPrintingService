@@ -14,6 +14,7 @@ import CookieDialog from "../components/Dialog";
 import { useNavigate } from "react-router-dom";
 import { handleAuth } from "../service/userService";
 import checkValidToken from "../hoc/checkValidToken";
+import { path, USER_ROLE } from "../utils/constant"
 const LoginPage = () => {
   const [language, setLanguage] = useState("vie");
   const navigate = useNavigate();
@@ -26,15 +27,15 @@ const LoginPage = () => {
     const valid = await checkValidToken();
     if (role === "student") {
       if (valid) {
-        navigate("/homepage-student");
+        navigate(path.HOMEPAGESTUDENT);
       } else {
-        handleAuth("student");
+        handleAuth(USER_ROLE.STUDENT);
       }
     } else {
       if (valid) {
-        navigate("/homepage-admin");
+        navigate(path.HOMEPAGEADMIN);
       } else {
-        handleAuth("officer");
+        handleAuth(USER_ROLE.ADMIN);
       }
     }
   };

@@ -66,13 +66,15 @@ const ManagePrinterPage = () => {
           <div className="fixed top-0 z-20">
             <MenuBarAdmin />
           </div>
-          <div class="flex place-content-center w-full ml-[18rem]">
-            <div class="overflow-x-auto sm:mx-0.8 lg:mx-0.8 w-11/12">
-              <div class="py-2 pt-10 inline-block min-w-full sm:px-6 lg:px-8">
-                <div class="overflow-hidden shadow rounded-lg">
-                  <div class="w-full flex bg-white border-2 border-b-black">
-                    <div class="w-full font-bold px-5 py-5 text-black-600 text-2xl">Quản lý máy in</div>
-                    <div className="pt-1 px-4 flex items-center text-medium font-medium leading-none cursor-pointer">
+          <div class="ml-[18rem] flex w-full place-content-center">
+            <div class="sm:mx-0.8 lg:mx-0.8 w-11/12 overflow-x-auto">
+              <div class="inline-block min-w-full py-2 pt-10 sm:px-6 lg:px-8">
+                <div class="overflow-hidden rounded-lg shadow">
+                  <div class="flex w-full border-2 border-b-black bg-white">
+                    <div class="text-black-600 w-full px-5 py-5 text-2xl font-bold">
+                      Quản lý máy in
+                    </div>
+                    <div className="text-medium flex cursor-pointer items-center px-4 pt-1 font-medium leading-none">
                       <div class="flex">
                         <a href="/homepage-admin">
                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -82,13 +84,13 @@ const ManagePrinterPage = () => {
                       </div>
                     </div>
                   </div>
-                  <div class="bg-white border border-b-black flex w-full">
-                    <div class="relative flex-wrap justify-between ml-auto mr-3">
+                  <div class="flex w-full border border-b-black bg-white">
+                    <div class="relative ml-auto mr-3 flex-wrap justify-between">
                       <AddPrinterModal input={handleAfterAdd} />
                     </div>
                   </div>
                   <div className="flex">
-                    <table class="w-full round-md table-auto divide-gray-200 dark:divide-gray-700">
+                    <table class="round-md w-full table-auto divide-gray-200 dark:divide-gray-700">
                       <thead class="bg-white shadow-2xl">
                         <tr>
                           <th scope="col" class="text-lg font-bold text-gray-900 px-7 py-4 text-left">

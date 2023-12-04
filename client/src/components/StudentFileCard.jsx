@@ -1,8 +1,5 @@
-import { Link } from "react-router-dom";
-import { useState, useEffect, cloneElement } from "react";
 import React from "react";
 import PrintingPage from "../pages/student/PrintingPage";
-import FolderImg from "../assets/folderimg.png";
 
 const StudentFileCard = ({
   doc,

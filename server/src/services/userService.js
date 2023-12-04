@@ -284,7 +284,6 @@ let getprinthistory = (userid) => {
     }
   });
 };
-
 let getbuyhistory = (userid) => {
   return new Promise(async (resolve, reject) => {
     try {

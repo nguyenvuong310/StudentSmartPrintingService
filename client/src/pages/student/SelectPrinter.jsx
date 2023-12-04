@@ -16,8 +16,10 @@ export default function SelectPrinter(props) {
     const [time, setTime] = useState("")
     const [date, setDate] = useState("")
     const [printerid, setPrinterid] = useState("")
-    const handlesetPrinterid = (printerid) => {
-        setPrinterid(printerid)
+    const [location, setLocation] = useState("")
+    const handlesetPrinterid = (printer) => {
+        setPrinterid(printer.id)
+        setLocation(printer.location)
     }
     const handleChangeDate = (event) => {
         setDate(event.target.value)
@@ -45,24 +47,122 @@ export default function SelectPrinter(props) {
     }, []);
     const pNum = props.configprint.numpage
 
-    const checkPNums = (pageNum) => {
-        if (pageNum > userinfo.numpage) {
-            setAlert(true)
-            // alert('Nạp tiền vào donate cho tao')
-        } else setShowModal(true)
+    // const checkPNums = (pageNum) => {
+    //     if (pageNum > userinfo.numpage) {
+    //         setAlert(true)
+    //         // alert('Nạp tiền vào donate cho tao')
+    //     } else setShowModal(true)
+
+    // }
+    const checkvalidconfigprint = () => {
+        // check pagenum
+        if (!props.configprint.layout) {
+            toast.error('Chưa chọn layout', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            return
+        }
+        if (!props.configprint.pagesize) {
+            toast.error('Chưa chọn cỡ giấy', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            return
+        }
+        if (props.configprint.pageperside == 0) {
+            toast.error('Chưa chọn số trang trên một mặt', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            return
+        }
+        if (!/^\d+$/.test(props.configprint.pageperside)) {
+            toast.error('Số trang trên một mặt không hợp lệ', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            return
+        }
+        if (!props.configprint.alignment) {
+            toast.error('Chưa chọn căn lề', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            return
+        }
+        if (!props.configprint.scale) {
+            toast.error('Chưa chọn tỉ lệ', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            return
+        }
+        if (props.configprint.copy == 0) {
+            toast.error('Chưa chọn số bản in', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            return
+        }
+        if (!/^\d+$/.test(props.configprint.copy)) {
+            toast.error('Số bản in không hợp lệ', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            return
+        }
+        setShowModal(true)
 
     }
-    const optionsDay = [
-        { value: '01/01/2024', label: '01/01/2024' },
-        { value: '02/01/2024', label: '02/01/2024' },
-        { value: '03/01/2024', label: '03/01/2024' },
-        { value: '04/01/2024', label: '04/01/2024' },
-        { value: '05/01/2024', label: '05/01/2024' },
-        { value: '06/01/2024', label: '06/01/2024' },
-        { value: '07/01/2024', label: '07/01/2024' },
-        { value: '08/01/2024', label: '08/01/2024' },
-
-    ]
     const optionsTime = [
         { value: '6h-7h', label: '6h-7h' },
         { value: '7h-8h', label: '7h-8h' },
@@ -102,7 +202,7 @@ export default function SelectPrinter(props) {
             <>
                 {/* Item */}
                 <button
-                    onClick={() => handlesetPrinterid(printer.id)}
+                    onClick={() => handlesetPrinterid(printer)}
                     class="hover:shadow-lg hover:shadow-gray-900/50 active:shadow-none bg-white duration-125 ease-in-out transform hover:scale-105 
                  focus-within:scale-105 focus:ring rounded-lg"
                     onBlur={e => {
@@ -151,10 +251,50 @@ export default function SelectPrinter(props) {
 
     }
     const handlePrint = async () => {
+        if (!printerid) {
+            toast.error('Chưa chọn máy in', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            return
+        }
+        if (!date) {
+            toast.error('Chưa chọn ngày lấy', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            return
+        }
+        if (!time) {
+            toast.error('Chưa chọn thời gian lấy', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            return
+        }
         const setupprinter = {
             printerid: printerid,
             time: time,
             date: date,
+            location: location
         }
         props.offModalPrint()
         setShowModal(false)
@@ -167,6 +307,10 @@ export default function SelectPrinter(props) {
         }
         console.log(data)
         await Print(data)
+        setTime("")
+        setDate("")
+        setPrinterid("")
+        setLocation("")
         toast.success('In thành công', {
             position: "bottom-right",
             autoClose: 3000,
@@ -178,13 +322,20 @@ export default function SelectPrinter(props) {
             theme: "light",
         })
     }
+    const handleCancel = () => {
+        setTime("")
+        setDate("")
+        setPrinterid("")
+        setLocation("")
+        setShowModal(false)
+    }
     return (
         <>
             <button
                 className="bg-blue-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-2 rounded 
                 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 type="button"
-                onClick={() => checkPNums(pNum)}
+                onClick={() => checkvalidconfigprint()}
             >
                 Tiếp tục
             </button>
@@ -311,7 +462,7 @@ export default function SelectPrinter(props) {
                                                 <button
                                                     className="text-white background-transparent  font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                                     type="button"
-                                                    onClick={() => setShowModal(false)}
+                                                    onClick={() => handleCancel()}
                                                 >
                                                     Hủy
                                                 </button>

@@ -75,7 +75,7 @@ const handleGetPrintHistory = async (req, res) => {
     }
 }
 const handleGetPrintHistoryByMSSV = async (req, res) => {
-    let history = await adminService.getPrintHistoryByMSSV(req.body.userid);
+    let history = await adminService.getPrintHistoryByMSSV(req.body);
     if (history) {
         return res.status(200).json({
             errCode: 0,
@@ -152,6 +152,22 @@ const handleGetBlockedUserBySearch = async (req, res) => {
         })
     }
 }
+const handleActivePrinter = async (req, res) => {
+    let data = await adminService.activePrinter(req.body);
+    if (data) {
+        return res.status(200).json({
+            errCode: 0,
+            errMessage: "active printer success",
+            data: data
+        })
+    } else {
+        return res.status(200).json({
+            errCode: 1,
+            errMessage: "active printer fail",
+            data: []
+        })
+    }
+}
 module.exports = {
     handleGetAllUser,
     handleGetBlockedUser,
@@ -164,4 +180,5 @@ module.exports = {
     handleUpdatePrinter,
     handleGetUserBySearch,
     handleGetBlockedUserBySearch,
+    handleActivePrinter,
 };

@@ -18,6 +18,7 @@ const App = () => {
             logout();
             validateTokenAndRedirect();
           }, 18000000);
+
           // Validate token and redirect only after fetching and saving user information
           await validateTokenAndRedirect();
         } else {

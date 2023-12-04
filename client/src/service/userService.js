@@ -41,6 +41,7 @@ const getListCourse = async () => {
 };
 const getDocByUserid = async (data) => {
   const url = `http://localhost:8080/api/getalldoc?userid=${data}`;
+
   return await axios({
     url: url,
     method: "GET",
@@ -87,6 +88,43 @@ const Print = async (data) => {
     data: data,
   });
 };
+const buypage = async (data) => {
+  const url = "http://localhost:8080/api/buypage";
+  return await axios({
+    url: url,
+    method: "POST",
+    withCredentials: true,
+    data: data,
+  });
+};
+const getHistory = async (data) => {
+  const url = "http://localhost:8080/api/getprinthistory";
+  return await axios({
+    url: url,
+    method: "POST",
+    withCredentials: true,
+    data: data,
+  });
+};
+const getDocBySearchPublic = async (data) => {
+  const url = "http://localhost:8080/api/getdocbysearchpublic";
+  return await axios({
+    url: url,
+    method: "POST",
+    withCredentials: true,
+    data: data,
+  });
+};
+const getDocBySearchName = async (data) => {
+  const url = "http://localhost:8080/api/getdocbysearchname";
+  return await axios({
+    url: url,
+    method: "POST",
+    withCredentials: true,
+    data: data,
+  });
+};
+
 export {
   handleAuth,
   getUser,
@@ -101,4 +139,8 @@ export {
   getPrivateDocBySearch,
   saveRoleToLocalStorage,
   getRoleFromLocalStorage,
+  buypage,
+  getHistory,
+  getDocBySearchPublic,
+  getDocBySearchName,
 };

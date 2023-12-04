@@ -1,17 +1,18 @@
+
+import StudentFolderCard from "../../components/StudentFolderCard";
+import Footer from "../../components/Footer"
 import { useState, useEffect } from "react";
-import HeaderAdmin from "./HeaderAdmin";
-import MenuBarAdmin from "./MenuBarAdmin";
-import { getHistory, getHistorybySearch } from "../../service/adminService";
-const ManagePrintingHistory = () => {
-    const [listHistory, setListHistory] = useState([])
-    const [searchContent, setSearchContent] = useState("")
+import { getHistory } from "../../service/userService"
+const StudentPrintHistory = (props) => {
+    const [listhistory, setListhistory] = useState([])
     useEffect(() => {
         const test = async () => {
             try {
-                if (listHistory.length == 0) {
-                    const list = await getHistory();
-                    setListHistory(list.data.history)
+                const data = {
+                    userid: props.user.userid
                 }
+                const list = await getHistory(data)
+                setListhistory(list.data.data)
             } catch (error) {
                 console.error("Error fetching user information:", error);
             }
@@ -19,72 +20,39 @@ const ManagePrintingHistory = () => {
 
         test()
     }, []);
-    const handleOnChangeSeacrhContent = async (event) => {
-        if (event.key === "Enter") {
-            const data = {
-                content: event.target.value
-            }
-            const history = await getHistorybySearch(data)
-            console.log(history)
-            if (history) setListHistory(history.data.history)
-            setSearchContent("")
-        }
-    }
     return (
         <>
             <div className="bg-white-fill bg-cover">
-                <HeaderAdmin />
                 <div class="flex h-screen">
-                    <div className="fixed top-0 z-20">
-                        <MenuBarAdmin />
-                    </div>
-                    <div class="flex place-content-center w-full ml-[18rem]">
-                        <div class="overflow-x-auto sm:mx-0.8 lg:mx-0.8 w-11/12">
+                    <div class="flex place-content-center w-full">
+                        <div class="overflow-x-auto sm:mx-0.8 lg:mx-0.8 w-5/6">
                             <div class="py-2 pt-10 inline-block min-w-full sm:px-6 lg:px-8">
                                 <div class="overflow-hidden shadow rounded-lg">
+
+                                    {/* TITLE */}
+
                                     <div class="w-full flex bg-white border-2 border-b-black">
-                                        <div class="w-full font-bold px-5 py-5 text-black-600 text-2xl">Quản lý lịch sử in</div>
-                                        <div className="pt-1 px-4 flex items-center text-medium font-medium leading-none cursor-pointer">
-                                            <div class="flex">
-                                                <a href="/homepage-admin">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                                    </svg>
-                                                </a>
-                                            </div>
-                                        </div>
+                                        <div class="w-full font-bold px-10 py-5 text-black-600 text-3xl">Lịch sử và tình trạng in</div>
                                     </div>
-                                    <div class="bg-[#8289ad] border border-b-black flex w-full">
-                                        <div class="relative flex-wrap justify-between ml-auto mr-3">
-                                            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
-                                            </div>
-                                            <input onChange={(event) => setSearchContent(event.target.value)}
-                                                value={searchContent}
-                                                onKeyDown={(event) => handleOnChangeSeacrhContent(event)}
-                                                type="text"
-                                                class="h-8 my-1 bg-white border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" required>
-                                            </input>
-                                        </div>
-                                    </div>
+                                    {/* TABLE */}
                                     <div className="flex">
                                         <table class="w-full round-md table-auto divide-gray-200 dark:divide-gray-700">
                                             <thead class="bg-white shadow-2xl">
                                                 <tr>
                                                     <th scope="col" class="text-lg font-bold text-gray-900 px-7 py-4 text-left">
-                                                        MSSV
+                                                        #
                                                     </th>
                                                     <th scope="col" class="text-lg font-bold text-gray-900 px-7 py-4 text-left">
-                                                        Họ và tên
+                                                        Tên tài liệu
                                                     </th>
                                                     <th scope="col" class="text-lg font-bold text-gray-900 px-7 py-4 text-left">
-                                                        Tài liệu
+                                                        Số trang
                                                     </th>
                                                     <th scope="col" class="text-lg font-bold text-gray-900 px-7 py-4 text-left">
-                                                        Máy in
+                                                        Ngày lấy
                                                     </th>
                                                     <th scope="col" class="text-lg font-bold text-gray-900 px-7 py-4 text-left">
-                                                        Thời gian nhận
+                                                        Vị trí
                                                     </th>
                                                     <th scope="col" class="text-lg font-bold text-gray-900 px-7 py-4 text-left">
                                                         Trạng thái
@@ -92,22 +60,22 @@ const ManagePrintingHistory = () => {
                                                 </tr>
                                             </thead>
                                             <tbody className="mt-1">
-                                                {listHistory && listHistory.map((history, index) => {
+                                                {listhistory && listhistory.map((history, index) => {
                                                     return <tr className="even:bg-white odd:bg-blue-50">
                                                         <td class="text-lg text-gray-900 font-light px-7 py-4 whitespace-nowrap">
-                                                            {history.userid}
-                                                        </td>
-                                                        <td class="px-7 py-4 whitespace-nowrap text-lg font-light text-gray-900">
-                                                            {history.name}
+                                                            {index + 1}
                                                         </td>
                                                         <td class="text-lg text-gray-900 font-light px-7 py-4 whitespace-nowrap">
                                                             {history.namefile}
                                                         </td>
-                                                        <td class="text-lg text-gray-900 font-light px-7 py-4 whitespace-nowrap text-left">
-                                                            {history.location}
+                                                        <td class="text-lg text-gray-900 font-light px-7 py-4 whitespace-nowrap">
+                                                            {history.numpage}
                                                         </td>
-                                                        <td class="text-lg text-gray-900 font-light px-7 py-4 whitespace-nowrap text-left">
+                                                        <td class="text-lg text-gray-900 font-light px-7 py-4 whitespace-nowrap">
                                                             {history.date}
+                                                        </td>
+                                                        <td class="text-lg text-gray-900 font-light px-7 py-4 whitespace-nowrap">
+                                                            {history.location}
                                                         </td>
                                                         {history.status ? <td class="text-lg text-gray-900 font-light px-7 py-4 whitespace-nowrap text-left">
                                                             <div className="flex bg-[#545F71] w-[8rem] border rounded-full my-2 text-white text-base px-1 py-1">
@@ -125,7 +93,9 @@ const ManagePrintingHistory = () => {
                                                             </div>
                                                         </td>}
                                                     </tr>
+
                                                 })}
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -134,8 +104,12 @@ const ManagePrintingHistory = () => {
                         </div>
                     </div>
                 </div>
-            </div >
+            </div>
+
+
         </>
-    )
+
+    );
 };
-export default ManagePrintingHistory;
+
+export default StudentPrintHistory;

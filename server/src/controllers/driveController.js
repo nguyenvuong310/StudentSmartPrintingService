@@ -34,7 +34,6 @@ const handleCreateFolder = async (req) => {
       if (error.response && error.response.data && error.response.data.error) {
         // Extract the specific error message from the Google Drive API response
         const googleDriveError = error.response.data.error;
-
         // You can access specific error fields, for example, the message field
         const errorMessage = googleDriveError.message;
         console.error("Google Drive API Error:", errorMessage);
@@ -58,7 +57,7 @@ const handleUploadFile = async (req, res) => {
         await userService.updateFolderId(req.user._json.email, folderId);
       }
     } else {
-      folderId = "1LWOTRQZoHeRm8n0ta0YD5oHDmCvALFts";
+      folderId = "15P_UWZOdS5zomYPWzsSNlzOaEgOU1MqI";
     }
 
     if (!req.file) {
@@ -154,6 +153,7 @@ const getNumberOfPages = async (buffer) => {
   const pdfData = await pdf(buffer);
   return pdfData.numpages;
 };
+
 module.exports = {
   handleCreateFolder,
   handleUploadFile,

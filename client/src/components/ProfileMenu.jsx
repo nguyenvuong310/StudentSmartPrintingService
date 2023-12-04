@@ -9,6 +9,7 @@ import {
 import {
   UserCircleIcon,
   ArrowLeftOnRectangleIcon,
+  ClockIcon
 } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
 import { saveUserToLocalStorage } from "../service/userService";
@@ -65,6 +66,14 @@ const ProfileMenu = (props) => {
 
           <Typography variant="small" className="font-medium">
             Tài khoản
+          </Typography>
+        </MenuItem>
+        <hr className="my-2 border-blue-gray-50" />
+        <MenuItem className="flex items-center gap-2" onClick={() => showWhat(4)}>
+          <ClockIcon className="w-5" />
+
+          <Typography variant="small" className="font-medium">
+            Lịch sử in
           </Typography>
         </MenuItem>
         <hr className="my-2 border-blue-gray-50" />

@@ -25,10 +25,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      role: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
       numpage: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -39,6 +35,10 @@ module.exports = {
       },
       numpageused: {
         type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      role: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
       createdAt: {

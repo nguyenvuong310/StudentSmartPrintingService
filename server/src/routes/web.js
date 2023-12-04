@@ -31,9 +31,19 @@ let initWebRoutes = (app) => {
   // userController
   router.get("/api/getUserInfo", userController.handleGetUserInfo);
   router.get("/api/getalldoc", userController.handleGetDoc);
+
   router.post("/api/deletedoc", userController.handleDeleteDoc);
   router.post("/api/getlistcourse", userController.handleGetListCourse);
   router.post("/api/getdocbysearch", userController.handleGetDocbySearch);
+  router.post(
+    "/api/getdocbysearchpublic",
+    userController.handleGetDocbySearchPublic
+  );
+  router.post(
+    "/api/getdocbysearchname",
+    userController.handleGetDocbySearchName
+  );
+
   // printController
   router.post("/api/getallprinter", printController.handleGetPrinter);
   router.post("/api/getprintertime", printController.handleGetPrinterTime);
@@ -68,6 +78,8 @@ let initWebRoutes = (app) => {
     "/api/admingetblockeduserbysearch",
     adminController.handleGetBlockedUserBySearch
   );
+  router.post("/api/activeprinter", adminController.handleActivePrinter);
+
   return app.use("/", router);
 };
 module.exports = initWebRoutes;

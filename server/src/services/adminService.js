@@ -99,11 +99,17 @@ let getPrintHistory = () => {
         }
     })
 }
-let getPrintHistoryByMSSV = (userid) => {
+let getPrintHistoryByMSSV = (content) => {
     return new Promise(async (resolve, reject) => {
         try {
             let data = await db.Prints.findAll({
-                where: { userid: userid }
+                where: {
+                    [Op.or]: [
+                        { userid: content.content },
+                        { name: content.content },
+                    ]
+                }
+
             })
             if (data) resolve(data)
             else resolve()
@@ -134,18 +140,14 @@ let getAddPrinter = (data) => {
 let updatePrinter = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let printers = await db.Printers.findAll({
-                where: { printerid: data.printerid }
+            let printer = await db.Printers.findOne({
+                where: { id: data.printerid }
             })
-            if (printers) {
-                printers.map(async (printer, index) => {
-                    printer.status = true
-                    printer.location = "H1"
-                    printer.slot = 10
-                    printer.name = "Tên máy đã được sửa đổi"
-                    printer.type = "In thường",
-                        await printer.save();
-                })
+            if (printer) {
+                printer.name = data.name
+                printer.location = data.location
+                printer.type = data.type
+                await printer.save();
                 resolve({
                     errCode: 0,
                     errMessage: "Update success",
@@ -199,6 +201,30 @@ let getBlockedUserbySearch = (data) => {
         }
     })
 }
+let activePrinter = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let printer = await db.Printers.findOne({
+                where: { id: data.id }
+            })
+            if (printer) {
+                printer.status = !printer.status;
+                await printer.save();
+                resolve({
+                    errCode: 0,
+                    errMessage: "Active printer success",
+                })
+            } else {
+                resolve({
+                    errCode: 1,
+                    errMessage: "Not exit printer in database"
+                })
+            }
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
 module.exports = {
     getAllUser,
     getBlockedUser,
@@ -211,4 +237,5 @@ module.exports = {
     updatePrinter,
     getUserbySearch,
     getBlockedUserbySearch,
+    activePrinter
 }

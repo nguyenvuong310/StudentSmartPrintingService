@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     time: DataTypes.STRING,
     status: DataTypes.BOOLEAN,
     date: DataTypes.STRING,
-
+    location: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Prints',

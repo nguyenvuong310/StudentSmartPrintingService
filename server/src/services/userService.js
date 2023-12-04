@@ -1,8 +1,8 @@
 import db from "../models/index";
 import bcrypt from "bcryptjs";
 const salt = bcrypt.genSaltSync(10);
-const { google } = require("googleapis");
 const { Op } = require("sequelize");
+const { google } = require("googleapis");
 let getFolderId = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -88,16 +88,16 @@ let getUserInfo = (email) => {
     }
   });
 };
+
 let getDoc = (drive, userid) => {
   return new Promise(async (resolve, reject) => {
     try {
       const documents = await db.Documents.findAll({
-        where: { userid: userid },
+        where: { userid: userid, location: "private" },
       });
       // console.log(documents);
       if (documents && documents.length > 0) {
         const fileIds = documents.map((doc) => doc.link);
-
         const validityResults = await Promise.all(
           fileIds.map((fileId) => isDriveFileIdValid(drive, fileId))
         );
@@ -166,6 +166,7 @@ let Print = (data) => {
         printerid: data.setupprinter.printerid,
         time: data.setupprinter.time,
         date: data.setupprinter.date,
+        location: data.setupprinter.location,
         status: false,
       });
       let user = await db.Users.findOne({
@@ -272,7 +273,7 @@ let deleteDoc = (docid) => {
 let getprinthistory = (userid) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let history = await db.Prints.findOne({
+      let history = await db.Prints.findAll({
         where: { userid: userid },
       });
       if (history) resolve(history);
@@ -283,6 +284,7 @@ let getprinthistory = (userid) => {
     }
   });
 };
+
 let getbuyhistory = (userid) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -309,10 +311,10 @@ let getCourse = () => {
     }
   });
 };
-let getDocbySearch = (data) => {
+let getDocbySearch = (drive, data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let doc = await db.Documents.findAll({
+      let documents = await db.Documents.findAll({
         where: {
           [Op.or]: [
             { name: data.content },
@@ -320,6 +322,52 @@ let getDocbySearch = (data) => {
           ],
           location: data.location,
           userid: data.userid,
+        },
+      });
+      if (documents && documents.length > 0) {
+        const fileIds = documents.map((doc) => doc.link);
+        const validityResults = await Promise.all(
+          fileIds.map((fileId) => isDriveFileIdValid(drive, fileId))
+        );
+        const validDocuments = documents.filter(
+          (_, index) => validityResults[index] === true
+        );
+        console.log("length", validDocuments.length);
+        // Resolve with the documents or filtered documents based on validity
+        resolve(validDocuments);
+      } else {
+        // No documents found
+        resolve([]);
+      }
+    } catch (e) {
+      console.log(e);
+      reject(e);
+    }
+  });
+};
+let getDocbySearchPublic = (data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let doc = await db.Documents.findAll({
+        where: { course: data.content, location: "public" },
+      });
+      if (doc) resolve(doc);
+      else resolve();
+    } catch (e) {
+      console.log(e);
+      reject(e);
+    }
+  });
+};
+let getDocbySearchName = (data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let doc = await db.Documents.findAll({
+        where: {
+          location: "public",
+          name: data.content,
+          // { course: data.content },
+          course: data.course, // Thêm điều kiện tìm kiếm khác nếu cần
         },
       });
       if (doc) resolve(doc);
@@ -345,4 +393,6 @@ module.exports = {
   getbuyhistory,
   getCourse,
   getDocbySearch,
+  getDocbySearchPublic,
+  getDocbySearchName,
 };

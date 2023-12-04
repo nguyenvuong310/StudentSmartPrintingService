@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
+
   Users.init(
     {
       userid: DataTypes.INTEGER,

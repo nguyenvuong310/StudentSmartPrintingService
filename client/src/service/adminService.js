@@ -71,6 +71,41 @@ const AddPrinter = async (data) => {
         data: data
     });
 }
+const activePrinter = async (data) => {
+    const url = "http://localhost:8080/api/activeprinter";
+    return await axios({
+        url: url,
+        method: "POST",
+        withCredentials: true,
+        data: data
+    });
+}
+const getHistory = async () => {
+    const url = "http://localhost:8080/api/admingetprinthistory";
+    return await axios({
+        url: url,
+        method: "POST",
+        withCredentials: true,
+    });
+}
+const getHistorybySearch = async (data) => {
+    const url = "http://localhost:8080/api/admingetprinthistorybymssv";
+    return await axios({
+        url: url,
+        method: "POST",
+        withCredentials: true,
+        data: data
+    });
+}
+const UpdatePrinter = async (data) => {
+    const url = "http://localhost:8080/api/updateprinter";
+    return await axios({
+        url: url,
+        method: "POST",
+        withCredentials: true,
+        data: data
+    });
+}
 export {
     getAllUser,
     getBlockedUser,
@@ -80,4 +115,8 @@ export {
     getUserBySearch,
     getBlockedUserBySearch,
     AddPrinter,
+    activePrinter,
+    getHistory,
+    getHistorybySearch,
+    UpdatePrinter,
 };

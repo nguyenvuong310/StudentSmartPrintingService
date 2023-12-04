@@ -58,4 +58,5 @@ module.exports = {
   handleLogOut,
   handleAuthGoogle,
   handleCallBack,
+  getSuccessRedirect,
 };

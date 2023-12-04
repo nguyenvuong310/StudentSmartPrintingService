@@ -13,12 +13,14 @@ import PublicStorage from "./PublicStorage";
 import PrivateStorage from "./PrivateStorage";
 import PrintingPage from "./PrintingPage";
 import FolderView from "./FolderView";
+import StudentPrintHistory from "./StudentPrintHistory";
 const HomePageStudent = () => {
   const [userinfo, setUserinfo] = useState({});
   const [check, setCheck] = useState(1);
   const [searchlocation, setSearchlocation] = useState(1);
   const [content, setContent] = useState("");
   const [uploaded, setUploaded] = useState(false);
+  const [course, setCourse] = useState("");
   useEffect(() => {
     const test = async () => {
       try {
@@ -44,39 +46,55 @@ const HomePageStudent = () => {
   const handleChangeUpload = (data) => {
     setUploaded(() => data);
   };
+  const handleChooseCourse = (data) => {
+    setCourse(data);
+  };
   return (
     <>
-      <HeaderStudent
-        input={handleOnChangeCheck}
-        value={check}
-        inputsearch={handleOnChangeSearchLocation}
-        search={searchlocation}
-        inputcontent={handleChangeContent}
-        content={content}
-        inputupload={handleChangeUpload}
-        upload={uploaded}
-      />
-      {check == 1 && (
-        <PublicStorage input={handleOnChangeCheck} value={check} />
-      )}
-      {check == 2 && (
-        <PrivateStorage
-          user={userinfo}
-          check={check}
-          search={searchlocation}
+      <div class="flex flex-col bg-white-fill">
+        <HeaderStudent
+          input={handleOnChangeCheck}
+          value={check}
           inputsearch={handleOnChangeSearchLocation}
+          search={searchlocation}
+          inputcontent={handleChangeContent}
           content={content}
           inputupload={handleChangeUpload}
           upload={uploaded}
         />
-      )}
-      {check == 3 && <StudentProfile />}
-      {check == 5 && (
-        <FolderView
-          inputsearch={handleOnChangeSearchLocation}
-          search={searchlocation}
-        />
-      )}
+        {check == 1 && (
+          <PublicStorage
+            input={handleOnChangeCheck}
+            value={check}
+            course={handleChooseCourse}
+          />
+        )}
+        {check == 2 && (
+          <PrivateStorage
+            user={userinfo}
+            check={check}
+            search={searchlocation}
+            inputsearch={handleOnChangeSearchLocation}
+            content={content}
+            inputupload={handleChangeUpload}
+            upload={uploaded}
+          />
+        )}
+        {check == 3 && <StudentProfile />}
+        {check == 4 && <StudentPrintHistory user={userinfo} />}
+        {check == 5 && (
+          <FolderView
+            inputupload={handleChangeUpload}
+            upload={uploaded}
+            course={course}
+            user={userinfo}
+            inputcontent={handleChangeContent}
+            content={content}
+            inputsearch={handleOnChangeSearchLocation}
+            search={searchlocation}
+          />
+        )}
+      </div>
     </>
   );
 };

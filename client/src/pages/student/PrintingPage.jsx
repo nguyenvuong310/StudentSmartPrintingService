@@ -19,41 +19,95 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
   const [alignment, setAlignment] = useState("")
   const [scale, setScale] = useState("")
   const [copy, setCopy] = useState(0)
+  const handleNumpage = (numpage) => {
+    if (numpage === "all") {
+      if (pagesize == "A3") return doc.numpage * 2 * copy
+      if (pagesize == "A4") return doc.numpage * 1 * copy
+      if (pagesize == "A5") return doc.numpage * 0.5 * copy
+    }
+    if (numpage === "even") {
+      const num = Math.floor(doc.numpage / 2);
+      if (pagesize == "A3") return num * 2 * copy
+      if (pagesize == "A4") return num * 1 * copy
+      if (pagesize == "A5") return num * 0.5 * copy
+    }
+    if (numpage === "odd") {
+      const num = Math.ceil(doc.numpage / 2)
+      if (pagesize == "A3") return num * 2 * copy
+      if (pagesize == "A4") return num * 1 * copy
+      if (pagesize == "A5") return num * 0.5 * copy
+    }
+    if (typeof numpage === 'string') {
+      const arrayOfDevide = numpage.split(',');
+      let sumnumpage = 0
+      const check = arrayOfDevide.some((element) => {
+        element = element.trim()
+        const array = element.split('-')
+        if (array.length >= 3) {
+          return true
+        }
+        if (array.length == 1) {
+          let num = array[0]
+          if (!/^[0-9]+$/.test(num)) {
+            return true
+          }
+          num = Number(num)
+          if (num == 0) {
+            return true
+          }
+          sumnumpage = sumnumpage + 1
+        }
+        if (array.length == 2) {
+          let num1 = array[0]
+          let num2 = array[1]
+          if (!/^[0-9]+$/.test(num1)) {
+            return true
+          }
+          if (!/^[0-9]+$/.test(num2)) {
+            return true
+          }
+          num1 = Number(num1)
+          num2 = Number(num2)
+          if (num1 > num2 || num1 == 0 || num2 == 0) {
+            return true
+          }
+          sumnumpage = sumnumpage + num2 - num1 + 1
+        }
+        return false
+      })
+      if (check) return -1
+      if (pagesize == "A3") return sumnumpage * 2 * copy
+      if (pagesize == "A4") return sumnumpage * 1 * copy
+      if (pagesize == "A5") return sumnumpage * 0.5 * copy
+    } else {
+      console.error('numpage is not a string');
+    }
 
-  let configprint = {
-    numpage: 10,
-    layout: layout,
-    pagesize: pagesize,
-    pageperside: pageperside,
-    alignment: alignment,
-    scale: scale,
-    copy: copy
+  }
+
+  const handleSetNumpage = (data) => {
+    setNumpage(data)
   }
   const handlesetLayout = (event) => {
     setLayout(event.value)
-    configprint.layout = event.value
   }
   const handlesetPagesize = (event) => {
     setPagesize(event.value)
-    configprint.pagesize = event.value
   }
   const handlesetPageperside = (event) => {
     setPageperside(event.target.value)
-    configprint.pageperside = event.target.value
   }
   const handlesetAlignment = (event) => {
     setAlignment(event.value)
-    configprint.alignment = event.value
   }
   const handlesetScale = (event) => {
     setScale(event.value)
-    configprint.scale = event.value
   }
   const handlesetCopy = (event) => {
     setCopy(event.target.value)
-    configprint.copy = event.target.value
   }
-  useEffect(() => { }, [showModal]);
+  useEffect(() => {
+  }, [showModal]);
 
 
   const optionsPageN = [
@@ -66,8 +120,9 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
     { value: 'landscape', label: 'Landscape' },
   ]
   const optionsPaperS = [
-    { value: 'A4', label: 'A4' },
     { value: 'A3', label: 'A3' },
+    { value: 'A4', label: 'A4' },
+    { value: 'A5', label: 'A5' }
   ]
   const optionsMargin = [
     { value: 'default', label: 'Mặc định' },
@@ -350,7 +405,16 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
                         >
                           Hủy
                         </button>
-                        <SelectPrinter doc={doc} configprint={configprint} offModalPrint={handleCancel} />
+                        <SelectPrinter handleSetNumpage={handleSetNumpage} numpage={userNumPage} doc={doc}
+                          handleNumpage={handleNumpage}
+                          numpageconfig={numpage}
+                          layout={layout}
+                          pagesize={pagesize}
+                          pageperside={pageperside}
+                          alignment={alignment}
+                          scale={scale}
+                          copy={copy}
+                          offModalPrint={handleCancel} />
                       </div >
                     </div >
                   </div >

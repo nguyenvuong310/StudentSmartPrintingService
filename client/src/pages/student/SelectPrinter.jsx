@@ -17,6 +17,7 @@ export default function SelectPrinter(props) {
     const [date, setDate] = useState("")
     const [printerid, setPrinterid] = useState("")
     const [location, setLocation] = useState("")
+    const [configprint, setConfig] = useState({})
     const handlesetPrinterid = (printer) => {
         setPrinterid(printer.id)
         setLocation(printer.location)
@@ -27,6 +28,7 @@ export default function SelectPrinter(props) {
     const handleChangeTime = (event) => {
         setTime(event.value)
     }
+
     useEffect(() => {
         const test = async () => {
             try {
@@ -45,18 +47,32 @@ export default function SelectPrinter(props) {
         };
         test()
     }, []);
-    const pNum = props.configprint.numpage
 
-    // const checkPNums = (pageNum) => {
-    //     if (pageNum > userinfo.numpage) {
-    //         setAlert(true)
-    //         // alert('Nạp tiền vào donate cho tao')
-    //     } else setShowModal(true)
-
-    // }
     const checkvalidconfigprint = () => {
-        // check pagenum
-        if (!props.configprint.layout) {
+        const configprint = {
+            numpage: props.handleNumpage(props.numpageconfig),
+            layout: props.layout,
+            pagesize: props.pagesize,
+            pageperside: props.pageperside,
+            alignment: props.alignment,
+            scale: props.scale,
+            copy: props.copy
+        }
+        setConfig(configprint)
+        if (props.numpageconfig == -1 || !props.numpageconfig) {
+            toast.error('Thông tin số trang chưa hợp lệ', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            return
+        }
+        if (!props.layout) {
             toast.error('Chưa chọn layout', {
                 position: "top-right",
                 autoClose: 2000,
@@ -69,7 +85,7 @@ export default function SelectPrinter(props) {
             });
             return
         }
-        if (!props.configprint.pagesize) {
+        if (!props.pagesize) {
             toast.error('Chưa chọn cỡ giấy', {
                 position: "top-right",
                 autoClose: 2000,
@@ -82,7 +98,7 @@ export default function SelectPrinter(props) {
             });
             return
         }
-        if (props.configprint.pageperside == 0) {
+        if (props.pageperside == 0) {
             toast.error('Chưa chọn số trang trên một mặt', {
                 position: "top-right",
                 autoClose: 2000,
@@ -95,7 +111,7 @@ export default function SelectPrinter(props) {
             });
             return
         }
-        if (!/^\d+$/.test(props.configprint.pageperside)) {
+        if (!/^\d+$/.test(props.pageperside)) {
             toast.error('Số trang trên một mặt không hợp lệ', {
                 position: "top-right",
                 autoClose: 2000,
@@ -108,7 +124,7 @@ export default function SelectPrinter(props) {
             });
             return
         }
-        if (!props.configprint.alignment) {
+        if (!props.alignment) {
             toast.error('Chưa chọn căn lề', {
                 position: "top-right",
                 autoClose: 2000,
@@ -121,7 +137,7 @@ export default function SelectPrinter(props) {
             });
             return
         }
-        if (!props.configprint.scale) {
+        if (!props.scale) {
             toast.error('Chưa chọn tỉ lệ', {
                 position: "top-right",
                 autoClose: 2000,
@@ -134,7 +150,7 @@ export default function SelectPrinter(props) {
             });
             return
         }
-        if (props.configprint.copy == 0) {
+        if (props.copy == 0) {
             toast.error('Chưa chọn số bản in', {
                 position: "top-right",
                 autoClose: 2000,
@@ -147,7 +163,7 @@ export default function SelectPrinter(props) {
             });
             return
         }
-        if (!/^\d+$/.test(props.configprint.copy)) {
+        if (!/^\d+$/.test(props.copy)) {
             toast.error('Số bản in không hợp lệ', {
                 position: "top-right",
                 autoClose: 2000,
@@ -159,6 +175,20 @@ export default function SelectPrinter(props) {
                 theme: "colored",
             });
             return
+        }
+        if (configprint.numpage > props.numpage) {
+            toast.error('Vượt quá số trang cho phép', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            return
+
         }
         setShowModal(true)
 
@@ -302,10 +332,10 @@ export default function SelectPrinter(props) {
         const data = {
             user: userinfo,
             doc: props.doc,
-            configprint: props.configprint,
+            configprint: configprint,
             setupprinter: setupprinter,
         }
-        console.log(data)
+        // console.log(data)
         await Print(data)
         setTime("")
         setDate("")

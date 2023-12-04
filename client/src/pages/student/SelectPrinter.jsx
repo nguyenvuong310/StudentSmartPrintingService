@@ -59,7 +59,7 @@ export default function SelectPrinter(props) {
             copy: props.copy
         }
         setConfig(configprint)
-        if (props.numpageconfig == -1 || !props.numpageconfig) {
+        if (configprint.numpage == -1 || !configprint.numpage) {
             toast.error('Thông tin số trang chưa hợp lệ', {
                 position: "top-right",
                 autoClose: 2000,

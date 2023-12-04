@@ -1,9 +1,10 @@
 import axios from "axios";
+import { backendURL } from "../utils/constant";
 const handleAuth = (role) => {
-  window.open(`http://localhost:8080/auth/google?role=${role}`, "_self");
+  window.open(`${backendURL}/auth/google?role=${role}`, "_self");
 };
 const getUser = async () => {
-  const url = `http://localhost:8080/auth/login/success`;
+  const url = `${backendURL}/auth/login/success`;
   return await axios.get(url, { withCredentials: true });
 };
 const saveUserToLocalStorage = async (user) => {
@@ -19,11 +20,11 @@ const getRoleFromLocalStorage = () => {
 const logout = () => {
   localStorage.removeItem("role");
   localStorage.removeItem("user");
-  window.open(`http://localhost:8080/auth/logout`, "_self");
+  window.open(`${backendURL}/auth/logout`, "_self");
 };
 
 const getUserInfo = async () => {
-  const url = "http://localhost:8080/api/getUserInfo";
+  const url = `${backendURL}/api/getUserInfo`;
   return await axios({
     url: url,
     method: "GET",
@@ -32,7 +33,7 @@ const getUserInfo = async () => {
 };
 
 const getListCourse = async () => {
-  const url = "http://localhost:8080/api/getlistcourse";
+  const url = `${backendURL}/api/getlistcourse`;
   return await axios({
     url: url,
     method: "POST",
@@ -40,7 +41,7 @@ const getListCourse = async () => {
   });
 };
 const getDocByUserid = async (data) => {
-  const url = `http://localhost:8080/api/getalldoc?userid=${data}`;
+  const url = `${backendURL}/api/getalldoc?userid=${data}`;
 
   return await axios({
     url: url,
@@ -49,7 +50,7 @@ const getDocByUserid = async (data) => {
   });
 };
 const getPrivateDocBySearch = async (data) => {
-  const url = "http://localhost:8080/api/getdocbysearch";
+  const url = `${backendURL}/api/getdocbysearch`;
   return await axios({
     url: url,
     method: "POST",
@@ -63,7 +64,7 @@ const uploadFile = async (data) => {
   formData.append("name", data.name);
   formData.append("course", data.course);
   formData.append("location", data.location);
-  const url = "http://localhost:8080/drive/uploadFile";
+  const url = `${backendURL}/drive/uploadFile`;
   return await axios({
     url: url,
     method: "POST",
@@ -72,7 +73,7 @@ const uploadFile = async (data) => {
   });
 };
 const getAllPrinter = async () => {
-  const url = "http://localhost:8080/api/getallprinter";
+  const url = `${backendURL}/api/getallprinter`;
   return await axios({
     url: url,
     method: "POST",
@@ -80,7 +81,7 @@ const getAllPrinter = async () => {
   });
 };
 const Print = async (data) => {
-  const url = "http://localhost:8080/api/print";
+  const url = `${backendURL}/api/print`;
   return await axios({
     url: url,
     method: "POST",
@@ -89,7 +90,7 @@ const Print = async (data) => {
   });
 };
 const buypage = async (data) => {
-  const url = "http://localhost:8080/api/buypage";
+  const url = `${backendURL}/api/buypage`;
   return await axios({
     url: url,
     method: "POST",
@@ -98,7 +99,7 @@ const buypage = async (data) => {
   });
 };
 const getHistory = async (data) => {
-  const url = "http://localhost:8080/api/getprinthistory";
+  const url = `${backendURL}/api/getprinthistory`;
   return await axios({
     url: url,
     method: "POST",
@@ -107,7 +108,7 @@ const getHistory = async (data) => {
   });
 };
 const getDocBySearchPublic = async (data) => {
-  const url = "http://localhost:8080/api/getdocbysearchpublic";
+  const url = `${backendURL}/api/getdocbysearchpublic`;
   return await axios({
     url: url,
     method: "POST",
@@ -116,7 +117,7 @@ const getDocBySearchPublic = async (data) => {
   });
 };
 const getDocBySearchName = async (data) => {
-  const url = "http://localhost:8080/api/getdocbysearchname";
+  const url = `${backendURL}/api/getdocbysearchname`;
   return await axios({
     url: url,
     method: "POST",

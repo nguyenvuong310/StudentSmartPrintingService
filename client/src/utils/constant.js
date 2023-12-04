@@ -7,3 +7,4 @@ export const path = {
   HOMEPAGESTUDENT: "/student",
   HOMEPAGEADMIN: "/admin",
 };
+export const backendURL = "http://localhost:8080";

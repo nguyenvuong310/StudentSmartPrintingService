@@ -124,7 +124,7 @@ export default function UploadModal(props) {
     if (upload && upload.data && upload.data.errCode === 0) {
       toast.success("Upload thành công", {
         position: "bottom-right",
-        autoClose: 3000,
+        autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,

@@ -306,13 +306,6 @@ const HeaderStudent = (props) => {
                   <div>UPLOAD</div>
                 </div>
                 <UploadModal isOpen={showModal} toggle={handleToggle} />
-                {/* <hr className="my-2 border-blue-gray-50 " />
-                <div class="flex py-2 pl-1 gap-2 hover:bg-blue-200 hover:text-white text-base font-medium text-gray-700 rounded-md">
-                  <ArrowLeftOnRectangleIcon className="w-5" />
-                  <div onClick={handleLogout}>
-                    Đăng xuất
-                  </div>
-                </div> */}
               </Typography>
             </CardBody>
           </Card>

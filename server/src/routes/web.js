@@ -6,10 +6,6 @@ import buypageController from "../controllers/buypageController";
 import searchController from "../controllers/searchController";
 import adminController from "../controllers/adminController";
 const router = require("express").Router();
-const passport = require("passport");
-
-const stream = require("stream");
-
 const multer = require("multer");
 const storage = multer.memoryStorage();
 const upload = multer({

@@ -11,7 +11,7 @@ const MenuAdmin = () => {
   const navigate = useNavigate();
   const handleMenu = (title) => {
     if (title === "student-manage") {
-      navigate("/admin/student-manage");
+      navigate("/admin");
     } else if (title === "printer-manage") {
       navigate("/admin/printer-manage");
     } else if (title === "history-manage") {

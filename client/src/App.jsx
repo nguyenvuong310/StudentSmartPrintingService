@@ -18,8 +18,6 @@ const App = () => {
             logout();
             validateTokenAndRedirect();
           }, 18000000);
-
-          // Validate token and redirect only after fetching and saving user information
           await validateTokenAndRedirect();
         } else {
           navigate("/home");
@@ -32,9 +30,8 @@ const App = () => {
     const validateTokenAndRedirect = async () => {
       try {
         const isValid = await checkValidToken();
-        // console.log("valid", isValid);
-        // If not valid or not authenticated, redirect to /login
         if (!isValid) {
+          logout();
           navigate("/home");
         }
       } catch (error) {

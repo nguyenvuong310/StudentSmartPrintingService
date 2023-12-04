@@ -1,8 +1,5 @@
 import db from "../models/index";
-import bcrypt from "bcryptjs";
-const salt = bcrypt.genSaltSync(10);
 const { Op } = require("sequelize");
-const { google } = require("googleapis");
 let getFolderId = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -104,7 +101,7 @@ let getDoc = (drive, userid) => {
         const validDocuments = documents.filter(
           (_, index) => validityResults[index] === true
         );
-        console.log("length", validDocuments.length);
+        // console.log("length", validDocuments.length);
         // Resolve with the documents or filtered documents based on validity
         resolve(validDocuments);
       } else {
@@ -123,14 +120,11 @@ const isDriveFileIdValid = async (drive, fileId) => {
     const fileInfo = await drive.files.get({ fileId });
 
     if (fileInfo && fileInfo.data && fileInfo.data.id) {
-      // console.log(`Drive file ID ${fileId} is valid`);
       return true;
     } else {
-      // console.log(`Drive file ID ${fileId} is not valid`);
       return false;
     }
   } catch (error) {
-    // console.error(`Error checking Google Drive file ID ${fileId}:`, error);
     return false;
   }
 };

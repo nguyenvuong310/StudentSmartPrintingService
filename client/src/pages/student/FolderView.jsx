@@ -44,7 +44,7 @@ const FolderView = (props) => {
         for (let i = 0; i < 27; i++) {
           // console.log(course.data.course[i].name.toLowerCase() + " va " + props.content)
           const string1 = course.data.course[i].name.toLowerCase().trim();
-          const string2 = props.content.trim();
+          const string2 = props.content.trim().toLowerCase();
           if (string1 == string2) {
             setCourse(course.data.course[i].name);
             return;

@@ -20,7 +20,7 @@ const App = () => {
           }, 18000000);
           await validateTokenAndRedirect();
         } else {
-          navigate("/home");
+          navigate("/");
         }
       } catch (error) {
         console.error("Error fetching user information:", error);
@@ -32,7 +32,7 @@ const App = () => {
         const isValid = await checkValidToken();
         if (!isValid) {
           logout();
-          navigate("/home");
+          navigate("/");
         }
       } catch (error) {
         console.error("Error validating token:", error);

@@ -18,7 +18,7 @@ const AuthenAdmin = () => {
         ) {
           // console.log("User Data:", userData.data);
           setRole(userData.data.user.role);
-          saveRoleToLocalStorage(userData.data.user.role);
+          // saveRoleToLocalStorage(userData.data.user.role);
         }
       } catch (error) {
         console.error("Error fetching user role", error);

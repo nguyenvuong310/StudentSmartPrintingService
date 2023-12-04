@@ -26,7 +26,7 @@ const router = createBrowserRouter(
       <Route path={path.LOGIN} element={<LoginPage />} />
       {/* <Route path="/login-success" element={<NavigateRoute />} /> */}
       <Route path="/" element={<App />}>
-        <Route index={true} path="/home" element={<HomePage />} />
+        <Route index={true} element={<HomePage />} />
         <Route path="/student" element={<AuthenStudent />}>
           <Route index={true} element={<HomePageStudent />} />
         </Route>

@@ -16,16 +16,19 @@ export default function ButtonUpload(props) {
     return (
         <>
             <button
-                className="bg-[#3563E9] flex text-white active:bg-blue-700 font-semibold uppercase text-sm
-                 pr-5 pl-4 py-[11px] rounded shadow hover:bg-blue-700 hover:shadow-lg outline-none focus:outline-none mr-1 mb-1
+                className="bg-[#3563E9] md:w-full w-[50px] h-[50px] grid grid-flow-col gap-1 auto-cols-max place-items-center text-white active:bg-blue-700 font-semibold uppercase text-sm
+                 px-3 md:rounded rounded-full shadow hover:bg-blue-700 hover:shadow-lg outline-none focus:outline-none
                  items-center
                  ease-linear transition-all duration-150 active:ring ring-blue-400 focus:ring
                  "
                 type="button"
                 onClick={toggle}
             >
-                <ArrowUpTrayIcon className="w-6 mr-1" />
-                Tải lên
+                <ArrowUpTrayIcon className="w-[25px] self-center " />
+                <div class='md:block hidden'>
+                    Tải lên
+                </div>
+
             </button>
             <UploadModal isOpen={showModal} toggle={toggle} inputupload={props.inputupload} upload={props.upload} />
             <ToastContainer />

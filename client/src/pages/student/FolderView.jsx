@@ -88,17 +88,20 @@ const FolderView = (props) => {
             document.getElementById('storage')
         );
         const element = (
-            <div class="grid md:grid-cols-5 grid-cols-2 grid-flow-row  gap-x-[4rem] gap-y-[2rem] p-10">
+            <div class="grid mdLarge:grid-cols-5 mdMd:grid-cols-4 smSm:grid-cols-3 xsXs:grid-cols-2 grid-cols-1 
+            grid-flow-row  gap-x-[4rem] gap-y-[2rem] py-10 md:px-10 ">
                 {listDoc && listDoc.slice((index - 1) * 10, (index * 10)).map((doc, index) =>
                 (
                     < StudentFileCard
                         doc={doc}
+                        numpPage={props.user.numpage - props.user.numpageused}
                         textFile={doc.name} textSubject={doc.course}
                         textType={'.pdf'}
                         fileLink={"https://drive.google.com/file/d/" + doc.link + "/view"}
                         filetoDown={"https://drive.google.com/u/0/uc?id=" + doc.link + "&export=download"}
                         filetoPrint={"https://drive.google.com/file/d/" + doc.link + "/preview"} />
                 ))}
+
             </div>
         )
 
@@ -109,7 +112,9 @@ const FolderView = (props) => {
     ({
         className: active === index ? "bg-blue-400 text-white" : "bg-white text-gray-900",
         onClick: () => {
+            if (active === index) return
             handleIndex(index)
+            window.scrollTo(0, 0);
         }
     });
 
@@ -126,28 +131,22 @@ const FolderView = (props) => {
     const next = () => {
         if (active === frameNum) return;
         handleIndex(active + 1)
+        window.scrollTo(0, 0);
     };
     const prev = () => {
         if (active === 1) return;
         handleIndex(active - 1)
+        window.scrollTo(0, 0);
     };
 
-    const backtoCourse = async (course) => {
-        if (course) {
-            const data = {
-                content: course,
-            }
-            const list = await getDocBySearchPublic(data)
-            setlistDoc(list.data.doc)
-        }
-    }
     return (
         <>
             <div className="flex  flex-col min-h-[770px] w-[90%] self-center bg-blue-200 mt-5 rounded-xl">
                 <div class="flex sticky top-0 z-10 bg-[#678CF8] items-start p-3 border-b border-solid  rounded-t">
-                    <button onClick={() => backtoCourse(course)} class="text-gray-900 text-xl font-semibold">
-                        {course ? course : "Không có thông tin"}
-                    </button>
+                    <h3 class="text-gray-900 text-xl font-semibold">
+
+                        {props.course}
+                    </h3>
                 </div>
                 <div id="storage" class=" flex flex-1 w-fit self-center justify-center">
 
@@ -180,7 +179,6 @@ const FolderView = (props) => {
                 <Footer />
 
             </div>
-
         </>
     );
 };

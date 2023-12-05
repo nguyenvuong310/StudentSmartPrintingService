@@ -23,18 +23,18 @@ const currentYear = new Date().getFullYear();
 
 const Footer = () => {
   return (
-    <footer class="relative bg-blueGray-200 z-0 pt-5 bg-blue-fill w-screen">
-      <div class="container mx-auto px-4">
-        <div class="flex flex-wrap text-left lg:text-left">
-          <div class="w-full lg:w-6/12 px-4 py-9 flex flex-row">
+    <footer class="relative flex w-full min-w-[400px] justify-center z-0 pt-5 bg-blue-fill bg-cover bg-no-repeat h-fit ">
+      <div class="container justify-between grow ">
+        <div class="flex md:flex-row flex-col text-left ">
+          <div class="w-full  pl-6 py-9 flex md:flex-row flex-col">
             <img className="col-span-2 w-12 h-12" src={logo} alt="logo" />
             <div class="text-md mt-0 mb-2 text-white px-3 pt-3">
               Student Smart Printing Service
             </div>
           </div>
-          <div class="w-full lg:w-6/12 px-4">
-            <div class="flex flex-wrap items-top mb-6">
-              <div class="w-full lg:w-4/12 px-4 ml-auto">
+          <div class="w-full  pl-6">
+            <div class="flex flex-row items-top mb-6">
+              <div class="w-[10rem] px-4">
                 <span class="block uppercase text-white text-sm font-semibold mb-2">Thông tin</span>
                 <ul class="list-unstyled">
                   <li>
@@ -45,7 +45,7 @@ const Footer = () => {
                   </li>
                 </ul>
               </div>
-              <div class="w-full lg:w-5/12 px-4 hidden sm:ml-6 sm:block">
+              <div class="w-full w-[10rem] px-4  sm:ml-6 sm:block">
                 <span class="block uppercase text-white text-sm font-semibold mb-2">Liên hệ</span>
                 <ul class="list-unstyled">
                   <li className="flex flex-row">

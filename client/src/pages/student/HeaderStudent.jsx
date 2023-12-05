@@ -11,15 +11,11 @@ import {
   CardBody,
 } from "@material-tailwind/react";
 import {
-  HomeIcon,
-  UserIcon,
-  Bars3Icon,
-  XMarkIcon,
+  FolderIcon,
+  FolderMinusIcon,
   LanguageIcon,
-  ArrowLeftOnRectangleIcon,
-  UserGroupIcon,
-  PrinterIcon,
-  ClockIcon
+  DocumentArrowUpIcon,
+
 } from "@heroicons/react/24/outline";
 import UploadModal from "../../components/UploadModal"
 import ButtonUpload from "../../components/buttonUpload";
@@ -71,71 +67,12 @@ const HeaderStudent = (props) => {
     }
   }
   return (
-
-
-    // <nav class="bg-white dark:bg-gray-900 sticky fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
-    //   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-
-    //     {/* ICON & NAME*/}
-    //     <a href="/homepage-student" class="flex items-center space-x-3 rtl:space-x-reverse">
-    //       <img src="public/logo.png" class="h-8" alt="Flowbite Logo" />
-    //       <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">SSPS</span>
-    //     </a>
-    //     <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
-    //       <span class="sr-only">Open main menu</span>
-    //       <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-    //         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
-    //       </svg>
-    //     </button>
-
-    //     {/* UPLOAD	+	 */}
-
-
-    //     {/* KHO HỆ THỐNG & CÁ NHÂN */}
-    //     <div id="KhoHeThong" class="mb-4 border-b border-gray-200 dark:border-gray-700">
-    //       <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
-    //         <li class="me-2" role="presentation">
-    //           <button onClick={() => test(1)} class="inline-block p-4 border-b-2 rounded-t-lg" type="button" role="tab" aria-controls="profile" aria-selected="false">KHO HỆ THỐNG</button>
-    //         </li>
-    //         <li class="me-2" role="presentation">
-    //           <button onClick={() => test(2)} class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" type="button" role="tab" aria-controls="dashboard" aria-selected="false">KHO CÁ NHÂN</button>
-    //         </li>
-    //       </ul>
-    //     </div>
-
-    //     {/* SEARCH */}
-    //     <div class="relative hidden md:block">
-    //       <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-    //         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-    //           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-    //         </svg>
-    //         <span class="sr-only">Search icon</span>
-    //       </div>
-    //       <input onKeyDown={(event) => handleSearch(event)} value={content} onChange={(event) => setContent(event.target.value)} type="text" id="search-navbar" class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tìm kiếm..." />
-
-    //     </div>
-
-    //     {/* LANGUAGE */}
-    //     <div class="relative hidden sm:flex space-x-4">
-    //       <div class="flex flex-col text-black-300 rounded-md text-sm font-semibold px-3">
-    //         <div class="pl-4 pt-3 flex flex-row"> <HomeIcon className="w-5 pr-1" /> Ngôn ngữ</div>
-    //         <select class="flex flex-col text-black-300 rounded-md px-5 py-1 text-xs font-light">
-    //           <option>Tiếng Việt</option>
-    //           <option>Tiếng Anh</option>
-    //         </select>
-    //       </div>
-    //     </div>
-    //     <UploadModal inputupload={props.inputupload} upload={props.upload} />
-    //     <ProfileMenu input={handleOnChangeCheck} value={check} />
-    //     {check == 3 && props.input(3)}
-    //   </div>
-    // </nav>
     <nav class="bg-white dark:bg-gray-900 sticky w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto pt-4 pl-4 pr-4">
 
         {/* HAMBURGER ICON & LOGO*/}
         <div class="flex flex-row items-center justify-center sm:items-stretch sm:justify-start">
-          <div class=" bottom-5 left-0 py-2  sm:hidden block ">
+          <div class=" bottom-5 left-0 py-2  smXs:block hidden ">
             <div onClick={toggleOpen} type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-slate-300 hover:text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
               aria-controls="mobile-menu" aria-expanded="false">
               <span class="absolute -inset-0.5"></span>
@@ -154,21 +91,11 @@ const HeaderStudent = (props) => {
           </div>
         </div>
 
-        {/*<a href="/homepage-student" class="flex items-center space-x-3 rtl:space-x-reverse">
-          <img src="public/logo.png" class="h-8" alt="Flowbite Logo" />
-          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">SSPS</span>
-        </a>
-          <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
-          <span class="sr-only">Open main menu</span>
-          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
-          </svg>
-           </button> */}
 
 
 
         {/* KHO HỆ THỐNG & CÁ NHÂN */}
-        <div class="mb-0  sm:flex hidden">
+        <div class="mb-0  smXs:hidden flex">
           <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
             <li class="me-2" role="presentation">
               <button onClick={() => test(1)} class="inline-block p-4 pb-7 pt-6 border-b-4 rounded-t-lg hover:text-blue-700 hover:border-blue-700 dark:hover:text-gray-300 active:bg-blue-50 focus:text-blue-700 focus:border-blue-700" type="button" role="tab" aria-controls="profile" aria-selected="false">KHO HỆ THỐNG</button>
@@ -202,7 +129,7 @@ const HeaderStudent = (props) => {
         </div>
 
         {/* UPLOAD */}
-        <div class="md:flex hidden">
+        <div class="smXs:hidden flex">
           <ButtonUpload inputupload={props.inputupload} upload={props.upload} />
         </div>
 
@@ -218,40 +145,33 @@ const HeaderStudent = (props) => {
 
 
       {/* HAMBURGER MENU */}
-      <div class="sm:hidden flex">
+      <div class="smXs:flex hidden">
         <Collapse open={open}>
           <Card className=" mx-auto ">
             <CardBody >
               <Typography variant="small"  >
                 <hr className="my-2 border-blue-gray-50 " />
                 <div class="flex py-2 pl-1 gap-2 hover:bg-blue-200 hover:text-white text-base font-medium text-gray-700 rounded-md">
-                  <UserGroupIcon className="w-5" />
+                  <FolderIcon className="w-5" />
                   <div onClick={() => test(1)}>
                     KHO HỆ THỐNG
                   </div>
                 </div>
                 <hr className="my-2 border-blue-gray-50" />
                 <div class="flex py-2 pl-1 gap-2 hover:bg-blue-200 hover:text-white text-base font-medium text-gray-700 rounded-md">
-                  <PrinterIcon className="w-5" />
+                  <FolderMinusIcon className="w-5" />
                   <div onClick={() => test(2)}>
                     KHO CÁ NHÂN
                   </div>
                 </div>
                 <hr className="my-2 border-blue-gray-50" />
                 <div onClick={handleToggle} class="flex py-2 pl-1 gap-2 hover:bg-blue-200 hover:text-white text-base font-medium text-gray-700 rounded-md">
-                  <ClockIcon className="w-5" />
+                  <DocumentArrowUpIcon className="w-5" />
                   <div >
-                    UPLOAD
+                    TẢI LÊN
                   </div>
                 </div>
                 <UploadModal isOpen={showModal} toggle={handleToggle} />
-                {/* <hr className="my-2 border-blue-gray-50 " />
-                <div class="flex py-2 pl-1 gap-2 hover:bg-blue-200 hover:text-white text-base font-medium text-gray-700 rounded-md">
-                  <ArrowLeftOnRectangleIcon className="w-5" />
-                  <div onClick={handleLogout}>
-                    Đăng xuất
-                  </div>
-                </div> */}
 
               </Typography>
             </CardBody>

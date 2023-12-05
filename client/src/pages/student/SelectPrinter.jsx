@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Component } from "react";
 import Select from 'react-select'
+import ReactDOM from 'react-dom/client';
 
 import { useSelector } from "react-redux";
-import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/solid'
+import { CheckCircleIcon, XCircleIcon, ExclamationCircleIcon, XMarkIcon } from '@heroicons/react/24/solid'
 import { getUserInfo, getAllPrinter, Print } from "../../service/userService";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { Alert, Button } from "@material-tailwind/react";
 export default function SelectPrinter(props) {
     const [showModal, setShowModal] = React.useState(false);
     const [showAlert, setAlert] = useState(false);
@@ -18,13 +19,31 @@ export default function SelectPrinter(props) {
     const [printerid, setPrinterid] = useState("")
     const [location, setLocation] = useState("")
     const [configprint, setConfig] = useState({})
+    const [open, setOpen] = React.useState(false);
+    const [open1, setOpen1] = React.useState(false);
+    const [open2, setOpen2] = React.useState(false);
+    const [open3, setOpen3] = React.useState(false);
+
+    const [open4, setOpen4] = React.useState(false);
+    const [open5, setOpen5] = React.useState(false);
+    const [open6, setOpen6] = React.useState(false);
+    const [open7, setOpen7] = React.useState(false);
+    const [open8, setOpen8] = React.useState(false);
+    const [open9, setOpen9] = React.useState(false);
+    const [open10, setOpen10] = React.useState(false);
+    const [open11, setOpen11] = React.useState(false);
+    const [open12, setOpen12] = React.useState(false);
+    const [open13, setOpen13] = React.useState(false);
+
+    const [loading, setLoading] = useState(false)
+
+
     const handlesetPrinterid = (printer) => {
         const idx = printer.id
         setPrinterid(printer.id)
         setLocation(printer.location)
         const ele = document.getElementById(idx)
-        ele.classList.add('scale-105')
-        ele.classList.add('ring')
+        ele.classList.add('scale-105', 'ring')
         const getPrinter = printers.filter((printer) => (printer.id !== idx))
 
         getPrinter.forEach((printer, index) => {
@@ -72,133 +91,73 @@ export default function SelectPrinter(props) {
         }
         setConfig(configprint)
         if (configprint.numpage == -1 || !configprint.numpage) {
-            toast.error('Thông tin số trang chưa hợp lệ', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            setOpen4(true)
+            setTimeout(() => {
+                setOpen4(false)
+            }, 2000);
             return
         }
         if (!props.layout) {
-            toast.error('Chưa chọn layout', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            setOpen5(true)
+            setTimeout(() => {
+                setOpen5(false)
+            }, 2000);
             return
         }
         if (!props.pagesize) {
-            toast.error('Chưa chọn cỡ giấy', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            setOpen6(true)
+            setTimeout(() => {
+                setOpen6(false)
+            }, 2000);
             return
         }
         if (props.pageperside == 0) {
-            toast.error('Chưa chọn số trang trên một mặt', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            setOpen7(true)
+            setTimeout(() => {
+                setOpen7(false)
+            }, 2000);
             return
         }
         if (!/^\d+$/.test(props.pageperside)) {
-            toast.error('Số trang trên một mặt không hợp lệ', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            setOpen8(true)
+            setTimeout(() => {
+                setOpen8(false)
+            }, 2000);
             return
         }
         if (!props.alignment) {
-            toast.error('Chưa chọn căn lề', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            setOpen9(true)
+            setTimeout(() => {
+                setOpen9(false)
+            }, 2000);
             return
         }
         if (!props.scale) {
-            toast.error('Chưa chọn tỉ lệ', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            setOpen10(true)
+            setTimeout(() => {
+                setOpen10(false)
+            }, 2000);
             return
         }
         if (props.copy == 0) {
-            toast.error('Chưa chọn số bản in', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            setOpen11(true)
+            setTimeout(() => {
+                setOpen11(false)
+            }, 2000);
             return
         }
         if (!/^\d+$/.test(props.copy)) {
-            toast.error('Số bản in không hợp lệ', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            setOpen12(true)
+            setTimeout(() => {
+                setOpen12(false)
+            }, 2000);
             return
         }
         if (configprint.numpage > props.numpage) {
-            toast.error('Vượt quá số trang cho phép', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            setOpen13(true)
+            setTimeout(() => {
+                setOpen13(false)
+            }, 2000);
             return
 
         }
@@ -219,9 +178,6 @@ export default function SelectPrinter(props) {
         { value: '16h-17h', label: '16h-17h' },
         { value: '17h-18h', label: '17h-18h' },
     ]
-
-
-
 
     const printerList = [];
     printers.forEach((printer, index) => {
@@ -274,73 +230,59 @@ export default function SelectPrinter(props) {
                 </button>
             </>
         );
-
     })
-
 
     const customStyles = {
         option: (styles, { data, isDisabled, isFocused, isSelected }) => {
             return {
                 ...styles,
                 backgroundColor: isFocused ? "#608bd1" : null,
-
                 color: "#333333",
                 cursor: "pointer",
-
             };
-
-
         },
 
     }
     const handlePrint = async () => {
         if (!printerid) {
-            toast.error('Chưa chọn máy in', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            setOpen(true)
+            setTimeout(() => {
+                setOpen(false)
+            }, 2000);
             return
         }
+
         if (!date) {
-            toast.error('Chưa chọn ngày lấy', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            setOpen1(true)
+            setTimeout(() => {
+                setOpen1(false)
+            }, 2000);
             return
         }
         if (!time) {
-            toast.error('Chưa chọn thời gian lấy', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            setOpen2(true)
+            setTimeout(() => {
+                setOpen2(false)
+            }, 2000);
             return
         }
+
         const setupprinter = {
             printerid: printerid,
             time: time,
             date: date,
             location: location
         }
-        props.offModalPrint()
-        setShowModal(false)
+
+        setOpen3(true)
+        setLoading(true)
+        setTimeout(() => {
+            setOpen3(false)
+            setLoading(false)
+            setShowModal(false)
+            props.offModalPrint()
+        }, 1500);
+
 
         const data = {
             user: userinfo,
@@ -354,16 +296,8 @@ export default function SelectPrinter(props) {
         setDate("")
         setPrinterid("")
         setLocation("")
-        toast.success('In thành công', {
-            position: "bottom-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        })
+
+
     }
     const handleCancel = () => {
         setTime("")
@@ -382,62 +316,157 @@ export default function SelectPrinter(props) {
             >
                 Tiếp tục
             </button>
-            {/* Not enough page -> alert */}
-            {
-                showAlert ? (
-                    <>
-                        <div class="fixed  inset-0 z-50 outline-none focus:outline-none ">
-                            <div class="my-6 flex justify-center items-center h-screen">
-                                {/*content*/}
-                                <div class=" h-auto  w-[30%] min-w-[300px]  items-center bg-white rounded-lg shadow-xl 
-                                     block  md:p-10 p-5 grid gap-y-10" >
-                                    {/* Header */}
-                                    {/* Bodyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy */}
-                                    <div class="flex  ">
-                                        <p class="text-center md:text-2xl text-md font-bold">
-                                            Hiện tại bạn không đủ số trang in khả dụng. Bạn có muốn mua thêm trang in?
-                                        </p>
-                                    </div>
-                                    {/*footer*/}
-                                    <div className="flex justify-center rounded-b ">
-                                        <button
-                                            className="text-black background-transparent  w-auto 
-                                                    font-bold uppercase px-6 py-2 text-sm border border-2 border-black  shadow hover:shadow-lg  rounded
-                                                    ease-linear transition-all duration-150 mr-3
-                                                    "
-                                            type="button"
-                                            onClick={() => setAlert(false)}
-                                        >
-                                            Hủy
-                                        </button>
-                                        <button
-                                            className="bg-blue-500 text-white active:bg-emerald-600 w-auto 
-                                            font-bold uppercase text-sm px-6 py-3 rounded 
-                                                    shadow hover:shadow-lg outline-none 
-                                                    focus:outline-none  ease-linear transition-all duration-150"
-                                            type="button"
-                                            onClick={() => setAlert(false)}
-                                        >
-                                            Đồng ý
-                                        </button>
+            <div class="fixed z-50 top-10 right-2 " id="alert">
+                <Alert open={open4} onClose={() => { setOpen4(false) }}
+                    animate={{
+                        mount: { x: 0 },
+                        unmount: { x: 100 },
+                    }}
+                    icon={<ExclamationCircleIcon className="w-6" />}
+                    className="bg-red-500 w-[21rem]">
+                    Thông tin số trang chưa hợp lệ
+                </Alert>
+                <Alert open={open5} onClose={() => { setOpen5(false) }}
+                    animate={{
+                        mount: { x: 0 },
+                        unmount: { x: 100 },
+                    }}
+                    icon={<ExclamationCircleIcon className="w-6" />}
+                    className="bg-red-500 w-[21rem]">
+                    Chưa chọn layout
+                </Alert>
+                <Alert open={open6} onClose={() => { setOpen6(false) }}
+                    animate={{
+                        mount: { x: 0 },
+                        unmount: { x: 100 },
+                    }}
+                    icon={<ExclamationCircleIcon className="w-6" />}
+                    className="bg-red-500 w-[21rem]">
+                    Chưa chọn cỡ giấy
+                </Alert>
+                <Alert open={open7} onClose={() => { setOpen7(false) }}
+                    animate={{
+                        mount: { x: 0 },
+                        unmount: { x: 100 },
+                    }}
+                    icon={<ExclamationCircleIcon className="w-6" />}
+                    className="bg-red-500 w-[21rem]">
+                    Chưa chọn số trang trên một mặt
+                </Alert>
+                <Alert open={open8} onClose={() => { setOpen8(false) }}
+                    animate={{
+                        mount: { x: 0 },
+                        unmount: { x: 100 },
+                    }}
+                    icon={<ExclamationCircleIcon className="w-6" />}
+                    className="bg-red-500 w-[21rem]">
+                    Số trang trên một mặt không hợp lệ
+                </Alert>
+                <Alert open={open9} onClose={() => { setOpen9(false) }}
+                    animate={{
+                        mount: { x: 0 },
+                        unmount: { x: 100 },
+                    }}
+                    icon={<ExclamationCircleIcon className="w-6" />}
+                    className="bg-red-500 w-[21rem]">
+                    Chưa chọn căn lề
+                </Alert>
+                <Alert open={open10} onClose={() => { setOpen10(false) }}
+                    animate={{
+                        mount: { x: 0 },
+                        unmount: { x: 100 },
+                    }}
+                    icon={<ExclamationCircleIcon className="w-6" />}
+                    className="bg-red-500 w-[21rem]">
+                    Chưa chọn tỉ lệ
+                </Alert>
+                <Alert open={open11} onClose={() => { setOpen11(false) }}
+                    animate={{
+                        mount: { x: 0 },
+                        unmount: { x: 100 },
+                    }}
+                    icon={<ExclamationCircleIcon className="w-6" />}
+                    className="bg-red-500 w-[21rem]">
+                    Chưa chọn số bản in
+                </Alert>
+                <Alert open={open12} onClose={() => { setOpen12(false) }}
+                    animate={{
+                        mount: { x: 0 },
+                        unmount: { x: 100 },
+                    }}
+                    icon={<ExclamationCircleIcon className="w-6" />}
+                    className="bg-red-500 w-[21rem]">
+                    Số bản in không hợp lệ
+                </Alert>
+                <Alert open={open13} onClose={() => { setOpen13(false) }}
+                    animate={{
+                        mount: { x: 0 },
+                        unmount: { x: 100 },
+                    }}
+                    icon={<ExclamationCircleIcon className="w-6" />}
+                    className="bg-red-500 w-[21rem]">
+                    Vượt quá số trang cho phép
+                </Alert>
 
-                                    </div>
-                                    {/* </div> */}
 
-
-                                </div>
-                            </div>
-                        </div >
-
-                        <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
-                    </>
-                ) : null
-            }
+            </div>
             {/* Select Printer */}
             {
                 showModal ? (
                     <>
                         <div class="fixed  inset-0 z-50 outline-none focus:outline-none ">
+                            <div class="fixed z-50 top-10 right-2 " id="alert">
+                                <Alert open={open} onClose={() => { setOpen(false) }}
+                                    animate={{
+                                        mount: { x: 0 },
+                                        unmount: { x: 100 },
+                                    }}
+                                    icon={<ExclamationCircleIcon className="w-6" />}
+                                    className="bg-red-500 w-[21rem]">
+                                    Chưa chọn máy in
+                                </Alert>
+
+                                <Alert open={open1} onClose={() => { setOpen1(false) }}
+                                    animate={{
+                                        mount: { x: 0 },
+                                        unmount: { x: 100 },
+                                    }}
+                                    icon={<ExclamationCircleIcon className="w-6" />}
+                                    className="bg-red-500 w-[21rem]">
+                                    Chưa chọn ngày lấy tài liệu
+                                </Alert>
+                                <Alert open={open2} onClose={() => { setOpen2(false) }}
+                                    animate={{
+                                        mount: { x: 0 },
+                                        unmount: { x: 100 },
+                                    }}
+                                    icon={<ExclamationCircleIcon className="w-6" />}
+                                    className="bg-red-500 w-[21rem]">
+                                    Chưa chọn thời gian lấy tài liệu
+                                </Alert>
+                                <Alert
+                                    open={open3}
+                                    onClose={() => { setOpen3(false) }}
+                                    action={
+                                        <Button
+                                            variant="text"
+                                            size="sm"
+                                            className="!absolute top-2 right-0"
+                                            onClick={() => setOpen(false)}
+                                        >
+                                            <XMarkIcon className="w-6" />
+                                        </Button>
+                                    }
+                                    animate={{
+                                        mount: { x: 0 },
+                                        unmount: { x: 100 },
+                                    }}
+                                    icon={< CheckCircleIcon className="w-6 text-green-500" />}
+                                    className="bg-white text-black w-[21rem]">
+                                    In thành công
+                                </Alert>
+                            </div>
+
                             <div class="flex my-6  justify-center h-screen">
                                 {/*content*/}
                                 <div class="border-0 h-[90%] w-auto min-w-fit flex  bg-cus-blue  rounded-lg shadow-lg 
@@ -445,83 +474,86 @@ export default function SelectPrinter(props) {
                                     {/* PrintConfig */}
 
                                     <div class="md:h-full w-full flex-1 ">
-                                        <div class="flex flex-col h-full justify-center overflow-auto">
+                                        <div class="flex flex-col h-full justify-center overflow-auto scrollbar-thin scrollbar-thumb-[#a3a2a5]
+                                         scrollbar-track-gray-800/40 hover:scrollbar-thumb-[#c4c3c6]">
 
                                             {/* Header */}
-                                            <div class="flex sticky h-fit top-0 z-40 items-start p-3   bg-cus-blue  border-b border-solid border-blueGray-200 rounded-t">
+                                            <div class="flex sticky top-0 z-40 items-start p-3  bg-cus-blue  border-b border-solid 
+                                             rounded-t">
                                                 <h3 class="text-white text-xl font-semibold">
                                                     Chọn máy in
                                                 </h3>
                                             </div>
                                             {/* Bodyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy */}
-                                            <div class="flex flex-col w-full  md:grid md:grid-cols-2 md:grid-flow-row
-                                         gap-x-10 gap-y-7  px-12 py-6 overflow-auto">
-                                                {printerList}
-                                            </div>
-                                            {/* Select Time */}
-                                            <div class="flex flex-row">
-                                                <div class='w-1/2'>
-                                                    <div class="flex  bg-cus-blue items-start p-3 
+                                            <div class="overflow-auto   scrollbar-thin scrollbar-thumb-[#a3a2a5]
+                                         scrollbar-track-gray-800/40 hover:scrollbar-thumb-[#c4c3c6] ">
+
+                                                <div id="printerList" class="flex flex-col   md:grid md:grid-cols-2 md:grid-flow-row
+                                         gap-x-10 gap-y-7 px-12 py-6 ">
+                                                    {printerList}
+                                                </div>
+                                                {/* Select Time */}
+                                                <div class="flex md:flex-row flex-col">
+                                                    <div class='md:w-1/2'>
+                                                        <div class="flex  bg-cus-blue items-start p-3 
+                                                        border-b border-solid border-blueGray-200 rounded-t
+                                                         ">
+                                                            <h3 class="text-white text-xl font-semibold ">
+                                                                Chọn ngày lấy tài liệu
+                                                            </h3>
+                                                        </div>
+                                                        <div class="px-6 py-6 w-80 ">
+                                                            <input onChange={(event) => handleChangeDate(event)} id="selectTime" styles={customStyles} maxMenuHeight={100}
+                                                                isSearchable={false} type="date" />
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div class="flex  bg-cus-blue items-start p-3 
                                             border-b border-solid border-blueGray-200 rounded-t
                                              ">
-                                                        <h3 class="text-white text-xl font-semibold ">
-                                                            Chọn ngày lấy tài liệu
-                                                        </h3>
-                                                    </div>
-                                                    <div class="px-6 py-6 w-80 ">
-                                                        <input onChange={(event) => handleChangeDate(event)} id="selectTime" styles={customStyles} maxMenuHeight={100}
-                                                            isSearchable={false} type="date" />
+                                                            <h3 class="text-white text-xl font-semibold ">
+                                                                Chọn thời điểm lấy tài liệu
+                                                            </h3>
+                                                        </div>
+                                                        <div class="px-6 py-6 w-80 z-40 ">
+                                                            <Select
+                                                                options={optionsTime}
+                                                                id="selectTime"
+                                                                styles={customStyles}
+                                                                placeholder='Chọn khung giờ'
+                                                                maxMenuHeight={100}
+                                                                isSearchable={false}
+                                                                onChange={(event) => handleChangeTime(event)}
+                                                            >
+                                                            </Select>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div>
-                                                    <div class="flex  bg-cus-blue items-start p-3 
-                                            border-b border-solid border-blueGray-200 rounded-t
-                                             ">
-                                                        <h3 class="text-white text-xl font-semibold ">
-                                                            Chọn thời điểm lấy tài liệu
-                                                        </h3>
-                                                    </div>
-                                                    <div class="px-6 py-6 w-80 ">
-                                                        <Select
-                                                            options={optionsTime}
-                                                            id="selectTime"
-                                                            styles={customStyles}
-                                                            placeholder='Chọn khung giờ'
-                                                            maxMenuHeight={100}
-                                                            isSearchable={false}
-                                                            onChange={(event) => handleChangeTime(event)}
-                                                        >
-                                                        </Select>
-                                                    </div>
+                                                {/*footer*/}
+                                                <div className="flex items-center justify-end p-6 rounded-b">
+
+                                                    <button
+                                                        className="text-white background-transparent  font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                                        type="button"
+                                                        onClick={() => handleCancel()}
+                                                    >
+                                                        Hủy
+                                                    </button>
+                                                    <button
+                                                        disabled={loading}
+                                                        className="disabled:bg-blue-300 disabled:hover:shadow-none enabled:bg-blue-500 text-white enabled:active:bg-emerald-600 font-bold 
+                                                        uppercase text-sm px-6 py-3 rounded shadow enabled:hover:shadow-lg outline-none 
+                                                        enabled:focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                                        type="button"
+                                                        onClick={() => handlePrint()}
+                                                    >
+                                                        Tiếp tục
+                                                    </button>
                                                 </div>
                                             </div>
 
-
-
-
-                                            {/*footer*/}
-                                            <div className="flex items-center justify-end p-6 rounded-b">
-
-                                                <button
-                                                    className="text-white background-transparent  font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                                    type="button"
-                                                    onClick={() => handleCancel()}
-                                                >
-                                                    Hủy
-                                                </button>
-                                                <button
-                                                    className="bg-blue-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                                    type="button"
-                                                    onClick={() => handlePrint()}
-                                                >
-                                                    Tiếp tục
-                                                </button>
-                                            </div>
                                         </div>
                                     </div>
-
-
-
 
                                 </div>
                             </div>

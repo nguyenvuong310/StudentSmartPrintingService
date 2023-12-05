@@ -63,7 +63,8 @@ const PrivateStorage = (props) => {
             document.getElementById('storage')
         );
         const element = (
-            <div class="grid md:grid-cols-5 grid-cols-2 grid-flow-row  gap-x-[4rem] gap-y-[2rem] p-10">
+            <div class="grid mdLarge:grid-cols-5 mdMd:grid-cols-4 smSm:grid-cols-3 xsXs:grid-cols-2 grid-cols-1 
+            grid-flow-row  gap-x-[4rem] gap-y-[2rem] py-10 md:px-10 ">
                 {listdoc && listdoc.slice((index - 1) * 10, (index * 10)).map((doc, index) =>
                 (
                     < StudentFileCard

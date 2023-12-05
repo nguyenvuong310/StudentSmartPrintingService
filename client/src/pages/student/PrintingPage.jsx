@@ -256,7 +256,7 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
                       ">
 
                       {/* Header */}
-                      <div class="flex sticky top-0 z-40 bg-cus-blue items-start p-3 border-b border-solid border-blueGray-200 rounded-t">
+                      <div class="flex sticky top-0 z-40 bg-cus-blue items-start p-3 border-b border-solid  rounded-t">
                         <h3 class="text-white text-xl font-semibold">
                           Cài đặt cấu hình in
                         </h3>

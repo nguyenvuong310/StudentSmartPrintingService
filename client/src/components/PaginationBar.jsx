@@ -39,7 +39,7 @@ const PaginationBar = (props) => {
         }
     }
     return (
-        <ol className="absolute inset-x-0  bottom-0 flex justify-center gap-1 text-xs font-medium mb-0">
+        <ol className=" bottom-0 flex justify-center gap-1 text-xs font-medium mb-0">
             <li>
                 <button
                     onClick={() => handlePrevPage()}

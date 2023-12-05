@@ -1,10 +1,10 @@
 import HeaderStudent from "./HeaderStudent";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer"
-import FolderCard from "../../components/StudentFolderCard"
-import StudentFolderCard from "../../components/StudentFolderCard";
-import FolderImg from "../../assets/folderimg.png";
-import PagiBar from "../../components/PaginationBar"
+// import Header from "../../components/Header";
+// import Footer from "../../components/Footer"
+// import FolderCard from "../../components/StudentFolderCard"
+// import StudentFolderCard from "../../components/StudentFolderCard";
+// import FolderImg from "../../assets/folderimg.png";
+// import PagiBar from "../../components/PaginationBar"
 import { getUserInfo, getListCourse } from "../../service/userService";
 import { useState, useEffect } from "react";
 import { data } from "autoprefixer";
@@ -14,6 +14,7 @@ import PrivateStorage from "./PrivateStorage";
 import PrintingPage from "./PrintingPage";
 import FolderView from "./FolderView";
 import StudentPrintHistory from "./StudentPrintHistory";
+import FeedBack from "../../components/feedBack";
 const HomePageStudent = () => {
   const [userinfo, setUserinfo] = useState({})
   const [check, setCheck] = useState(1);
@@ -66,6 +67,7 @@ const HomePageStudent = () => {
         {check == 3 && <StudentProfile />}
         {check == 4 && <StudentPrintHistory user={userinfo} />}
         {check == 5 && <FolderView inputupload={handleChangeUpload} upload={uploaded} course={course} user={userinfo} inputcontent={handleChangeContent} content={content} inputsearch={handleOnChangeSearchLocation} search={searchlocation} />}
+        <FeedBack />
       </div>
 
     </>

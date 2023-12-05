@@ -1,8 +1,16 @@
-# React + Vite
+# Environment settings
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Download [Nodejs](https://nodejs.org/en/blog/release/v16.16.0) (version >= 16.0.0)
+- Download [XAMPP](https://www.apachefriends.org/download.html) or MySQL
 
-Currently, two official plugins are available:
+## Install node_modules
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+    npm install
+
+Install all libraries to use for ReactJs
+
+## Run with localhost
+
+    npm run dev
+
+Web is run on port **5173**

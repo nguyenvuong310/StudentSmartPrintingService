@@ -31,34 +31,52 @@ let initWebRoutes = (app) => {
   // userController
   router.get("/api/getUserInfo", userController.handleGetUserInfo);
   router.get("/api/getalldoc", userController.handleGetDoc);
-  router.post("/api/deletedoc", userController.handleDeleteDoc)
-  router.post("/api/getlistcourse", userController.handleGetListCourse)
-  router.post("/api/getdocbysearch", userController.handleGetDocbySearch)
-  router.post("/api/getdocbysearchpublic", userController.handleGetDocbySearchPublic)
-  router.post("/api/getdocbysearchname", userController.handleGetDocbySearchName)
+  router.post("/api/deletedoc", userController.handleDeleteDoc);
+  router.post("/api/getlistcourse", userController.handleGetListCourse);
+  router.post("/api/getdocbysearch", userController.handleGetDocbySearch);
+  router.post(
+    "/api/getdocbysearchpublic",
+    userController.handleGetDocbySearchPublic
+  );
+  router.post(
+    "/api/getdocbysearchname",
+    userController.handleGetDocbySearchName
+  );
   // printController
-  router.post("/api/getallprinter", printController.handleGetPrinter)
-  router.post("/api/getprintertime", printController.handleGetPrinterTime)
-  router.post("/api/print", printController.handlePrint)
-  router.post("/api/getprinthistory", printController.handleGetPrintHistory)
+  router.post("/api/getallprinter", printController.handleGetPrinter);
+  router.post("/api/getprintertime", printController.handleGetPrinterTime);
+  router.post("/api/print", printController.handlePrint);
+  router.post("/api/getprinthistory", printController.handleGetPrintHistory);
   // buypageController
-  router.post("/api/buypage", buypageController.handleBuyPage)
-  router.post("/api/getprintbuy", buypageController.handleGetBuyHistory)
+  router.post("/api/buypage", buypageController.handleBuyPage);
+  router.post("/api/getprintbuy", buypageController.handleGetBuyHistory);
   // searchController
-  router.post("/api/search", searchController.handleSearch)
+  router.post("/api/search", searchController.handleSearch);
   // adminController
-  router.post("/api/getalluser", adminController.handleGetAllUser)
-  router.post("/api/getblockeduser", adminController.handleGetBlockedUser)
-  router.post("/api/admingetallprinter", adminController.handleGetAllPrinter)
-  router.post("/api/blockuser", adminController.handleBlockUser)
-  router.post("/api/deleteprinter", adminController.handleDeletePrinter)
-  router.post("/api/admingetprinthistory", adminController.handleGetPrintHistory)
-  router.post("/api/admingetprinthistorybymssv", adminController.handleGetPrintHistoryByMSSV)
-  router.post("/api/addprinter", adminController.handleAddPrinter)
-  router.post("/api/updateprinter", adminController.handleUpdatePrinter)
-  router.post("/api/admingetuserbysearch", adminController.handleGetUserBySearch)
-  router.post("/api/admingetblockeduserbysearch", adminController.handleGetBlockedUserBySearch)
-  router.post("/api/activeprinter", adminController.handleActivePrinter)
+  router.post("/api/getalluser", adminController.handleGetAllUser);
+  router.post("/api/getblockeduser", adminController.handleGetBlockedUser);
+  router.post("/api/admingetallprinter", adminController.handleGetAllPrinter);
+  router.post("/api/blockuser", adminController.handleBlockUser);
+  router.post("/api/deleteprinter", adminController.handleDeletePrinter);
+  router.post(
+    "/api/admingetprinthistory",
+    adminController.handleGetPrintHistory
+  );
+  router.post(
+    "/api/admingetprinthistorybymssv",
+    adminController.handleGetPrintHistoryByMSSV
+  );
+  router.post("/api/addprinter", adminController.handleAddPrinter);
+  router.post("/api/updateprinter", adminController.handleUpdatePrinter);
+  router.post(
+    "/api/admingetuserbysearch",
+    adminController.handleGetUserBySearch
+  );
+  router.post(
+    "/api/admingetblockeduserbysearch",
+    adminController.handleGetBlockedUserBySearch
+  );
+  router.post("/api/activeprinter", adminController.handleActivePrinter);
   return app.use("/", router);
 };
 module.exports = initWebRoutes;

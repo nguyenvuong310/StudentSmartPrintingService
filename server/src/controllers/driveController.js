@@ -64,7 +64,11 @@ const handleUploadFile = async (req, res) => {
       res.status(400).send("No file uploaded.");
       return;
     }
-
+    // Check if the file size exceeds the limit
+    if (req.file.size > 50 * 1024 * 1024) {
+      res.status(400).send("File size limit exceeded (max 50 MB).");
+      return;
+    }
     const accessToken = req.user.accessToken;
     const result = await checkAuth(accessToken);
     if (result && result.errCode === 0) {
@@ -157,5 +161,5 @@ const getNumberOfPages = async (buffer) => {
 module.exports = {
   handleCreateFolder,
   handleUploadFile,
-  checkAuth
+  checkAuth,
 };

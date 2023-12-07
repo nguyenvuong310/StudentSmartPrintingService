@@ -139,14 +139,22 @@ const FolderView = (props) => {
         handleIndex(active - 1)
         window.scrollTo(0, 0);
     };
-
+    const backtoCourse = async (course) => {
+        if (course) {
+            const data = {
+                content: course,
+            }
+            const list = await getDocBySearchPublic(data)
+            setlistDoc(list.data.doc)
+        }
+    }
     return (
         <>
             <div className="flex  flex-col min-h-[770px] w-[90%] self-center bg-blue-200 mt-5 rounded-xl">
                 <div class="flex sticky top-0 z-10 bg-[#678CF8] items-start p-3 border-b border-solid  rounded-t">
-                    <h3 class="text-gray-900 text-xl font-semibold">
-                        {course}
-                    </h3>
+                    <button onClick={() => backtoCourse(course)} class="text-gray-900 text-xl font-semibold">
+                        {course ? course : "Không có thông tin"}
+                    </button>
                 </div>
                 <div id="storage" class=" flex flex-1 w-fit self-center justify-center">
 

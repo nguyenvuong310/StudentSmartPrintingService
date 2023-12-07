@@ -20,6 +20,7 @@ const FolderView = (props) => {
     const [course, setCourse] = useState("")
     useEffect(() => {
         const test = async () => {
+            console.log(props.search)
             if (props.search == 5) {
                 const data = {
                     content: props.content,
@@ -41,7 +42,7 @@ const FolderView = (props) => {
                 // if (list && list.data && list.data.doc && list.data.doc.length > 0) { setCourse(props.content) }
                 const course = await getListCourse();
                 for (let i = 0; i < 27; i++) {
-                    // console.log(course.data.course[i].name.toLowerCase() + " va " + props.content)
+                    console.log(course.data.course[i].name.toLowerCase() + " va " + props.content)
                     const string1 = course.data.course[i].name.toLowerCase().trim();
                     const string2 = props.content.trim().toLowerCase();
                     if (string1 == string2) {
@@ -144,8 +145,7 @@ const FolderView = (props) => {
             <div className="flex  flex-col min-h-[770px] w-[90%] self-center bg-blue-200 mt-5 rounded-xl">
                 <div class="flex sticky top-0 z-10 bg-[#678CF8] items-start p-3 border-b border-solid  rounded-t">
                     <h3 class="text-gray-900 text-xl font-semibold">
-
-                        {props.course}
+                        {course}
                     </h3>
                 </div>
                 <div id="storage" class=" flex flex-1 w-fit self-center justify-center">

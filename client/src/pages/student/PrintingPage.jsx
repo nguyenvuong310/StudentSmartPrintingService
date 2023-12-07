@@ -416,7 +416,7 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
                         >
                           Hủy
                         </button>
-                        <SelectPrinter handleSetNumpage={handleSetNumpage} numpage={userNumPage} doc={doc}
+                        <SelectPrinter handleSetNumpage={handleSetNumpage} numpage={userinfo.numpage - userinfo.numpageused} doc={doc}
                           handleNumpage={handleNumpage}
                           numpageconfig={numpage}
                           layout={layout}

@@ -274,14 +274,20 @@ export default function SelectPrinter(props) {
             location: location
         }
 
-        setOpen3(true)
-        setLoading(true)
-        setTimeout(() => {
-            setOpen3(false)
-            setLoading(false)
-            setShowModal(false)
-            props.offModalPrint()
-        }, 1500);
+        // setOpen3(true)
+        // setLoading(true)
+        // setShowModal(false)
+        // props.offModalPrint()
+        // setOpen3(false)
+        // setLoading(false)
+        // setTimeout(() => {
+        //     // setShowModal(false)
+        //     // props.offModalPrint()
+        //     setOpen3(false)
+        //     // setLoading(false)
+
+
+        // }, 1000);
 
 
         const data = {
@@ -292,6 +298,23 @@ export default function SelectPrinter(props) {
         }
         // console.log(data)
         await Print(data)
+        // setOpen3(true)
+        toast.success('In thành công', {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        })
+        props.offModalPrint()
+        setShowModal(false)
+        // setTime(() => {
+        //     setOpen3(false)
+        // }, 1000)
+
         setTime("")
         setDate("")
         setPrinterid("")

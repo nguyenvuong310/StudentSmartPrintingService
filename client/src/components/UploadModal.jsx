@@ -7,7 +7,9 @@ import {
     ArrowUpTrayIcon,
     EnvelopeIcon, ExclamationTriangleIcon,
     DocumentArrowUpIcon,
-    XCircleIcon
+    XCircleIcon,
+    ExclamationCircleIcon,
+    CheckCircleIcon, XMarkIcon
 } from "@heroicons/react/24/outline";
 import SelectR from 'react-select'
 import CreatableSelect from 'react-select/creatable';
@@ -16,6 +18,7 @@ import icon_word from "../assets/icon-word.png";
 import icon_pdf from "../assets/PDF_icon.svg.png";
 import { Spinner } from "@material-tailwind/react";
 import ReactDOM from 'react-dom/client';
+import { Alert, Button } from "@material-tailwind/react";
 
 export default function UploadModal(props) {
     const [showModal, setShowModal] = useState(props.isOpen);
@@ -26,6 +29,11 @@ export default function UploadModal(props) {
     const [uploaded, setUploaded] = useState(false)
     const [listCourse, setListCourse] = useState([])
     const [loading, setLoading] = useState(false)
+    const [open, setOpen] = React.useState(false);
+    const [open1, setOpen1] = React.useState(false);
+    const [open2, setOpen2] = React.useState(false);
+    const [open3, setOpen3] = React.useState(false);
+
     useEffect(() => {
         const check = async () => {
             setLoading(false)
@@ -73,55 +81,31 @@ export default function UploadModal(props) {
     }
     let handleUpload = async () => {
         if (!location) {
-            toast.error('Chưa chọn vị trí để lưu tài liệu', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            setOpen(true)
+            setTimeout(() => {
+                setOpen(false)
+            }, 2000);
             return
         }
         if (!course) {
-            toast.error('Chưa chọn môn học', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            setOpen1(true)
+            setTimeout(() => {
+                setOpen1(false)
+            }, 2000);
             return
         }
         if (!name) {
-            toast.error('Chưa có tên tài liệu', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            setOpen2(true)
+            setTimeout(() => {
+                setOpen2(false)
+            }, 2000);
             return
         }
         if (!file) {
-            toast.error('Chưa có file để upload', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            setOpen3(true)
+            setTimeout(() => {
+                setOpen3(false)
+            }, 2000);
             return
         }
         let data = {
@@ -149,18 +133,21 @@ export default function UploadModal(props) {
         setName("")
         props.inputupload(!props.upload)
         if (upload && upload.data && upload.data.errCode === 0) {
-            toast.success('Upload thành công', {
-                position: "bottom-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            })
+            props.checkUpload(true)
+            // toast.success('Upload thành công', {
+            //     position: "bottom-right",
+            //     autoClose: 3000,
+            //     hideProgressBar: false,
+            //     closeOnClick: true,
+            //     pauseOnHover: true,
+            //     draggable: true,
+            //     progress: undefined,
+            //     theme: "light",
+            // })
         } else {
-            toast.error("Upload không thành công");
+            // toast.error("Upload không thành công");
+            props.checkUpload(true)
+
         }
 
     }
@@ -178,7 +165,47 @@ export default function UploadModal(props) {
 
             {showModal ? (
                 <>
+
                     <div class="justify-center flex fixed inset-0 z-50 outline-none w-screen focus:outline-none ">
+                        <div class="fixed z-50 top-10 right-2 " id="alert">
+                            <Alert open={open} onClose={() => { setOpen(false) }}
+                                animate={{
+                                    mount: { x: 0 },
+                                    unmount: { x: 100 },
+                                }}
+                                icon={<ExclamationCircleIcon className="w-6" />}
+                                className="bg-red-500 w-[21rem]">
+                                Chưa chọn vị trí lưu tài liệu
+                            </Alert>
+                            <Alert open={open1} onClose={() => { setOpen1(false) }}
+                                animate={{
+                                    mount: { x: 0 },
+                                    unmount: { x: 100 },
+                                }}
+                                icon={<ExclamationCircleIcon className="w-6" />}
+                                className="bg-red-500 w-[21rem]">
+                                Chưa chọn môn học
+                            </Alert>
+                            <Alert open={open2} onClose={() => { setOpen2(false) }}
+                                animate={{
+                                    mount: { x: 0 },
+                                    unmount: { x: 100 },
+                                }}
+                                icon={<ExclamationCircleIcon className="w-6" />}
+                                className="bg-red-500 w-[21rem]">
+                                Chưa nhập tên tài liệu
+                            </Alert>
+                            <Alert open={open3} onClose={() => { setOpen3(false) }}
+                                animate={{
+                                    mount: { x: 0 },
+                                    unmount: { x: 100 },
+                                }}
+                                icon={<ExclamationCircleIcon className="w-6" />}
+                                className="bg-red-500 w-[21rem]">
+                                Chưa có file để upload
+                            </Alert>
+                        </div>
+
                         <div class="extraOutline w-[60%] relative p-4 bg-[#ABD7EF] bg-whtie m-auto rounded-lg shadow-xl">
                             <div className="w-6 h-6 absolute top-0 right-0  m-2">
                                 <XCircleIcon className="cursor-pointer" type="button"

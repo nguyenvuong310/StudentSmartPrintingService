@@ -25,7 +25,7 @@ const PublicStorage = (props) => {
     return (
         <>
 
-            <div className="flex min-h-[40rem] p-5 flex-col items-center gap-4  self-center w-[85%] bg-[#E3E3E3] mt-5 rounded-xl">
+            <div className="flex min-h-[40rem] p-5 flex-col items-center gap-4  self-center w-[85%] bg-[#E3E3E3] bg-opacity-[75%] mt-5 rounded-xl">
                 <div class="grid flex-1 mt-[2rem] smLarge:grid-cols-3 smLarge:gap-y-0 gap-y-[2rem] smMd:grid-cols-2 gap-x-[4rem] gap mt-2">
                     {listCourse && pagenum == 1 && listCourse.slice(0, 9).map((course, index) => (
                         <div onClick={() => handleOpen(5, course.name)}>

@@ -1,14 +1,36 @@
 import React, { useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ArrowUpTrayIcon } from "@heroicons/react/24/outline";
 import UploadModal from "./UploadModal";
-
+import { Alert, Button } from "@material-tailwind/react";
+import {
+    ArrowUpTrayIcon,
+    ExclamationCircleIcon,
+    CheckCircleIcon, XMarkIcon
+} from "@heroicons/react/24/solid";
 export default function ButtonUpload(props) {
     const [showModal, setShowModal] = useState(false);
+    const [open, setOpen] = React.useState(false);
+    const [open1, setOpen1] = React.useState(false);
 
+
+    const checkUpload = (flag) => {
+        if (flag === true) {
+            setOpen(true)
+            setTimeout(() => {
+                setOpen(false)
+
+            }, 1500);
+        }
+        else {
+            setOpen1(true)
+            setTimeout(() => {
+                setOpen1(false)
+
+            }, 1500);
+        }
+    }
     useEffect(() => {
-        // console.log("modal", showModal);
     }, []);
     const toggle = () => {
         setShowModal(!showModal);
@@ -30,7 +52,44 @@ export default function ButtonUpload(props) {
                 </div>
 
             </button>
-            <UploadModal isOpen={showModal} toggle={toggle} inputupload={props.inputupload} upload={props.upload} />
+            <UploadModal isOpen={showModal}
+                toggle={toggle}
+                inputupload={props.inputupload}
+                upload={props.upload}
+                checkUpload={checkUpload} />
+            <div class="fixed z-50 top-[6rem] right-2 " id="alert">
+                <Alert
+                    variant="outlined"
+                    open={open}
+                    onClose={() => { setOpen(false) }}
+                    action={
+                        <Button
+                            variant="text"
+                            size="sm"
+                            className="!absolute top-2 right-0"
+                            onClick={() => setOpen(false)}
+                        >
+                            <XMarkIcon className="w-6" />
+                        </Button>
+                    }
+                    animate={{
+                        mount: { x: 0 },
+                        unmount: { x: 100 },
+                    }}
+                    icon={< CheckCircleIcon className="w-6 text-green-500" />}
+                    className="bg-white text-black w-[21rem]">
+                    Upload thành công
+                </Alert>
+                <Alert open={open1} onClose={() => { setOpen1(false) }}
+                    animate={{
+                        mount: { x: 0 },
+                        unmount: { x: 100 },
+                    }}
+                    icon={<ExclamationCircleIcon className="w-6" />}
+                    className="bg-red-500 w-[21rem]">
+                    Upload thất bại
+                </Alert>
+            </div>
             <ToastContainer />
         </>
     );

@@ -22,7 +22,6 @@ export default function SelectPrinter(props) {
     const [open, setOpen] = React.useState(false);
     const [open1, setOpen1] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
-    const [open3, setOpen3] = React.useState(false);
 
     const [open4, setOpen4] = React.useState(false);
     const [open5, setOpen5] = React.useState(false);
@@ -274,20 +273,6 @@ export default function SelectPrinter(props) {
             location: location
         }
 
-        // setOpen3(true)
-        // setLoading(true)
-        // setShowModal(false)
-        // props.offModalPrint()
-        // setOpen3(false)
-        // setLoading(false)
-        // setTimeout(() => {
-        //     // setShowModal(false)
-        //     // props.offModalPrint()
-        //     setOpen3(false)
-        //     // setLoading(false)
-
-
-        // }, 1000);
 
 
         const data = {
@@ -296,24 +281,11 @@ export default function SelectPrinter(props) {
             configprint: configprint,
             setupprinter: setupprinter,
         }
-        // console.log(data)
         await Print(data)
-        // setOpen3(true)
-        toast.success('In thành công', {
-            position: "top-right",
-            autoClose: 1500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        })
-        props.offModalPrint()
+
+        props.offModalPrint(true)
         setShowModal(false)
-        // setTime(() => {
-        //     setOpen3(false)
-        // }, 1000)
+
 
         setTime("")
         setDate("")
@@ -467,27 +439,7 @@ export default function SelectPrinter(props) {
                                     className="bg-red-500 w-[21rem]">
                                     Chưa chọn thời gian lấy tài liệu
                                 </Alert>
-                                <Alert
-                                    open={open3}
-                                    onClose={() => { setOpen3(false) }}
-                                    action={
-                                        <Button
-                                            variant="text"
-                                            size="sm"
-                                            className="!absolute top-2 right-0"
-                                            onClick={() => setOpen(false)}
-                                        >
-                                            <XMarkIcon className="w-6" />
-                                        </Button>
-                                    }
-                                    animate={{
-                                        mount: { x: 0 },
-                                        unmount: { x: 100 },
-                                    }}
-                                    icon={< CheckCircleIcon className="w-6 text-green-500" />}
-                                    className="bg-white text-black w-[21rem]">
-                                    In thành công
-                                </Alert>
+
                             </div>
 
                             <div class="flex my-6  justify-center h-screen">

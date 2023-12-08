@@ -7,7 +7,7 @@ const FeedBack = () => {
     <>
       <button
         type="button"
-        class="hover:ouline-none fixed bottom-[2rem] right-[1rem] z-10 z-30 grid h-[54px] w-[54px] place-items-center 
+        class="hover:ouline-none fixed bottom-[2rem] right-[1rem] z-0 grid h-[54px] w-[54px] place-items-center 
             rounded-full bg-blue-500 shadow-lg hover:scale-105  hover:drop-shadow-lg active:scale-105 active:shadow-none 
             active:ring active:drop-shadow-none md:bottom-[4rem] md:right-[3rem]"
       >

@@ -275,15 +275,15 @@ export default function SelectPrinter(props) {
         }
 
         setOpen3(true)
-        setLoading(true)
+        // setLoading(true)
+
+        setShowModal(false)
+        props.offModalPrint(true)
         setTimeout(() => {
             setOpen3(false)
-            setLoading(false)
-            setShowModal(false)
-            props.offModalPrint()
+            // setLoading(false)
+
         }, 1500);
-
-
         const data = {
             user: userinfo,
             doc: props.doc,
@@ -444,27 +444,7 @@ export default function SelectPrinter(props) {
                                     className="bg-red-500 w-[21rem]">
                                     Chưa chọn thời gian lấy tài liệu
                                 </Alert>
-                                <Alert
-                                    open={open3}
-                                    onClose={() => { setOpen3(false) }}
-                                    action={
-                                        <Button
-                                            variant="text"
-                                            size="sm"
-                                            className="!absolute top-2 right-0"
-                                            onClick={() => setOpen(false)}
-                                        >
-                                            <XMarkIcon className="w-6" />
-                                        </Button>
-                                    }
-                                    animate={{
-                                        mount: { x: 0 },
-                                        unmount: { x: 100 },
-                                    }}
-                                    icon={< CheckCircleIcon className="w-6 text-green-500" />}
-                                    className="bg-white text-black w-[21rem]">
-                                    In thành công
-                                </Alert>
+
                             </div>
 
                             <div class="flex my-6  justify-center h-screen">

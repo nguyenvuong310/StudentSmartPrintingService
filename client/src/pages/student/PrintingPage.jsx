@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 // import { Select, Option } from "@material-tailwind/react";
 import { EnvelopeIcon, ExclamationTriangleIcon, } from '@heroicons/react/24/outline'
 import SelectPrinter from "./SelectPrinter";
+import { Alert, Button } from "@material-tailwind/react";
+import { CheckCircleIcon, XCircleIcon, ExclamationCircleIcon, XMarkIcon } from '@heroicons/react/24/solid'
 
 import { getUserInfo } from "../../service/userService";
 import { usePrevious } from "@material-tailwind/react";
@@ -20,6 +22,9 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
   const [scale, setScale] = useState("")
   const [copy, setCopy] = useState(0)
   const [userinfo, setUserinfo] = useState({})
+  const [open3, setOpen3] = React.useState(false);
+
+
   const handleNumpage = (numpage) => {
     if (numpage === "all") {
       if (pagesize == "A3") return doc.numpage * 2 * copy
@@ -208,7 +213,7 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
 
 
   };
-  const handleCancel = () => {
+  const handleCancel = (check) => {
     setShowModal(false)
     setNumpage("")
     setLayout("")
@@ -217,6 +222,14 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
     setAlignment("")
     setScale("")
     setCopy(0)
+    if (check === true) {
+      setOpen3(true)
+      setTimeout(() => {
+        setOpen3(false)
+
+      }, 1500);
+    }
+
 
   }
   return (
@@ -230,6 +243,29 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
       >
         In
       </button>
+      <div class="fixed z-50 bottom-[8rem] right-2 " id="alert">
+        <Alert
+          open={open3}
+          onClose={() => { setOpen3(false) }}
+          action={
+            <Button
+              variant="text"
+              size="sm"
+              className="!absolute top-2 right-0"
+              onClick={() => setOpen(false)}
+            >
+              <XMarkIcon className="w-6" />
+            </Button>
+          }
+          animate={{
+            mount: { x: 0 },
+            unmount: { x: 100 },
+          }}
+          icon={< CheckCircleIcon className="w-6 text-green-500" />}
+          className="bg-white text-black w-[21rem]">
+          In thành công
+        </Alert>
+      </div>
       {
         showModal ? (
           <>

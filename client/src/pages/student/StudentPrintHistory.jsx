@@ -21,12 +21,12 @@ const StudentPrintHistory = (props) => {
   }, []);
   return (
     <>
-      <div className="bg-white-fill bg-cover">
-        <div class="flex h-screen">
+      <div className="bg-white-fill h-screen bg-cover ">
+        <div class="flex overflow-auto">
           <div class="flex w-full place-content-center">
-            <div class="sm:mx-0.8 lg:mx-0.8 w-5/6 overflow-x-auto">
+            <div class="sm:mx-0.8 lg:mx-0.8 w-5/6 ">
               <div class="inline-block min-w-full py-2 pt-10 sm:px-6 lg:px-8">
-                <div class="overflow-hidden rounded-lg shadow">
+                <div class=" rounded-lg shadow">
                   {/* TITLE */}
 
                   <div class="flex w-full border-2 border-b-black bg-white">
@@ -97,8 +97,13 @@ const StudentPrintHistory = (props) => {
                                 <td class="whitespace-nowrap px-7 py-4 text-lg font-light text-gray-900">
                                   {index + 1}
                                 </td>
-                                <td class="whitespace-nowrap px-7 py-4 text-lg font-light text-gray-900">
-                                  {history.namefile}
+                                <td class="whitespace-nowrap px-[18px]  py-4 text-lg font-light text-gray-900">
+                                  <p class="w-[200px]  truncate">
+                                    {history.namefile}
+                                  </p>
+                                  <div class="opacity-0  hover:opacity-100 duration-300 absolute flex justify-self-stretch 
+                                  px-1 text-sm bg-gray-200 text-black "> {history.namefile}
+                                  </div>
                                 </td>
                                 <td class="whitespace-nowrap px-7 py-4 text-lg font-light text-gray-900">
                                   {history.numpage}
@@ -107,6 +112,7 @@ const StudentPrintHistory = (props) => {
                                   {formattedCreatedAt}
                                 </td>
                                 <td class="whitespace-nowrap px-7 py-4 text-lg font-light text-gray-900">
+                                  {history.time}{', '}
                                   {formattedDate}
                                 </td>
                                 <td class="whitespace-nowrap px-7 py-4 text-lg font-light text-gray-900">

@@ -106,6 +106,15 @@ const UpdatePrinter = async (data) => {
         data: data
     });
 }
+const ConfirmPrinted = async (data) => {
+    const url = `${backendURL}/api/confirmprinted`;
+    return await axios({
+        url: url,
+        method: "POST",
+        withCredentials: true,
+        data: data
+    });
+}
 export {
     getAllUser,
     getBlockedUser,
@@ -119,4 +128,5 @@ export {
     getHistory,
     getHistorybySearch,
     UpdatePrinter,
+    ConfirmPrinted
 };

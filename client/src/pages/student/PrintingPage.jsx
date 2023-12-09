@@ -426,9 +426,6 @@ const PrintingPage = ({ doc, docUrl, userNumPage }) => {
                           placeholder:text-gray-400 text-[12px] leading-6" placeholder="Eg: 1,4,8..." />
                           </div>
                         </div>
-
-
-
                       </nav >
                       {/* PageNum available */}
                       <div class="flex  p-1 items-center italic font-thin text-white brightness-50" id='pageNAvail'>

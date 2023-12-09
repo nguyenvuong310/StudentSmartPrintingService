@@ -77,6 +77,8 @@ let initWebRoutes = (app) => {
     adminController.handleGetBlockedUserBySearch
   );
   router.post("/api/activeprinter", adminController.handleActivePrinter);
+  router.post("/api/confirmprinted", adminController.handleConfirmPrinted);
+
   return app.use("/", router);
 };
 module.exports = initWebRoutes;

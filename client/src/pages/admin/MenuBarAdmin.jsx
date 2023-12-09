@@ -21,7 +21,7 @@ const MenuAdmin = () => {
   return (
     <>
       {/* <!-- component --> */}
-      <div class="z-20 hidden h-screen w-[18rem] rounded-r-xl bg-gradient-to-b from-blue-800 to-cyan-500  pt-20 sm:flex">
+      <div class="z-20 hidden h-screen w-[18rem]  bg-gradient-to-b from-blue-800 to-cyan-500  pt-20 sm:flex">
         <div class=" flex w-[16rem] flex-col bg-gradient-to-b from-indigo-800/10 to-blue-500  p-4 text-white shadow-xl shadow-blue-gray-900/5">
           <div class="mb-2 flex border-b p-5 ">
             <h5 class=" font-mono text-4xl font-bold leading-snug tracking-normal antialiased ">

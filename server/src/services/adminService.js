@@ -2,7 +2,7 @@ import db from "../models/index";
 import bcrypt from 'bcryptjs';
 const salt = bcrypt.genSaltSync(10);
 const { Op } = require("sequelize");
-
+const moment = require('moment');
 let getAllUser = () => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -107,10 +107,21 @@ let getPrintHistoryByMSSV = (content) => {
                     [Op.or]: [
                         { userid: content.content },
                         { name: content.content },
-                    ]
+                    ],
                 }
-
             })
+            // console.log(data)
+            if (data.length == 0) {
+                const outputDate = moment(content.content, 'MM/YYYY').format('YYYY-MM');
+                console.log(outputDate)
+                data = await db.Prints.findAll({
+                    where: {
+                        date: {
+                            [Op.like]: `%${outputDate}%`,
+                        },
+                    }
+                })
+            }
             if (data) resolve(data)
             else resolve()
         } catch (e) {
@@ -119,6 +130,7 @@ let getPrintHistoryByMSSV = (content) => {
         }
     })
 }
+
 let getAddPrinter = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -225,6 +237,30 @@ let activePrinter = (data) => {
         }
     })
 }
+let confirmprinted = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let history = await db.Prints.findOne({
+                where: { id: data.id }
+            })
+            if (history) {
+                history.status = !history.status;
+                await history.save();
+                resolve({
+                    errCode: 0,
+                    errMessage: "confirm printed success",
+                })
+            } else {
+                resolve({
+                    errCode: 1,
+                    errMessage: "Not exit history in database"
+                })
+            }
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
 module.exports = {
     getAllUser,
     getBlockedUser,
@@ -237,5 +273,6 @@ module.exports = {
     updatePrinter,
     getUserbySearch,
     getBlockedUserbySearch,
-    activePrinter
+    activePrinter,
+    confirmprinted
 }

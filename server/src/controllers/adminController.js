@@ -168,6 +168,22 @@ const handleActivePrinter = async (req, res) => {
         })
     }
 }
+const handleConfirmPrinted = async (req, res) => {
+    let data = await adminService.confirmprinted(req.body);
+    if (data) {
+        return res.status(200).json({
+            errCode: 0,
+            errMessage: "confirm printed success",
+            data: data
+        })
+    } else {
+        return res.status(200).json({
+            errCode: 1,
+            errMessage: "confirm printed fail",
+            data: []
+        })
+    }
+}
 module.exports = {
     handleGetAllUser,
     handleGetBlockedUser,
@@ -181,4 +197,5 @@ module.exports = {
     handleGetUserBySearch,
     handleGetBlockedUserBySearch,
     handleActivePrinter,
+    handleConfirmPrinted
 };

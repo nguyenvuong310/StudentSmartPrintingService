@@ -74,7 +74,7 @@ const MenuAdmin = () => {
               </a>
             </div>
             <div class="w-[80%] text-sm text-white">
-              Copyright 2023 SPSS - Power by BAOSRANGER
+              Copyright 2023 SSPS - Power by BAOSRANGER
             </div>
           </div>
         </div>

@@ -20,7 +20,7 @@ const getRoleFromLocalStorage = () => {
 const logout = () => {
   localStorage.removeItem("role");
   localStorage.removeItem("user");
-  window.open(`${backendURL}/auth/logout`, "_self");
+  // window.open(`${backendURL}/auth/logout`, "_self");
 };
 
 const getUserInfo = async () => {

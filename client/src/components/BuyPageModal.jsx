@@ -178,7 +178,7 @@ export default function BuyPageModal(props) {
 
                                 <div className="flex flex-row space-x-3 mx-2">
                                     <input type="checkbox" onClick={handlecheck} />
-                                    <p className="font-semibold text-sm"> Bạn đồng ý với các điều khoản thanh toán cũng như các chính sách của dịch vụ SPSS </p>
+                                    <p className="font-semibold text-sm"> Bạn đồng ý với các điều khoản thanh toán cũng như các chính sách của dịch vụ SSPS </p>
                                 </div>
                             </div>
 

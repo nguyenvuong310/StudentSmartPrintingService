@@ -21,7 +21,7 @@ const StudentPrintHistory = (props) => {
   }, []);
   return (
     <>
-      <div className="bg-white-fill h-screen bg-cover ">
+      <div className="bg-white-fill h-fit min-h-screen bg-cover ">
         <div class="flex overflow-auto">
           <div class="flex w-full place-content-center">
             <div class="sm:mx-0.8 lg:mx-0.8 w-5/6 ">
@@ -47,7 +47,7 @@ const StudentPrintHistory = (props) => {
                           </th>
                           <th
                             scope="col"
-                            class="px-7 py-4 text-left text-lg font-bold text-gray-900"
+                            class="px-7 py-4 text-left  text-lg font-bold text-gray-900"
                           >
                             Tên tài liệu
                           </th>

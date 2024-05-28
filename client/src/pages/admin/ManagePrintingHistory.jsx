@@ -45,16 +45,16 @@ const ManagePrintingHistory = () => {
 
   return (
     <>
-      <div className="bg-white-fill  h-fit bg-cover ">
+      <div className="bg-white-fill min-h-[740px] h-fit bg-cover ">
         <HeaderAdmin />
         <div className="fixed top-0 z-20">
           <MenuBarAdmin />
         </div>
         <div class="flex  ml-[18rem] overflow-auto scrollbar-thin scrollbar-thumb-[#a3a2a5]
                       scrollbar-track-[#f1f1f1] hover:scrollbar-thumb-[#c4c3c6] ">
-          <div class="flex py-10 ml-[12px]">
+          <div class="flex py-10 ml-[12px] ">
             <div class=" rounded-lg shadow">
-              <div class="flex border-2 border-b-black bg-white">
+              <div class="flex border-2 border-b-black bg-white min-w-[1220px]">
                 <div class="text-black-600 w-full px-5 py-5 text-2xl font-bold">
                   Quản lý lịch sử in
                 </div>
@@ -116,19 +116,19 @@ const ManagePrintingHistory = () => {
                     <tr>
                       <th
                         scope="col"
-                        class="px-[18px] py-4 text-left text-lg font-bold text-gray-900"
+                        class="px-[18px]  py-4 text-left text-lg font-bold text-gray-900"
                       >
                         MSSV
                       </th>
                       <th
                         scope="col"
-                        class="px-[18px] py-4 text-left text-lg font-bold text-gray-900"
+                        class="px-[18px] py-4  text-left text-lg font-bold text-gray-900"
                       >
                         Họ và tên
                       </th>
                       <th
                         scope="col"
-                        class="px-[18px] py-4 text-left text-lg font-bold text-gray-900"
+                        class="px-[18px] py-4  text-left text-lg font-bold text-gray-900"
                       >
                         Tài liệu
                       </th>
@@ -140,13 +140,13 @@ const ManagePrintingHistory = () => {
                       </th>
                       <th
                         scope="col"
-                        class="px-[18px] py-4 text-left text-lg font-bold text-gray-900"
+                        class="px-[18px]   py-4 text-left text-lg font-bold text-gray-900"
                       >
                         Thời gian đặt
                       </th>
                       <th
                         scope="col"
-                        class="px-[18px] py-4 text-left text-lg font-bold text-gray-900"
+                        class="px-[18px] py-4  text-left text-lg font-bold text-gray-900"
                       >
                         Thời gian nhận
                       </th>
@@ -158,7 +158,7 @@ const ManagePrintingHistory = () => {
                       </th>
                       <th
                         scope="col"
-                        class="px-[18px] py-4  text-left text-lg font-bold text-gray-900"
+                        class="px-[18px] py-4 text-left text-lg font-bold text-gray-900"
                       >
                         Xác nhận in
                       </th>
